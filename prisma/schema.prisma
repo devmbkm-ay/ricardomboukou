@@ -14,6 +14,9 @@ model Project {
   title       String   @unique
   description String
   technologies String[]
+  imageUrl     String?                 // Made optional with ?
+  projectUrl   String?  
+  githubUrl    String?           
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

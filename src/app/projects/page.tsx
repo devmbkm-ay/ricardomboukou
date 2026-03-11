@@ -104,9 +104,7 @@ export default async function ProjectsPage() {
                 <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4 flex items-center gap-2">
                   <Sparkles className="w-4 h-4" /> Featured Project
                 </h2>
-                <ProjectCard
-                  projects={[featuredProject]}
-                />
+                <ProjectCard {...featuredProject}/>
               </div>
             )}
 
@@ -117,10 +115,10 @@ export default async function ProjectsPage() {
                   More Projects
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {otherProjects.map((project: Project) => (
+                  {otherProjects.map((project: Project, index: number) => (
                     <ProjectCard
                       key={project.id || project.title}
-                      projects={[project]}
+                      {...project}
                     />
                   ))}
                 </div>
@@ -130,7 +128,7 @@ export default async function ProjectsPage() {
         </Suspense>
 
         {/* CTA Section */}
-        {/* <div className="mt-20 text-center">
+        <div className="mt-20 text-center">
           <div className="inline-flex flex-col items-center gap-4 p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800 backdrop-blur-sm">
             <h3 className="text-2xl font-bold text-white">Have a project in mind?</h3>
             <p className="text-zinc-400 max-w-md">
@@ -143,7 +141,7 @@ export default async function ProjectsPage() {
               Let&apos;s Talk <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
-        </div> */}
+        </div>
       </div>
     </section>
   );
