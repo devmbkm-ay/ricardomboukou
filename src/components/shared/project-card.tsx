@@ -6,9 +6,9 @@ import Link from 'next/link';
 type ProjectCardProps = {
   title: string;
   description: string;
-  imageUrl?: string; // Add this
-  projectUrl?: string;  // Optional: Link to the live project
-  githubUrl?: string; // Optional: Link to the GitHub repo
+  imageUrl?: string | null;
+  projectUrl?: string | null;
+  githubUrl?: string | null;
   technologies: string[];
   // isFeatured?: boolean; // Optional: Flag to indicate if this is a featured project
 };
