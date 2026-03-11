@@ -16,14 +16,14 @@ export default async function ProjectsPage() {
             <h1 className="text-4xl font-bold tracking-tight text-center mb-10">
                 My Projects
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project:Project) => (
                 <ProjectCard
                     key={project.title}
                     projects={[project]}
                 />
                 ))}
-            </div>
+            </div> */}
         </section>
     )
 }
