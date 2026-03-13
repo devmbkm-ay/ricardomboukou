@@ -1,0 +1,441 @@
+// import React from 'react';
+
+// export default function AboutPage() {
+//   return (
+//     <main className="container mx-auto px-4 py-8">
+//       <h1 className="text-4xl font-bold mb-4">À propos de moi</h1>
+//       <div className="space-y-6 text-lg">
+//         <p>
+//           Je suis Ricardo, un ingénieur senior passionné par l'orchestration d'IA et l'augmentation humaine. Mon approche combine une rigueur technique avec un intérêt pour la finance décentralisée, notamment le Bitcoin, et le développement personnel.
+//         </p>
+//         <p>
+//           Avec une expertise dans les environnements Ubuntu, la conteneurisation avec Docker et les bases de données comme PostgreSQL, je conçois et maintiens des systèmes résilients et performants. Mon objectif est de créer des solutions qui sont non seulement efficaces, mais aussi élégantes et durables.
+//         </p>
+//         <p>
+//           En dehors de la technologie, je pratique la callisthénie, je joue de la guitare acoustique et je m'intéresse de près aux cycles d'investissement. Je crois en une approche holistique de la vie, où la discipline physique et la créativité nourrissent l'innovation technique.
+//         </p>
+//       </div>
+//     </main>
+//   );
+// }
+
+// app/about/page.tsx or pages/about.tsx
+"use client";
+
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { 
+  Brain, 
+  Database, 
+  Container, 
+  Bitcoin, 
+  Dumbbell, 
+  Music, 
+  TrendingUp, 
+  Code2, 
+  Terminal,
+  Cpu,
+  Globe,
+  ArrowUpRight,
+  Sparkles,
+  Quote
+} from 'lucide-react';
+
+
+// Skill data structure
+const skills = [
+  { name: 'AI Orchestration', icon: Brain, level: 95, color: 'from-purple-500 to-pink-500' },
+  { name: 'Docker & Containers', icon: Container, level: 90, color: 'from-blue-500 to-cyan-500' },
+  { name: 'PostgreSQL', icon: Database, level: 88, color: 'from-emerald-500 to-teal-500' },
+  { name: 'Ubuntu/Linux', icon: Terminal, level: 92, color: 'from-orange-500 to-red-500' },
+  { name: 'Full-Stack Dev', icon: Code2, level: 94, color: 'from-violet-500 to-purple-500' },
+  { name: 'System Design', icon: Cpu, level: 85, color: 'from-rose-500 to-pink-500' },
+];
+
+const interests = [
+  { name: 'Calisthenics', icon: Dumbbell, description: 'Discipline physique & force' },
+  { name: 'Guitar', icon: Music, description: 'Créativité acoustique' },
+  { name: 'Bitcoin & DeFi', icon: Bitcoin, description: 'Finance décentralisée' },
+  { name: 'Investments', icon: TrendingUp, description: 'Cycles & stratégies' },
+];
+
+const philosophies = [
+  {
+    quote: "La technologie doit servir l'humain, non l'asservir.",
+    context: "Approche éthique de l'IA"
+  },
+  {
+    quote: "La résilience vient de la simplicité, pas de la complexité.",
+    context: "Architecture système"
+  },
+  {
+    quote: "Corps fort, esprit vif, code propre.",
+    context: "Philosophie de vie"
+  }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+}as const;
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100, damping: 15 }
+  }
+}as const;
+
+export default function AboutPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const isHeroInView = useInView(heroRef, { once: true });
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
+
+  // Mouse parallax effect
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative min-h-screen bg-zinc-950 overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <motion.div 
+          style={{ y: backgroundY }}
+          className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[150px]"
+        />
+        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px]" />
+        
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+      </div>
+
+      {/* Hero Section */}
+      <section ref={heroRef} className="relative z-10 pt-32 pb-20 px-6">
+        <motion.div 
+          style={{ opacity }}
+          className="container mx-auto max-w-6xl"
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={isHeroInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
+              >
+                <Sparkles className="w-4 h-4 text-purple-400" />
+                <span className="text-sm text-zinc-300 font-medium">À propos</span>
+              </motion.div>
+
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+                <span className="text-white">Ricardo</span>
+                <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x bg-300%">
+                  Engineer & Creator
+                </span>
+              </h1>
+
+              <p className="text-xl text-zinc-400 leading-relaxed mb-8">
+                Orchestrateur d&rsquo;IA passionné par l&rsquo;augmentation humaine. 
+                Je conçois des systèmes résilients à l&rsquo;intersection de la technologie 
+                et de la finance décentralisée.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <motion.a
+                  href="/projects"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all"
+                >
+                  Voir mes projets
+                  <ArrowUpRight className="w-4 h-4" />
+                </motion.a>
+                <motion.a
+                  href="/contact"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all"
+                >
+                  Me contacter
+                </motion.a>
+              </div>
+            </motion.div>
+
+            {/* Right: Visual */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
+              style={{
+                x: mousePosition.x,
+                y: mousePosition.y
+              }}
+            >
+              <div className="relative aspect-square max-w-md mx-auto">
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-3xl blur-2xl" />
+                
+                {/* Image Container */}
+                <div className="relative h-full rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10" />
+                  
+                  {/* Placeholder for your image */}
+                  <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-white">R</span>
+                      </div>
+                      <p className="text-zinc-500">Votre photo ici</p>
+                    </div>
+                  </div>
+                  
+                  {/* Floating Stats */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                    className="absolute bottom-6 left-6 right-6 z-20"
+                  >
+                    <div className="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-white">5+</div>
+                        <div className="text-xs text-zinc-400">Années</div>
+                      </div>
+                      <div className="text-center border-x border-white/10">
+                        <div className="text-2xl font-bold text-white">50+</div>
+                        <div className="text-xs text-zinc-400">Projets</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-white">∞</div>
+                        <div className="text-xs text-zinc-400">Passion</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Philosophy Quotes */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            {philosophies.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300"
+              >
+                <Quote className="w-8 h-8 text-purple-400/50 mb-4" />
+                <p className="text-white font-medium mb-3 leading-relaxed">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+                <p className="text-xs text-zinc-500 uppercase tracking-wider">
+                  {item.context}
+                </p>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 rounded-2xl transition-all duration-500" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Expertise Technique
+            </h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto">
+              Des années d&rsquo;expérience dans la conception de systèmes 
+              distribués et résilients
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                className="group relative p-6 rounded-2xl bg-zinc-900/30 border border-white/5 hover:border-white/10 transition-all duration-300"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${skill.color} bg-opacity-10`}>
+                    <skill.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-2xl font-bold text-white">
+                    {skill.level}%
+                  </span>
+                </div>
+                
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {skill.name}
+                </h3>
+                
+                {/* Progress Bar */}
+                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
+                    className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
+                  />
+                </div>
+                
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Personal Interests */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Au-delà du Code
+            </h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto">
+              Une approche holistique où la discipline physique 
+              et la créativité nourrissent l&apos;innovation
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {interests.map((interest, index) => (
+              <motion.div
+                key={interest.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300 text-center"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <interest.icon className="w-8 h-8 text-purple-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {interest.name}
+                </h3>
+                <p className="text-sm text-zinc-400">
+                  {interest.description}
+                </p>
+                
+                {/* Hover Glow */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative z-10 py-32 px-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="container mx-auto max-w-4xl text-center"
+        >
+          <div className="relative p-12 rounded-3xl bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 border border-white/10 backdrop-blur-sm overflow-hidden">
+            {/* Background Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none" />
+            
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 relative z-10">
+              Travaillons ensemble
+            </h2>
+            <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto relative z-10">
+              Vous avez un projet ambitieux ? Discutons de la façon dont 
+              nous pouvons créer quelque chose d&apos;exceptionnel.
+            </p>
+            
+            <motion.a
+              href="/contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-all relative z-10"
+            >
+              Démarrer un projet
+              <ArrowUpRight className="w-5 h-5" />
+            </motion.a>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Custom Styles for Gradient Animation */}
+      <style jsx>{`
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 3s ease infinite;
+        }
+        .bg-300\\% {
+          background-size: 300% 300%;
+        }
+      `}</style>
+    </div>
+  );
+}
