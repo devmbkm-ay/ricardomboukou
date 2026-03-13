@@ -1,4 +1,3 @@
-// src/components/shared/project-card.tsx
 "use client";
 
 import Image from 'next/image';
@@ -7,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowUpRight, Sparkles } from 'lucide-react';
 
 type ProjectCardProps = {
+  id: string;
   title: string;
   description: string;
   imageUrl?: string | null;
@@ -18,6 +18,7 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({
+  id,
   title,
   description,
   imageUrl,
@@ -39,10 +40,9 @@ const ProjectCard = ({
         ${compact ? 'flex-row' : ''}
       `}
     >
-      {/* Ambient Glow Effect */}
+      <Link href={`/projects/${id}`} className="absolute inset-0 z-10" aria-label={`View details for ${title}`} />
       <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 via-transparent to-pink-600/0 opacity-0 transition-opacity duration-500 group-hover:from-purple-600/5 group-hover:to-pink-600/5 group-hover:opacity-100 pointer-events-none" />
       
-      {/* Featured Badge */}
       {featured && (
         <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/30 backdrop-blur-md">
           <Sparkles className="w-3.5 h-3.5 text-purple-300" />
@@ -50,7 +50,6 @@ const ProjectCard = ({
         </div>
       )}
 
-      {/* Image Section */}
       {imageUrl && (
         <div className={`
           relative overflow-hidden
@@ -64,19 +63,15 @@ const ProjectCard = ({
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             sizes={featured ? "(max-width: 768px) 100vw, 80vw" : "(max-width: 768px) 100vw, 50vw"}
           />
-          
-          {/* Image Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
           
-          {/* Hover Overlay with Links */}
           <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-[2px]">
             {githubUrl && (
               <Link
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-110"
-                onClick={(e) => e.stopPropagation()}
+                className="relative z-20 p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-110"
               >
                 <Github className="w-5 h-5" />
               </Link>
@@ -86,8 +81,7 @@ const ProjectCard = ({
                 href={projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-110"
-                onClick={(e) => e.stopPropagation()}
+                className="relative z-20 p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-110"
               >
                 <ExternalLink className="w-5 h-5" />
               </Link>
@@ -96,12 +90,10 @@ const ProjectCard = ({
         </div>
       )}
 
-      {/* Content Section */}
       <div className={`
-        relative z-10 flex flex-col flex-grow p-6
+        relative flex flex-col flex-grow p-6
         ${compact ? 'w-2/3 justify-center' : ''}
       `}>
-        {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-3">
           <h3 className={`
             font-bold text-white group-hover:text-purple-200 transition-colors duration-300
@@ -111,15 +103,11 @@ const ProjectCard = ({
             {title}
           </h3>
           
-          {/* External Link Indicator (visible on hover) */}
-          {(projectUrl || githubUrl) && (
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1 group-hover:translate-y-0">
-              <ArrowUpRight className="w-5 h-5 text-purple-400" />
-            </div>
-          )}
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1 group-hover:translate-y-0">
+            <ArrowUpRight className="w-5 h-5 text-purple-400" />
+          </div>
         </div>
 
-        {/* Description */}
         <p className={`
           text-zinc-400 leading-relaxed group-hover:text-zinc-300 transition-colors duration-300
           ${featured ? 'text-base mb-6 line-clamp-3' : 'text-sm mb-4 line-clamp-2'}
@@ -128,7 +116,6 @@ const ProjectCard = ({
           {description}
         </p>
 
-        {/* Technologies */}
         <div className="mt-auto">
           <div className="flex flex-wrap gap-2">
             {technologies?.slice(0, featured ? undefined : compact ? 3 : 4).map((tech, index) => (
@@ -156,9 +143,8 @@ const ProjectCard = ({
           </div>
         </div>
 
-        {/* Bottom Action Bar (Featured only) */}
         {featured && (
-          <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+          <div className="relative z-20 mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-4">
               {githubUrl && (
                 <Link
@@ -187,7 +173,6 @@ const ProjectCard = ({
         )}
       </div>
 
-      {/* Corner Accent */}
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/10 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
     </motion.div>
   );
