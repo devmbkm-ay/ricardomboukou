@@ -1,43 +1,35 @@
 // Your project data
 export const projects = [
     {
-        title: 'Portfolio Website',
+        title: 'Consultancy',
         description: 'The very website you are looking at, built with Next.js, TypeScript, and Tailwind CSS. Deployed on Vercel.',
         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-        imageUrl: '/images/sidney.png', // Using a placeholder, replace with your actual image path in /public
-        projectUrl: 'https://ricardomboukou.vercel.app/projects',
-        githubUrl: 'https://github.com/ricardomboukou/portfolio',
+        imageUrl: '/images/enidpath.webp', // Using a placeholder, replace with your actual image path in /public
+        projectUrl: 'https://enidpath.vercel.app',
+        githubUrl: 'https://github.com/devmbkm-ay/enidpath',
     },
     {
-        title: 'Task Management App',
+        title: 'Quiz App',
         description: 'A full-stack application for managing tasks, with user authentication and a real-time database.',
         technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma'],
-        imageUrl: '/images/portfolio.png', // Using a placeholder, replace with your actual image path in /public
-        projectUrl: 'https://ricardomboukou.vercel.app/projects',
-        githubUrl: 'https://github.com/ricardomboukou/task-app',
+        imageUrl: '/images/flipquiz.webp', // Using a placeholder, replace with your actual image path in /public
+        projectUrl: 'https://quizflip-virid.vercel.app/',
+        githubUrl: 'https://github.com/devmbkm-ay/quizflip',
     },
     {
-        title: 'E-commerce Storefront',
+        title: 'Noce florale',
         description: 'A headless e-commerce frontend with a clean, modern design, connected to a third-party API for products and checkout.',
         technologies: ['Next.js', 'Stripe', 'GraphQL'],
-        imageUrl: '/images/portfolio.png', // Using a placeholder, replace with your actual image path in /public
-        projectUrl: 'https://ricardomboukou.vercel.app/projects',
-        githubUrl: 'https://github.com/ricardomboukou/ecommerce',
+        imageUrl: '/images/noceflorale.webp', // Using a placeholder, replace with your actual image path in /public
+        projectUrl: 'https://noceflorale-frontend.vercel.app',
+        githubUrl: 'https://github.com/devmbk-ay/noceflorale',
     },
     {
-        title: 'Data Visualization Dashboard',
-        description: 'A dashboard for visualizing complex data sets using interactive charts and graphs.',
-        technologies: ['D3.js', 'React', 'FastAPI'],
-        imageUrl: '/images/portfolio.png', // Using a placeholder, replace with your actual image path in /public
-        projectUrl: 'https://ricardomboukou.vercel.app/projects',
-        githubUrl: 'https://github.com/ricardomboukou/dashboard',
+        title: 'Noce florale',
+        description: 'A RSVP project for weddings with dashboard for managing guest stat.',
+        technologies: ['Next.js', 'GraphQL', 'MongoDB'],
+        imageUrl: '/images/noceflorale.webp', // Using a placeholder, replace with your actual image path in /public
+        projectUrl: 'https://noceflorale-frontend.vercel.app',
+        githubUrl: 'https://github.com/devmbkm-ay/noceflorale',
     },
-    {
-        title: 'Blog Platform',
-        description: 'A simple yet powerful blog platform built with React and Markdown.',
-        technologies: ['React', 'Markdown', 'Node.js'],
-        imageUrl: '/images/portfolio.png', // Using a placeholder, replace with your actual image path in /public
-        projectUrl: 'https://ricardomboukou.vercel.app/projects',
-        githubUrl: 'https://github.com/ricardomboukou/blog',
-    }
 ];
