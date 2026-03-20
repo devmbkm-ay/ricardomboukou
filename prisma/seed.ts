@@ -4,6 +4,9 @@ import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import { projects } from './data/projects';
+import { users } from './data/users'
+import * as bcrypt from 'bcrypt';
+
 
 // Create connection to PostgreSQL using pg Pool
 const pool = new Pool({
@@ -16,20 +19,47 @@ const adapter = new PrismaPg(pool);
 //Pass the adapter to PrismaClient constructor
 const prisma = new PrismaClient({ adapter });
 
+async function seedProjects() {
+  console.log('🌱 Seeding projects...');
+  for (const projectData of projects) {
+    await prisma.project.upsert({
+      where: { title: projectData.title },
+      update: projectData,
+      create: projectData
+    })
+  }
+}
+
+async function seedUsers() {
+  console.log('🌱 Seeding projects...')
+
+  for (const userData of users) {
+    const hashedPassword = await bcrypt.hash(userData.password, 10)
+
+    await prisma.user.upsert({
+      where: { email: userData.email },
+      update: {
+        name: userData.name,
+        password: hashedPassword
+      },
+      create: {
+        name: userData.name,
+        email: userData.email,
+        password: hashedPassword
+
+      }
+    })
+  }
+}
 
 async function main() {
-  console.log(`Start seeding ...`);
-
-  for (const projectData of projects) {
-    const project = await prisma.project.upsert({
-      where: { title: projectData.title }, // Assumes title is unique
-      update: projectData, // Update with all data from the object
-      create: projectData, // Create with all data from the object
-    });
-    console.log(`Upserted project with id: ${project.id}`);
+  try {
+    await seedProjects()
+    await seedUsers()
+  } catch (error) {
+    console.error('❌ Erreur lors du seeding:', error)
+    process.exit(1)
   }
-
-  console.log(`Seeding finished.`);
 }
 
 main()

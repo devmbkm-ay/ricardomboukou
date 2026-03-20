@@ -17,7 +17,7 @@ export default function HomeClient() {
   // Three.js Particle Background
   useEffect(() => {
     if (!canvasRef.current) return;
-    
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -36,7 +36,7 @@ export default function HomeClient() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
+
     resize();
     window.addEventListener('resize', resize);
 
@@ -61,7 +61,7 @@ export default function HomeClient() {
         const dx = mousePosition.x - particle.x;
         const dy = mousePosition.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < 100) {
           particle.vx -= dx * 0.001;
           particle.vy -= dy * 0.001;
@@ -85,7 +85,7 @@ export default function HomeClient() {
           const dx2 = particle.x - other.x;
           const dy2 = particle.y - other.y;
           const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-          
+
           if (distance2 < 150) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
@@ -118,8 +118,8 @@ export default function HomeClient() {
         setWordIndex((prev) => (prev + 1) % words.length);
       } else {
         setCurrentWord(
-          isDeleting 
-            ? word.substring(0, currentWord.length - 1) 
+          isDeleting
+            ? word.substring(0, currentWord.length - 1)
             : word.substring(0, currentWord.length + 1)
         );
       }
@@ -144,7 +144,7 @@ export default function HomeClient() {
         ref={canvasRef}
         className="absolute inset-0 z-0 opacity-40"
       />
-      
+
       {/* Gradient Orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000" />
@@ -152,7 +152,7 @@ export default function HomeClient() {
       {/* Main Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          
+
           {/* Availability Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 animate-fade-in-up">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
