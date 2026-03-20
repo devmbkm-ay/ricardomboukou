@@ -12,7 +12,7 @@ export const projects = [
         title: 'Quiz App',
         description: 'A full-stack application for managing tasks, with user authentication and a real-time database.',
         technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma'],
-        imageUrl: '/images/flipquiz.webp', // Using a placeholder, replace with your actual image path in /public
+        imageUrl: '/images/quizflip.webp', // Using a placeholder, replace with your actual image path in /public
         projectUrl: 'https://quizflip-virid.vercel.app/',
         githubUrl: 'https://github.com/devmbkm-ay/quizflip',
     },
