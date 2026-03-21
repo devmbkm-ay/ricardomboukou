@@ -21,9 +21,10 @@ const prisma = new PrismaClient({ adapter });
 
 async function seedProjects() {
   console.log('🌱 Seeding projects...');
+
   for (const projectData of projects) {
     await prisma.project.upsert({
-      where: { title: projectData.title },
+      where: { slug: projectData.slug },
       update: projectData,
       create: projectData
     })

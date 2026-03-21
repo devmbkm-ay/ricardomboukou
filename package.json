@@ -11,10 +11,8 @@
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
+    "db:delete:projects": "tsx prisma/delete-projects.ts",
     "db:reset": "prisma migrate reset --force"
-  },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
@@ -43,7 +41,7 @@
     "dotenv-cli": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "prisma": "^6.19.2",
+    "prisma": "^7.4.2",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
