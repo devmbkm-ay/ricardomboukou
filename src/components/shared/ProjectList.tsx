@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from 'react';
-import { Project } from '@prisma/client';
+import type { Project } from '@prisma/client';
 import ProjectCard from '@/components/shared/project-card';
 import { Sparkles } from 'lucide-react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
@@ -48,13 +48,15 @@ export default function ProjectList({ projects }: ProjectListProps) {
 
   const allTechnologies = useMemo(() => {
     const techSet = new Set<string>();
-    projects.forEach(p => p.technologies?.forEach(tech => techSet.add(tech)));
+    projects.forEach((project: Project) => {
+      project.technologies?.forEach((tech: string) => techSet.add(tech));
+    });
     return ['All', ...Array.from(techSet).sort()];
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
-    return projects.filter(p => p.technologies?.includes(activeFilter));
+    return projects.filter((project: Project) => project.technologies?.includes(activeFilter));
   }, [activeFilter, projects]);
   
   const featuredProject = filteredProjects[0];
