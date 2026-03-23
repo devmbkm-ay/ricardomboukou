@@ -45,12 +45,15 @@ const ProjectModal = ({
         credentials: 'include',
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Image upload failed');
+        if (data.error && data.error.includes('File size too large')) {
+            throw new Error('Image size cannot exceed 10MB.');
+        }
+        throw new Error(data.error || 'Image upload failed');
       }
 
-      const data = await res.json();
       setFormData({ ...formData, imageUrl: data.imageUrl });
       toast.success('Image uploaded successfully');
     } catch (error: any) {
