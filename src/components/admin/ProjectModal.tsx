@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { X, LoaderCircle } from 'lucide-react';
 import type { Project } from '@prisma/client';
+import toast from 'react-hot-toast';
 
 const ProjectModal = ({
     project,
@@ -27,6 +28,36 @@ const ProjectModal = ({
     setFormData: (data: any) => void;
   }) => {
     const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const uploadFormData = new FormData();
+    uploadFormData.append('file', file);
+
+    try {
+      const res = await fetch('/api/admin/upload-image', {
+        method: 'POST',
+        body: uploadFormData,
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Image upload failed');
+      }
+
+      const data = await res.json();
+      setFormData({ ...formData, imageUrl: data.imageUrl });
+      toast.success('Image uploaded successfully');
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsUploading(false);
+    }
+  };
   
     const handleSubmit = async (e: FormEvent) => {
       e.preventDefault();
@@ -89,6 +120,17 @@ const ProjectModal = ({
                     <input type="text" placeholder="Title" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" required />
                     <input type="text" placeholder="Slug" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" required />
                     <input type="text" placeholder="Image URL" value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                    <div className="w-full relative">
+                        <label htmlFor="imageUpload" className="block text-sm font-medium text-zinc-400 mb-2">Or Upload an Image</label>
+                        <input
+                            type="file"
+                            id="imageUpload"
+                            onChange={handleImageUpload}
+                            disabled={isUploading}
+                            className="w-full text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 disabled:opacity-50"
+                        />
+                        {isUploading && <LoaderCircle className="animate-spin w-5 h-5 text-white absolute right-3 top-9" />}
+                    </div>
                     <textarea placeholder="Description" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" rows={4} required></textarea>
                     <input type="text" placeholder="Technologies (comma-separated)" value={formData.technologies} onChange={e => setFormData({...formData, technologies: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" required />
                     <input type="text" placeholder="Project URL" value={formData.projectUrl} onChange={e => setFormData({...formData, projectUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" />
