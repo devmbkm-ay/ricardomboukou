@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { jwtVerify } from 'jose';
 
 // This is a protected route. The middleware should handle authentication.
 // We can add an extra layer of verification here if needed.
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     // Optional: Re-verify token if you want route-specific checks
     const token = req.cookies.get('token')?.value || '';
