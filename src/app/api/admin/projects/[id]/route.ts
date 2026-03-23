@@ -4,12 +4,14 @@ import { jwtVerify } from 'jose';
 import { revalidatePath } from 'next/cache';
 
 type RouteContext = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export async function DELETE(req: NextRequest, { params }: RouteContext) {
+  const { id } = await params;
+
   try {
     // Optional: Re-verify token
     const token = req.cookies.get('token')?.value || '';
@@ -22,8 +24,6 @@ export async function DELETE(req: NextRequest, { params }: RouteContext) {
     } catch (err) {
       return NextResponse.json({ error: 'Unauthorized: Invalid token' }, { status: 401 });
     }
-
-    const { id } = params;
 
     if (!id) {
         return NextResponse.json({ error: 'Project ID is required' }, { status: 400 });
@@ -40,13 +40,14 @@ export async function DELETE(req: NextRequest, { params }: RouteContext) {
 
     return NextResponse.json({ message: 'Project deleted successfully' }, { status: 200 });
   } catch (error) {
-    const { id } = params;
     console.error(`Failed to delete project ${id}:`, error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function PUT(req: NextRequest, { params }: RouteContext) {
+    const { id } = await params;
+
     try {
       // Optional: Re-verify token
       const token = req.cookies.get('token')?.value || '';
@@ -60,7 +61,6 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
         return NextResponse.json({ error: 'Unauthorized: Invalid token' }, { status: 401 });
       }
   
-      const { id } = params;
       const body = await req.json();
   
       const updatedProject = await prisma.project.update({
@@ -74,7 +74,6 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
   
       return NextResponse.json(updatedProject, { status: 200 });
     } catch (error) {
-      const { id } = params;
       console.error(`Failed to update project ${id}:`, error);
       return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
