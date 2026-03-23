@@ -1,23 +1,10 @@
 // prisma/seed.ts
 import 'dotenv/config'; // Ensures .env file is read
 import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
 import { projects } from './data/projects';
 import { users } from './data/users'
 import * as bcrypt from 'bcrypt';
-
-
-// Create connection to PostgreSQL using pg Pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-// Create an instance of the Prisma adapter for PostgreSQL
-const adapter = new PrismaPg(pool);
-
-//Pass the adapter to PrismaClient constructor
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient();
 
 async function seedProjects() {
   console.log('🌱 Seeding projects...');

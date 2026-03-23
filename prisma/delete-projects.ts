@@ -1,15 +1,7 @@
 import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
 import { projects } from './data/projects';
-
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL
-})
-
-const adapter = new PrismaPg(pool)
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient()
 
 async function deleteSeedProjects() {
     console.log('🧹 Deleting seeded projects...');
