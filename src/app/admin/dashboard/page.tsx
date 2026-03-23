@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutDashboard, LogOut, PlusCircle, Trash2, Edit, X, LoaderCircle } from 'lucide-react';
 import type { Project } from '@prisma/client';
+import toast from 'react-hot-toast';
 
 // Modal Component
 const ProjectModal = ({
@@ -130,17 +131,39 @@ export default function DashboardPage() {
   }
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('Are you sure you want to delete this project?')) {
-        try {
-            const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE' });
-            if (!res.ok) {
-                const data = await res.json();
-                throw new Error(data.error || 'Failed to delete project');
-            }
-            setProjects(projects.filter(p => p.id !== id));
-        } catch (err: any) {
-            alert(err.message);
+    toast((t) => (
+      <span>
+        Are you sure you want to delete this project?
+        <button
+          onClick={() => {
+            toast.dismiss(t.id);
+            deleteProject(id);
+          }}
+          className="ml-2 px-3 py-1 rounded-md bg-red-500 text-white"
+        >
+          Delete
+        </button>
+        <button
+          onClick={() => toast.dismiss(t.id)}
+          className="ml-2 px-3 py-1 rounded-md bg-gray-200 text-black"
+        >
+          Cancel
+        </button>
+      </span>
+    ));
+  };
+
+  const deleteProject = async (id: string) => {
+    try {
+        const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE' });
+        if (!res.ok) {
+            const data = await res.json();
+            throw new Error(data.error || 'Failed to delete project');
         }
+        setProjects(projects.filter(p => p.id !== id));
+        toast.success('Project deleted successfully');
+    } catch (err: any) {
+        toast.error(err.message);
     }
   }
 
@@ -163,8 +186,9 @@ export default function DashboardPage() {
         
         closeModal();
         fetchProjects(); // Refresh the list
+        toast.success(`Project ${isEditing ? 'updated' : 'created'} successfully`);
     } catch (err: any) {
-        alert(err.message);
+        toast.error(err.message);
     }
   }
 
