@@ -142,7 +142,7 @@ export default function DashboardPage() {
 
   const deleteProject = async (id: string) => {
     try {
-        const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE' });
+        const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE', credentials: 'include' });
         if (!res.ok) {
             const data = await res.json();
             throw new Error(data.error || 'Failed to delete project');
@@ -163,7 +163,8 @@ export default function DashboardPage() {
         const res = await fetch(url, {
             method: method,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(projectData)
+            body: JSON.stringify(projectData),
+            credentials: 'include'
         });
 
         if (!res.ok) {
