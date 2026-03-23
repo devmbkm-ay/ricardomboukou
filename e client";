@@ -1,0 +1,29 @@
+[33m4acfaf2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m feat: Replace alerts with toast notifications
+[33md362ffc[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix(auth): Correct Framer Motion variant types: Resolves a TypeScript build error in the login and register pages. The  object for Framer Motion contained conflicting transition properties ( and ).
+[33m5a0bd5e[m fix(api): use NextRequest for admin projects cookie access
+[33me61b4f6[m fix(api): align admin project route context with Next.js 16 params typing
+[33m4f8620f[m fix(api): Correct type definitions in dynamic project route:Resolves a TypeScript build error by replacing the generic  type with Next.js's specific  type in the PUT and DELETE request handlers for the  endpoint.
+[33md076dc8[m feat(admin): Implement secure CRUD dashboard for projects
+[33m67c3904[m feat(database): slug setup success
+[33m9169731[m fix(prisma): remove deprecated datasource url from schema
+[33m4651f26[m chore(prisma): upgrade Prisma setup and add seeded project cleanup script
+[33ma16fedc[m feat(seed):pictures update
+[33m4752494[m feat(database): update projects data
+[33mb15e64c[m feat(database):register success
+[33m68fba5c[m feat(config): user model setup
+[33m7aadf8d[m feat(projects): implement project detail pages and fixes
+[33m146b8dc[m feat(clean-up):removed duplicated ricardomboukou folder
+[33m1ae98fb[m feat(ui): implement cohesive dark design system across all pages
+[33m90398d1[m feat(projects): implement interactive project filtering
+[33ma4762bd[m feat:update props
+[33m2ff399c[m feat:clean up.
+[33m4876867[m feat:clean up.
+[33mcf2ac02[m feat:clean up.
+[33mfb1e3e7[m feat:local image integrated to the project page.
+[33mf0d711a[m feat: design enhancement with a strong appeal
+[33mf86966d[m fix: migrate to Prisma 7 with Neon PostgreSQL support
+[33m3966e71[m feat(database connected successfuly
+[33mb56fc58[m first commit: frontend setup
+[33mf331618[m feat:navbar setup
+[33m3e5cea5[m feat(config): fix conflict
+[33m3e3da78[m Initial commit
