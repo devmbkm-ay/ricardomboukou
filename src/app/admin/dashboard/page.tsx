@@ -6,83 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutDashboard, LogOut, PlusCircle, Trash2, Edit, X, LoaderCircle } from 'lucide-react';
 import type { Project } from '@prisma/client';
 import toast from 'react-hot-toast';
-
-// Modal Component
-const ProjectModal = ({
-    project,
-    onClose,
-    onSave,
-  }: {
-    project: Partial<Project> | null;
-    onClose: () => void;
-    onSave: (projectData: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>, id?: string) => void;
-  }) => {
-    const [formData, setFormData] = useState({
-        title: project?.title || '',
-        slug: project?.slug || '',
-        description: project?.description || '',
-        technologies: project?.technologies?.join(', ') || '',
-        imageUrl: project?.imageUrl || '',
-        projectUrl: project?.projectUrl || '',
-        githubUrl: project?.githubUrl || '',
-    });
-    const [isSaving, setIsSaving] = useState(false);
-  
-    const handleSubmit = async (e: FormEvent) => {
-      e.preventDefault();
-      setIsSaving(true);
-      const projectData = {
-          ...formData,
-          technologies: formData.technologies.split(',').map(tech => tech.trim()),
-      };
-      await onSave(projectData, project?.id);
-      setIsSaving(false);
-    };
-
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4"
-            onClick={onClose}
-        >
-            <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-zinc-900 border border-white/10 rounded-2xl p-8 w-full max-w-2xl"
-                onClick={(e) => e.stopPropagation()}
-            >
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold text-white">
-                        {project?.id ? 'Edit Project' : 'Add New Project'}
-                    </h2>
-                    <button onClick={onClose} className="text-zinc-500 hover:text-white">
-                        <X />
-                    </button>
-                </div>
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Form fields */}
-                    <input type="text" placeholder="Title" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" required />
-                    <input type="text" placeholder="Slug" value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" required />
-                    <input type="text" placeholder="Image URL" value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                    <textarea placeholder="Description" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" rows={4} required></textarea>
-                    <input type="text" placeholder="Technologies (comma-separated)" value={formData.technologies} onChange={e => setFormData({...formData, technologies: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" required />
-                    <input type="text" placeholder="Project URL" value={formData.projectUrl} onChange={e => setFormData({...formData, projectUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                    <input type="text" placeholder="GitHub URL" value={formData.githubUrl} onChange={e => setFormData({...formData, githubUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                    <div className="md:col-span-2 flex justify-end gap-4 mt-4">
-                        <button type="button" onClick={onClose} className="px-5 py-2 rounded-lg text-white font-semibold hover:bg-white/5 transition-all">Cancel</button>
-                        <button type="submit" disabled={isSaving} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white text-black font-semibold hover:bg-zinc-200 transition-all disabled:opacity-60">
-                            {isSaving && <LoaderCircle className="animate-spin w-4 h-4" />}
-                            {project?.id ? 'Save Changes' : 'Create Project'}
-                        </button>
-                    </div>
-                </form>
-            </motion.div>
-        </motion.div>
-    );
-};
+import ProjectModal from '@/components/admin/ProjectModal';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -91,6 +15,17 @@ export default function DashboardPage() {
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [repoUrl, setRepoUrl] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    slug: '',
+    description: '',
+    technologies: '',
+    imageUrl: '',
+    projectUrl: '',
+    githubUrl: '',
+  });
 
   useEffect(() => {
     fetchProjects();
@@ -110,6 +45,40 @@ export default function DashboardPage() {
     }
   };
 
+  const handleAnalyzeRepo = async () => {
+    if (!repoUrl) {
+      toast.error('Please enter a repository URL');
+      return;
+    }
+    setIsAnalyzing(true);
+    try {
+      const res = await fetch('/api/admin/projects/analyze-repo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ repoUrl }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to analyze repository');
+      }
+      const data = await res.json();
+      setFormData({
+        title: data.title,
+        slug: data.slug,
+        description: data.description,
+        technologies: data.technologies,
+        imageUrl: data.imageUrl,
+        projectUrl: data.projectUrl,
+        githubUrl: data.githubUrl,
+      });
+      toast.success('Repository analyzed successfully');
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/auth/login');
@@ -117,11 +86,29 @@ export default function DashboardPage() {
   
   const openModalForNew = () => {
     setEditingProject(null);
+    setFormData({
+        title: '',
+        slug: '',
+        description: '',
+        technologies: '',
+        imageUrl: '',
+        projectUrl: '',
+        githubUrl: '',
+      });
     setIsModalOpen(true);
   }
 
   const openModalForEdit = (project: Project) => {
     setEditingProject(project);
+    setFormData({
+        title: project.title,
+        slug: project.slug,
+        description: project.description,
+        technologies: project.technologies.join(', '),
+        imageUrl: project.imageUrl || '',
+        projectUrl: project.projectUrl || '',
+        githubUrl: project.githubUrl || '',
+      });
     setIsModalOpen(true);
   }
 
@@ -200,7 +187,17 @@ export default function DashboardPage() {
       </div>
 
       <AnimatePresence>
-        {isModalOpen && <ProjectModal project={editingProject} onClose={closeModal} onSave={handleSaveProject} />}
+        {isModalOpen && <ProjectModal 
+            project={editingProject} 
+            onClose={closeModal} 
+            onSave={handleSaveProject} 
+            repoUrl={repoUrl}
+            setRepoUrl={setRepoUrl}
+            handleAnalyzeRepo={handleAnalyzeRepo}
+            isAnalyzing={isAnalyzing}
+            formData={formData}
+            setFormData={setFormData}
+            />}
       </AnimatePresence>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative z-10 max-w-7xl mx-auto">
