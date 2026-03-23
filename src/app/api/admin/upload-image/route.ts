@@ -27,33 +27,31 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
-    const stream = Readable.from(file.stream());
-    const buffer = await streamToBuffer(stream);
+    const buffer = await file.arrayBuffer();
+    const view = new Uint8Array(buffer);
 
-    const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: 'portfolio_projects' },
-      (error, result) => {
-        if (error) {
-          console.error('Cloudinary upload error:', error);
-          // This part is tricky as we're in a callback.
-          // The response has to be handled via the promise resolution below.
-        }
-      }
-    );
-    
-    const uploadPromise = new Promise<{ secure_url: string }>((resolve, reject) => {
-        uploadStream.on('finish', (result: any) => resolve({ secure_url: result.secure_url }));
-        uploadStream.on('error', (error) => reject(error));
+    const uploadPromise = new Promise<{ secure_url: string, public_id: string }>((resolve, reject) => {
+        cloudinary.uploader.upload_stream(
+            { folder: 'portfolio_projects' },
+            (error, result) => {
+                if (error) {
+                    return reject(error);
+                }
+                if (result) {
+                    resolve({ secure_url: result.secure_url, public_id: result.public_id });
+                } else {
+                    reject(new Error("Cloudinary upload failed without error"));
+                }
+            }
+        ).end(view);
     });
-
-    uploadStream.end(buffer);
 
     const { secure_url } = await uploadPromise;
 
     return NextResponse.json({ imageUrl: secure_url }, { status: 200 });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Upload API error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }
