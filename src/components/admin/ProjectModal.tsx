@@ -42,6 +42,7 @@ const ProjectModal = ({
       const res = await fetch('/api/admin/upload-image', {
         method: 'POST',
         body: uploadFormData,
+        credentials: 'include',
       });
 
       if (!res.ok) {

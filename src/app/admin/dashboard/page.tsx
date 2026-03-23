@@ -56,6 +56,7 @@ export default function DashboardPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ repoUrl }),
+        credentials: 'include',
       });
       if (!res.ok) {
         const data = await res.json();
@@ -80,7 +81,7 @@ export default function DashboardPage() {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
     router.push('/auth/login');
   };
   
@@ -164,7 +165,7 @@ export default function DashboardPage() {
             method: method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(projectData),
-            credentials: 'include'
+            credentials: 'include',
         });
 
         if (!res.ok) {
