@@ -2,26 +2,22 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowUpRight, Mail, KeyRound, User } from 'lucide-react';
 import Link from 'next/link';
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 20 },
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
       staggerChildren: 0.1,
     }
   }
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { type: "spring" } }
 };
 
