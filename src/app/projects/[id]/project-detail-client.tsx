@@ -14,7 +14,7 @@ import {
  Sparkles,
  CheckCircle2
 } from 'lucide-react';
-import { Project } from '@prisma/client';
+import type { Project } from '@prisma/client';
 import { motion } from 'framer-motion';
 
 // Animation components now live inside the Client Component
@@ -46,7 +46,11 @@ const StaggerContainer = ({ children }: { children: React.ReactNode }) => (
  </div>
 );
 
-export default function ProjectDetailClient({ project }: { project: Project }) {
+type ProjectDetailClientProps = {
+ project: Project;
+};
+
+export default function ProjectDetailClient({ project }: ProjectDetailClientProps) {
  return (
  <div className="min-h-screen bg-zinc-950 relative overflow-hidden">
  {/* Background Ambient Effects */}
@@ -309,7 +313,7 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
  Tech Stack
  </h3>
  <div className="flex flex-wrap gap-2">
- {project.technologies.map((tech, index) => (
+ {project.technologies.map((tech: string, index: number) => (
  <span 
  key={tech}
  className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm font-medium hover:bg-purple-500/10 hover:border-purple-500/30 hover:text-purple-300 transition-all cursor-default"
