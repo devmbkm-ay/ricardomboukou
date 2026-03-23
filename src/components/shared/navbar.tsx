@@ -3,13 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import clsx from 'clsx';
+
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAuthLoading, setIsAuthLoading] = useState(true);
     const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         const checkAuthStatus = async () => {
@@ -28,14 +31,14 @@ const Navbar = () => {
         };
         checkAuthStatus();
     }, []);
-    
+
     const handleLogout = async () => {
         try {
-          await fetch('/api/auth/logout', { method: 'POST' });
-          setIsAuthenticated(false);
-          router.push('/auth/login');
+            await fetch('/api/auth/logout', { method: 'POST' });
+            setIsAuthenticated(false);
+            router.push('/auth/login');
         } catch (error) {
-          console.error('Failed to logout', error);
+            console.error('Failed to logout', error);
         }
     };
 
@@ -49,17 +52,17 @@ const Navbar = () => {
     const getNavLinks = () => {
         if (isAuthLoading) return baseNavLinks;
         if (isAuthenticated) {
-            return [ ...baseNavLinks, { href: "/admin/dashboard", label: "Dashboard" }];
+            return [...baseNavLinks, { href: "/admin/dashboard", label: "Dashboard" }];
         }
         return [...baseNavLinks, { href: "/auth/login", label: "Login" }];
     };
-    
+
     const navLinks = getNavLinks();
 
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <header className="bg-zinc-900 text-white px-4 py-3 sticky top-0 z-40">
+        <header className="sticky top-0 z-40 w-full border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-lg">
             <nav className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <Link
@@ -108,7 +111,7 @@ const Navbar = () => {
 
                     <div className="hidden items-center space-x-6 text-lg sm:flex">
                         {navLinks.map((link) => (
-                            <Link key={link.href} href={link.href} className="hover:text-zinc-300 transition-colors">
+                            <Link key={link.href} href={link.href} className={`transition-colors ${pathname === link.href ? 'text-purple-400' : 'hover:text-zinc-300'}`}>
                                 {link.label}
                             </Link>
                         ))}
@@ -121,7 +124,7 @@ const Navbar = () => {
                 {isMenuOpen && (
                     <div id="mobile-nav" className="mt-3 flex flex-col gap-3 border-t border-zinc-700 pt-3 sm:hidden">
                         {navLinks.map((link) => (
-                            <Link key={link.href} href={link.href} className="rounded-md px-2 py-2 text-base hover:bg-zinc-800" onClick={closeMenu}>
+                            <Link key={link.href} href={link.href} className={`rounded-md px-2 py-2 text-base ${pathname === link.href ? 'bg-zinc-800 text-purple-400' : 'hover:bg-zinc-800'}`} onClick={closeMenu}>
                                 {link.label}
                             </Link>
                         ))}
