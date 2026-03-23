@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import prisma from '@/lib/prisma';
 import { jwtVerify } from 'jose';
 
@@ -8,7 +8,7 @@ type RouteContext = {
     };
   };
 
-export async function DELETE(req: Request, { params }: RouteContext) {
+export async function DELETE(req: NextRequest, { params }: RouteContext) {
   try {
     // Optional: Re-verify token
     const token = req.cookies.get('token')?.value || '';
@@ -41,7 +41,7 @@ export async function DELETE(req: Request, { params }: RouteContext) {
   }
 }
 
-export async function PUT(req: Request, { params }: RouteContext) {
+export async function PUT(req: NextRequest, { params }: RouteContext) {
     try {
       // Optional: Re-verify token
       const token = req.cookies.get('token')?.value || '';
