@@ -60,6 +60,7 @@ const ProjectCard = ({
             src={imageUrl}
             alt={title}
             fill
+            priority={featured}
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             sizes={featured ? "(max-width: 768px) 100vw, 80vw" : "(max-width: 768px) 100vw, 50vw"}
           />

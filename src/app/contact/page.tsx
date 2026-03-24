@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   Loader2
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -44,12 +45,32 @@ export default function ContactPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(formRef, { once: true, margin: "-100px" });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState('submitting');
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setFormState('success');
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+        const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!res.ok) {
+            throw new Error('Something went wrong. Please try again.');
+        }
+
+        setFormState('success');
+        formRef.current?.reset();
+    } catch (error: any) {
+        toast.error(error.message);
+        setFormState('idle');
+    }
   };
 
   return (
@@ -159,6 +180,7 @@ export default function ContactPage() {
                     <label className="text-sm font-medium text-zinc-300">Name</label>
                     <input
                       type="text"
+                      name="name"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
                       placeholder="John Doe"
@@ -168,6 +190,7 @@ export default function ContactPage() {
                     <label className="text-sm font-medium text-zinc-300">Email</label>
                     <input
                       type="email"
+                      name="email"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
                       placeholder="john@example.com"
@@ -179,6 +202,7 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-zinc-300">Subject</label>
                   <input
                     type="text"
+                    name="subject"
                     required
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
                     placeholder="Project inquiry"
@@ -188,6 +212,7 @@ export default function ContactPage() {
                 <div className="space-y-2 mb-8">
                   <label className="text-sm font-medium text-zinc-300">Message</label>
                   <textarea
+                    name="message"
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all resize-none"

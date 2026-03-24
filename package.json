@@ -34,7 +34,9 @@
     "pg": "^8.20.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-email": "^5.2.10",
     "react-hot-toast": "^2.6.0",
+    "resend": "^6.9.4",
     "simple-git": "^3.33.0",
     "tailwind-merge": "^3.5.0"
   },
