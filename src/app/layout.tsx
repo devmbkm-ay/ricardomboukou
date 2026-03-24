@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Navbar from '@/components/shared/navbar'
 import './globals.css'
 import { Toaster } from 'react-hot-toast';
 
@@ -11,13 +10,12 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className="font-sans">
         <Toaster />
-        <Navbar />
         {children}
       </body>
     </html>

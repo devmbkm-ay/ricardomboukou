@@ -3,19 +3,23 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { 
-  Send, 
-  Mail, 
-  MapPin, 
-  Github, 
-  Linkedin, 
-  Twitter, 
+import {
+  Send,
+  Mail,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
   ArrowUpRight,
   Sparkles,
   CheckCircle2,
   Loader2
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useParams } from 'next/navigation';
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,12 +31,12 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
-  visible: { 
-    y: 0, 
+  visible: {
+    y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 100, damping: 15 }
   }
-}as const;
+} as const;
 
 const socialLinks = [
   { name: 'GitHub', icon: Github, href: 'https://github.com', color: 'hover:text-white' },
@@ -41,6 +45,9 @@ const socialLinks = [
 ];
 
 export default function ContactPage() {
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+  const dictionary = (lang === 'fr' ? fr : en).contactPage;
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
   const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(formRef, { once: true, margin: "-100px" });
@@ -53,24 +60,24 @@ export default function ContactPage() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-        const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-        if (!res.ok) {
-            const errorData = await res.json().catch(() => null);
-            throw new Error(errorData?.error || 'Something went wrong. Please try again.');
-        }
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        throw new Error(errorData?.error || dictionary.form.fallbackError);
+      }
 
-        setFormState('success');
-        formRef.current?.reset();
+      setFormState('success');
+      formRef.current?.reset();
     } catch (error: any) {
-        toast.error(error.message);
-        setFormState('idle');
+      toast.error(error.message);
+      setFormState('idle');
     }
   };
 
@@ -94,19 +101,18 @@ export default function ContactPage() {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6">
               <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm text-zinc-300 font-medium">Get in Touch</span>
+              <span className="text-sm text-zinc-300 font-medium">{dictionary.badge}</span>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-white">Let&apos;s Create</span>
+              <span className="text-white">{dictionary.titleLine1}</span>
               <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                Something Amazing
+                {dictionary.titleLine2}
               </span>
             </h1>
-            
+
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              Have a project in mind? I&apos;d love to hear about it. 
-              Let&apos;s discuss how we can work together.
+              {dictionary.intro}
             </p>
           </motion.div>
 
@@ -114,16 +120,16 @@ export default function ContactPage() {
             {/* Contact Info Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-2 space-y-8">
               <div className="p-8 rounded-3xl bg-zinc-900/30 border border-white/10 backdrop-blur-sm">
-                <h3 className="text-xl font-semibold text-white mb-6">Contact Info</h3>
-                
+                <h3 className="text-xl font-semibold text-white mb-6">{dictionary.contactInfoTitle}</h3>
+
                 <div className="space-y-6">
                   <a href="mailto:hello@ricardo.dev" className="flex items-center gap-4 group">
                     <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
                       <Mail className="w-5 h-5 text-zinc-400 group-hover:text-purple-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-zinc-500">Email</p>
-                      <p className="text-white group-hover:text-purple-300 transition-colors">hello@ricardo.dev</p>
+                      <p className="text-sm text-zinc-500">{dictionary.emailLabel}</p>
+                      <p className="text-white group-hover:text-purple-300 transition-colors">dev.mbkm@gmail.com</p>
                     </div>
                   </a>
 
@@ -132,14 +138,14 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-zinc-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-zinc-500">Location</p>
-                      <p className="text-white">Remote / Worldwide</p>
+                      <p className="text-sm text-zinc-500">{dictionary.locationLabel}</p>
+                      <p className="text-white">{dictionary.locationValue}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-white/10">
-                  <p className="text-sm text-zinc-500 mb-4">Follow me</p>
+                  <p className="text-sm text-zinc-500 mb-4">{dictionary.followMe}</p>
                   <div className="flex gap-3">
                     {socialLinks.map((social) => (
                       <a
@@ -160,64 +166,63 @@ export default function ContactPage() {
               <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-sm font-medium text-green-400">Available for work</span>
+                  <span className="text-sm font-medium text-green-400">{dictionary.availability}</span>
                 </div>
                 <p className="text-zinc-400 text-sm">
-                  Currently accepting new projects for Q2 2026. 
-                  Response time: ~24 hours.
+                  {dictionary.availabilityBody}
                 </p>
               </div>
             </motion.div>
 
             {/* Contact Form */}
             <motion.div variants={itemVariants} className="lg:col-span-3">
-              <form 
+              <form
                 ref={formRef}
                 onSubmit={handleSubmit}
                 className="p-8 md:p-10 rounded-3xl bg-zinc-900/30 border border-white/10 backdrop-blur-sm"
               >
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">Name</label>
+                    <label className="text-sm font-medium text-zinc-300">{dictionary.form.name}</label>
                     <input
                       type="text"
                       name="name"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
-                      placeholder="John Doe"
+                      placeholder={dictionary.form.namePlaceholder}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">Email</label>
+                    <label className="text-sm font-medium text-zinc-300">{dictionary.form.email}</label>
                     <input
                       type="email"
                       name="email"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
-                      placeholder="john@example.com"
+                      placeholder={dictionary.form.emailPlaceholder}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  <label className="text-sm font-medium text-zinc-300">Subject</label>
+                  <label className="text-sm font-medium text-zinc-300">{dictionary.form.subject}</label>
                   <input
                     type="text"
                     name="subject"
                     required
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
-                    placeholder="Project inquiry"
+                    placeholder={dictionary.form.subjectPlaceholder}
                   />
                 </div>
 
                 <div className="space-y-2 mb-8">
-                  <label className="text-sm font-medium text-zinc-300">Message</label>
+                  <label className="text-sm font-medium text-zinc-300">{dictionary.form.message}</label>
                   <textarea
                     name="message"
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder={dictionary.form.messagePlaceholder}
                   />
                 </div>
 
@@ -226,27 +231,26 @@ export default function ContactPage() {
                   disabled={formState !== 'idle'}
                   whileHover={formState === 'idle' ? { scale: 1.02 } : {}}
                   whileTap={formState === 'idle' ? { scale: 0.98 } : {}}
-                  className={`w-full py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 transition-all ${
-                    formState === 'success'
+                  className={`w-full py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 transition-all ${formState === 'success'
                       ? 'bg-green-500 text-white'
                       : 'bg-white text-black hover:bg-zinc-200'
-                  }`}
+                    }`}
                 >
                   {formState === 'idle' && (
                     <>
-                      Send Message
+                      {dictionary.form.submit}
                       <Send className="w-5 h-5" />
                     </>
                   )}
                   {formState === 'submitting' && (
                     <>
-                      Sending...
+                      {dictionary.form.submitting}
                       <Loader2 className="w-5 h-5 animate-spin" />
                     </>
                   )}
                   {formState === 'success' && (
                     <>
-                      Message Sent!
+                      {dictionary.form.success}
                       <CheckCircle2 className="w-5 h-5" />
                     </>
                   )}
@@ -256,17 +260,13 @@ export default function ContactPage() {
           </div>
 
           {/* FAQ Section */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="mt-24 max-w-3xl mx-auto"
           >
-            <h2 className="text-2xl font-bold text-white text-center mb-12">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-white text-center mb-12">{dictionary.faqTitle}</h2>
             <div className="space-y-4">
-              {[
-                { q: "What is your typical project timeline?", a: "Most projects take 2-8 weeks depending on complexity. I provide detailed timelines during our initial consultation." },
-                { q: "Do you work with international clients?", a: "Absolutely! I work remotely with clients worldwide and accommodate different time zones." },
-                { q: "What technologies do you specialize in?", a: "React, Next.js, TypeScript, Node.js, PostgreSQL, Docker, and AI integration." },
-              ].map((faq, index) => (
+              {dictionary.faqs.map((faq, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}

@@ -1,0 +1,238 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact",
+    "dashboard": "Tableau de bord",
+    "login": "Connexion",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "availability": "Disponible pour des missions freelance",
+    "titleName": "Ricardo",
+    "titleRole": "Développeur Full-Stack",
+    "introPrefix": "Je crée des applications web",
+    "introSuffix": "avec des technologies modernes.",
+    "subtitle": "Passionné par le code propre, le beau design et l'open source.",
+    "ctaPrimary": "Voir mes projets",
+    "ctaSecondary": "Me contacter",
+    "techStack": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind"],
+    "stats": [
+      { "num": "50+", "label": "Projets" },
+      { "num": "5+", "label": "Ans d'exp." },
+      { "num": "30+", "label": "Clients" }
+    ],
+    "typewriterWords": ["scalables", "élégantes", "performantes", "fluides", "robustes"]
+  },
+  "auth": {
+    "login": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous pour continuer.",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Mot de passe",
+      "requiredError": "L'email et le mot de passe sont obligatoires.",
+      "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+      "submit": "Se connecter",
+      "submitting": "Connexion...",
+      "footerPrefix": "Vous n'avez pas de compte ?",
+      "footerLink": "S'inscrire"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Commencez à gérer votre portfolio.",
+      "namePlaceholder": "Nom",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Mot de passe",
+      "requiredError": "Tous les champs sont obligatoires.",
+      "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+      "submit": "S'inscrire",
+      "submitting": "Création du compte...",
+      "footerPrefix": "Vous avez déjà un compte ?",
+      "footerLink": "Se connecter"
+    }
+  },
+  "contactPage": {
+    "badge": "Entrons en contact",
+    "titleLine1": "Créons",
+    "titleLine2": "quelque chose d'incroyable",
+    "intro": "Vous avez un projet en tête ? J'aimerais beaucoup en entendre parler. Discutons de la façon dont nous pouvons travailler ensemble.",
+    "contactInfoTitle": "Coordonnées",
+    "emailLabel": "Email",
+    "locationLabel": "Localisation",
+    "locationValue": "À distance / Monde entier",
+    "followMe": "Suivez-moi",
+    "availability": "Disponible pour travailler",
+    "availabilityBody": "J'accepte actuellement de nouveaux projets pour le T2 2026. Temps de réponse : environ 24 heures.",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "namePlaceholder": "Jean Dupont",
+      "emailPlaceholder": "jean@exemple.com",
+      "subjectPlaceholder": "Demande de projet",
+      "messagePlaceholder": "Parlez-moi de votre projet...",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi...",
+      "success": "Message envoyé !",
+      "fallbackError": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "faqTitle": "Questions fréquentes",
+    "faqs": [
+      {
+        "q": "Quel est votre délai habituel pour un projet ?",
+        "a": "La plupart des projets prennent entre 2 et 8 semaines selon leur complexité. Je fournis un calendrier détaillé lors de notre premier échange."
+      },
+      {
+        "q": "Travaillez-vous avec des clients à l'international ?",
+        "a": "Absolument. Je travaille à distance avec des clients du monde entier et je m'adapte aux différents fuseaux horaires."
+      },
+      {
+        "q": "Quelles technologies maîtrisez-vous le plus ?",
+        "a": "React, Next.js, TypeScript, Node.js, PostgreSQL, Docker et l'intégration d'IA."
+      }
+    ]
+  },
+  "aboutPage": {
+    "badge": "À propos",
+    "heroRole": "Ingénieur & créateur",
+    "heroIntro": "Orchestrateur d’IA passionné par l’augmentation humaine. Je conçois des systèmes résilients à l’intersection de la technologie et de la finance décentralisée.",
+    "ctaProjects": "Voir mes projets",
+    "ctaContact": "Me contacter",
+    "photoPlaceholder": "Votre photo ici",
+    "heroStats": [
+      { "num": "5+", "label": "Années" },
+      { "num": "50+", "label": "Projets" },
+      { "num": "∞", "label": "Passion" }
+    ],
+    "philosophies": [
+      { "quote": "La technologie doit servir l'humain, non l'asservir.", "context": "Approche éthique de l'IA" },
+      { "quote": "La résilience vient de la simplicité, pas de la complexité.", "context": "Architecture système" },
+      { "quote": "Corps fort, esprit vif, code propre.", "context": "Philosophie de vie" }
+    ],
+    "skillsTitle": "Expertise technique",
+    "skillsSubtitle": "Des années d'expérience dans la conception de systèmes distribués et résilients",
+    "skills": [
+      "Orchestration IA",
+      "Docker & conteneurs",
+      "PostgreSQL",
+      "Ubuntu/Linux",
+      "Développement full-stack",
+      "Architecture système"
+    ],
+    "interestsTitle": "Au-delà du code",
+    "interestsSubtitle": "Une approche holistique où la discipline physique et la créativité nourrissent l'innovation",
+    "interests": [
+      { "name": "Callisthénie", "description": "Discipline physique & force" },
+      { "name": "Guitare", "description": "Créativité acoustique" },
+      { "name": "Bitcoin & DeFi", "description": "Finance décentralisée" },
+      { "name": "Investissements", "description": "Cycles & stratégies" }
+    ],
+    "ctaTitle": "Travaillons ensemble",
+    "ctaBody": "Vous avez un projet ambitieux ? Discutons de la façon dont nous pouvons créer quelque chose d'exceptionnel.",
+    "ctaButton": "Démarrer un projet"
+  },
+  "projectsPage": {
+    "badge": "Vitrine de portfolio",
+    "title": "Réalisations sélectionnées",
+    "subtitle": "Une sélection de projets qui illustre mon expertise avec les technologies web modernes",
+    "stats": {
+      "totalProjects": "Projets",
+      "technologies": "Technologies",
+      "shown": "Affichés"
+    },
+    "allFilter": "Tous",
+    "featuredProject": "Projet vedette",
+    "topProjectPrefix": "Meilleur projet",
+    "topProjectSuffix": "",
+    "moreProjects": "Autres projets",
+    "projectsCountSuffix": "projets",
+    "emptyTitle": "Aucun projet trouvé",
+    "emptyBody": "Aucun projet ne correspond à \"{filter}\". Essayez une autre technologie ou affichez tous les projets.",
+    "emptyButton": "Voir tous les projets",
+    "bottomCtaLead": "Envie de collaborer ?",
+    "bottomCtaLink": "Parlons de votre projet"
+  },
+  "projectDetailPage": {
+    "back": "Retour aux projets",
+    "featuredBadge": "Projet vedette",
+    "technologiesCount": "Technologies",
+    "readTime": "2 min de lecture",
+    "viewCode": "Voir le code",
+    "liveDemo": "Démo en ligne",
+    "overview": "Vue d'ensemble du projet",
+    "overviewBody1": "Ce projet représente une solution complète construite avec des technologies modernes et de bonnes pratiques. Chaque aspect a été pensé pour assurer scalabilité, maintenabilité et excellente expérience utilisateur.",
+    "overviewBody2Prefix": "",
+    "overviewBody2Suffix": "L'implémentation met l'accent sur une architecture propre, la sûreté de typage et l'optimisation des performances. Une attention particulière a été accordée à l'expérience développeur et à la maintenabilité à long terme du code.",
+    "featuresTitle": "Fonctionnalités clés",
+    "features": [
+      "Design responsive",
+      "Sûreté de typage",
+      "Performances optimisées",
+      "Architecture propre",
+      "UI/UX moderne",
+      "Infrastructure scalable"
+    ],
+    "technicalTitle": "Implémentation technique",
+    "technicalBody1": "Le projet s'appuie sur une stack moderne incluant Next.js 14 avec App Router, TypeScript pour la sûreté de typage et Tailwind CSS pour le style. La couche base de données utilise Prisma ORM avec PostgreSQL pour une persistance fiable.",
+    "technicalBody2": "La conteneurisation Docker garantit des déploiements cohérents entre environnements, tandis que les pipelines CI/CD automatisent les tests et les mises en production.",
+    "linksTitle": "Liens du projet",
+    "sourceCode": "Code source",
+    "questions": "Des questions ?",
+    "discussProject": "Discuter de ce projet →",
+    "techStack": "Stack technique",
+    "details": "Détails",
+    "created": "Créé le",
+    "status": "Statut",
+    "completed": "Terminé",
+    "type": "Type",
+    "fullStack": "Full-stack",
+    "moreLead": "Envie d'en voir plus ?",
+    "moreTitle": "Explorer d'autres projets",
+    "moreButton": "Voir tous les projets"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Tableau de bord admin",
+      "logout": "Déconnexion",
+      "projectsTitle": "Mes projets",
+      "addNewProject": "Ajouter un projet",
+      "loadingError": "Impossible de récupérer les projets",
+      "emptyTitle": "Aucun projet trouvé.",
+      "emptyBody": "Cliquez sur « Ajouter un projet » pour commencer.",
+      "analyzeMissingRepo": "Veuillez saisir une URL de dépôt",
+      "analyzeFallbackError": "Impossible d'analyser le dépôt",
+      "analyzeSuccess": "Dépôt analysé avec succès",
+      "deleteConfirm": "Voulez-vous vraiment supprimer ce projet ?",
+      "deleteAction": "Supprimer",
+      "cancelAction": "Annuler",
+      "deleteFallbackError": "Impossible de supprimer le projet",
+      "deleteSuccess": "Projet supprimé avec succès",
+      "saveFallbackError": "Impossible d'enregistrer le projet",
+      "saveCreatedSuccess": "Projet créé avec succès",
+      "saveUpdatedSuccess": "Projet mis à jour avec succès"
+    },
+    "projectModal": {
+      "editTitle": "Modifier le projet",
+      "addTitle": "Ajouter un projet",
+      "repoLabel": "URL du dépôt GitHub",
+      "repoPlaceholder": "https://github.com/user/repo",
+      "analyze": "Analyser",
+      "titlePlaceholder": "Titre",
+      "slugPlaceholder": "Slug",
+      "imageUrlPlaceholder": "URL de l'image",
+      "uploadLabel": "Ou importer une image",
+      "descriptionPlaceholder": "Description",
+      "technologiesPlaceholder": "Technologies (séparées par des virgules)",
+      "projectUrlPlaceholder": "URL du projet",
+      "githubUrlPlaceholder": "URL GitHub",
+      "cancel": "Annuler",
+      "saveChanges": "Enregistrer les modifications",
+      "createProject": "Créer le projet",
+      "uploadTooLarge": "La taille de l'image ne peut pas dépasser 10 Mo.",
+      "uploadFallbackError": "Échec de l'import de l'image",
+      "uploadSuccess": "Image importée avec succès"
+    }
+  }
+}

@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { motion, Variants } from 'framer-motion';
 import { ArrowUpRight, Mail, KeyRound, User } from 'lucide-react';
 import Link from 'next/link';
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -28,6 +31,9 @@ export default function RegisterPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+  const dictionary = (lang === 'fr' ? fr : en).auth.register;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +41,7 @@ export default function RegisterPage() {
     setError('');
 
     if (!name || !email || !password) {
-      setError('All fields are required.');
+      setError(dictionary.requiredError);
       setIsLoading(false);
       return;
     }
@@ -48,13 +54,13 @@ export default function RegisterPage() {
       });
 
       if (res.ok) {
-        router.push('/auth/login');
+        router.push(`/${lang}/auth/login`);
       } else {
         const data = await res.json();
-        setError(data.error || 'Something went wrong.');
+        setError(data.error || dictionary.unexpectedError);
       }
     } catch (err: any) {
-      setError('An unexpected error occurred. Please try again.');
+      setError(dictionary.unexpectedError);
     } finally {
       setIsLoading(false);
     }
@@ -75,10 +81,10 @@ export default function RegisterPage() {
       >
         <div className="relative p-8 rounded-3xl bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 border border-white/10 backdrop-blur-sm">
           <motion.h1 variants={itemVariants} className="text-4xl font-bold text-center text-white mb-2">
-            Create Account
+            {dictionary.title}
           </motion.h1>
           <motion.p variants={itemVariants} className="text-center text-zinc-400 mb-8">
-            Start managing your portfolio.
+            {dictionary.subtitle}
           </motion.p>
           
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -86,7 +92,7 @@ export default function RegisterPage() {
               <User className="absolute top-1/2 left-4 -translate-y-1/2 w-5 h-5 text-zinc-500" />
               <input
                 type="text"
-                placeholder="Name"
+                placeholder={dictionary.namePlaceholder}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all"
@@ -97,7 +103,7 @@ export default function RegisterPage() {
               <Mail className="absolute top-1/2 left-4 -translate-y-1/2 w-5 h-5 text-zinc-500" />
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={dictionary.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all"
@@ -108,7 +114,7 @@ export default function RegisterPage() {
               <KeyRound className="absolute top-1/2 left-4 -translate-y-1/2 w-5 h-5 text-zinc-500" />
               <input
                 type="password"
-                placeholder="Password"
+                placeholder={dictionary.passwordPlaceholder}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all"
@@ -128,16 +134,16 @@ export default function RegisterPage() {
                 disabled={isLoading}
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-semibold hover:bg-zinc-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Creating Account...' : 'Register'}
+                {isLoading ? dictionary.submitting : dictionary.submit}
                 {!isLoading && <ArrowUpRight className="w-4 h-4" />}
               </button>
             </motion.div>
           </form>
 
           <motion.p variants={itemVariants} className="text-center text-sm text-zinc-400 mt-8">
-            Already have an account?{' '}
-            <Link href="/auth/login" className="font-semibold text-purple-400 hover:text-purple-300 transition-all">
-              Log In
+            {dictionary.footerPrefix}{' '}
+            <Link href={`/${lang}/auth/login`} className="font-semibold text-purple-400 hover:text-purple-300 transition-all">
+              {dictionary.footerLink}
             </Link>
           </motion.p>
         </div>

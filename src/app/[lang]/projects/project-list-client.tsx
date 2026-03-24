@@ -4,8 +4,11 @@ import { useMemo, useState } from 'react';
 import type { Project } from '@prisma/client';
 import ProjectCard from '@/components/shared/project-card';
 import { Sparkles, Filter, Grid3X3, LayoutList, ArrowUpRight } from 'lucide-react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useParams, useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
 
 interface ProjectListProps {
   projects: Project[];
@@ -66,14 +69,17 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+  const dictionary = (lang === 'fr' ? fr : en).projectsPage;
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
   
-  const activeFilter = searchParams.get('filter') || 'All';
+  const activeFilter = searchParams.get('filter') || dictionary.allFilter;
 
   const handleFilterClick = (tech: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (tech === 'All') {
+    if (tech === dictionary.allFilter) {
       params.delete('filter');
     } else {
       params.set('filter', tech);
@@ -86,13 +92,13 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
     projects.forEach((project: Project) => {
       project.technologies?.forEach((tech: string) => techSet.add(tech));
     });
-    return ['All', ...Array.from(techSet).sort()];
-  }, [projects]);
+    return [dictionary.allFilter, ...Array.from(techSet).sort()];
+  }, [dictionary.allFilter, projects]);
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'All') return projects;
+    if (activeFilter === dictionary.allFilter) return projects;
     return projects.filter((project: Project) => project.technologies?.includes(activeFilter));
-  }, [activeFilter, projects]);
+  }, [activeFilter, dictionary.allFilter, projects]);
   
   const featuredProject = filteredProjects[0];
   const otherProjects = filteredProjects.slice(1);
@@ -123,34 +129,34 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
             >
                 <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-sm text-zinc-300 font-medium">Portfolio Showcase</span>
+                <span className="text-sm text-zinc-300 font-medium">{dictionary.badge}</span>
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
                 <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-                    Selected Works
+                    {dictionary.title}
                 </span>
             </h1>
             
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto mb-8">
-                A curated collection of projects that demonstrate expertise in modern web technologies
+                {dictionary.subtitle}
             </p>
 
             {/* Stats Bar */}
             <div className="flex justify-center gap-8 text-sm text-zinc-500 border-t border-b border-white/10 py-4 max-w-md mx-auto">
                 <div className="flex items-center gap-2">
                     <span className="text-white font-semibold">{projects.length}</span>
-                    <span>Total Projects</span>
+                    <span>{dictionary.stats.totalProjects}</span>
                 </div>
                 <div className="w-px h-4 bg-white/10" />
                 <div className="flex items-center gap-2">
                     <span className="text-white font-semibold">{allTechnologies.length - 1}</span>
-                    <span>Technologies</span>
+                    <span>{dictionary.stats.technologies}</span>
                 </div>
                 <div className="w-px h-4 bg-white/10" />
                 <div className="flex items-center gap-2">
                     <span className="text-white font-semibold">{projectCount}</span>
-                    <span>Shown</span>
+                    <span>{dictionary.stats.shown}</span>
                 </div>
             </div>
         </motion.div>
@@ -236,7 +242,9 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
                             <h2 className="text-xs font-bold text-purple-400 uppercase tracking-[0.2em] flex items-center gap-2">
                                 <Sparkles className="w-4 h-4" />
-                                {activeFilter === 'All' ? 'Featured Project' : `Top ${activeFilter} Project`}
+                                {activeFilter === dictionary.allFilter
+                                  ? dictionary.featuredProject
+                                  : `${dictionary.topProjectPrefix} ${activeFilter} ${dictionary.topProjectSuffix}`.trim()}
                             </h2>
                             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
                         </div>
@@ -257,8 +265,8 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                 {otherProjects.length > 0 && (
                     <motion.section variants={itemVariants}>
                         <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]">More Projects</h2>
-                            <span className="text-xs text-zinc-600">{otherProjects.length} projects</span>
+                            <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]">{dictionary.moreProjects}</h2>
+                            <span className="text-xs text-zinc-600">{otherProjects.length} {dictionary.projectsCountSuffix}</span>
                         </div>
                         <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2' : 'grid-cols-1'}`}>
                             {otherProjects.map((project, index) => (
@@ -287,17 +295,17 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                             <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
                                 <Filter className="w-8 h-8 text-zinc-600" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-2">No projects found</h3>
+                            <h3 className="text-2xl font-bold text-white mb-2">{dictionary.emptyTitle}</h3>
                             <p className="text-zinc-500 mb-8 max-w-md mx-auto">
-                                We couldn&apos;t find any projects matching &quot;{activeFilter}&quot;. Try selecting a different technology or view all projects.
+                                {dictionary.emptyBody.replace('{filter}', activeFilter)}
                             </p>
                             <motion.button
-                                onClick={() => handleFilterClick('All')}
+                                onClick={() => handleFilterClick(dictionary.allFilter)}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-colors"
                             >
-                                View All Projects
+                                {dictionary.emptyButton}
                                 <ArrowUpRight className="w-4 h-4" />
                             </motion.button>
                         </div>
@@ -316,14 +324,14 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                 className="mt-24 text-center"
             >
                 <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12" />
-                <p className="text-zinc-500 mb-4">Interested in working together?</p>
+                <p className="text-zinc-500 mb-4">{dictionary.bottomCtaLead}</p>
                 <motion.a
-                    href="/contact"
+                    href={`/${lang}/contact`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="inline-flex items-center gap-2 text-white font-semibold hover:text-purple-400 transition-colors"
                 >
-                    Let&apos;s discuss your project
+                    {dictionary.bottomCtaLink}
                     <ArrowUpRight className="w-5 h-5" />
                 </motion.a>
             </motion.div>

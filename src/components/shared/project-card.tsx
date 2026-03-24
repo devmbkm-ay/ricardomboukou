@@ -2,8 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowUpRight, Sparkles } from 'lucide-react';
+import type { Locale } from '@/i18n.config';
 
 type ProjectCardProps = {
   id: string;
@@ -28,6 +30,9 @@ const ProjectCard = ({
   featured = false,
   compact = false,
 }: ProjectCardProps) => {
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+
   return (
     <motion.div
       whileHover={featured ? { scale: 1.01 } : { y: -4 }}
@@ -40,7 +45,7 @@ const ProjectCard = ({
         ${compact ? 'flex-row' : ''}
       `}
     >
-      <Link href={`/projects/${id}`} className="absolute inset-0 z-10" aria-label={`View details for ${title}`} />
+      <Link href={`/${lang}/projects/${id}`} className="absolute inset-0 z-10" aria-label={`View details for ${title}`} />
       <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 via-transparent to-pink-600/0 opacity-0 transition-opacity duration-500 group-hover:from-purple-600/5 group-hover:to-pink-600/5 group-hover:opacity-100 pointer-events-none" />
       
       {featured && (

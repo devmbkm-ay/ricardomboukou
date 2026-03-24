@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "projects": "Projets",
+    "contact": "Contact",
+    "dashboard": "Tableau de Bord",
+    "login": "Connexion",
+    "logout": "Déconnexion"
+  }
+}

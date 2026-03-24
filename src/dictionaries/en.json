@@ -1,0 +1,238 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "home": {
+    "availability": "Available for freelance work",
+    "titleName": "Ricardo",
+    "titleRole": "Full-Stack Developer",
+    "introPrefix": "I build",
+    "introSuffix": "web applications with modern technologies.",
+    "subtitle": "Passionate about clean code, great design, and open source.",
+    "ctaPrimary": "View My Work",
+    "ctaSecondary": "Get in Touch",
+    "techStack": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind"],
+    "stats": [
+      { "num": "50+", "label": "Projects" },
+      { "num": "5+", "label": "Years Exp." },
+      { "num": "30+", "label": "Clients" }
+    ],
+    "typewriterWords": ["scalable", "beautiful", "performant", "user-friendly", "robust"]
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to continue.",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "requiredError": "Email and password are required.",
+      "unexpectedError": "An unexpected error occurred. Please try again.",
+      "submit": "Log In",
+      "submitting": "Signing In...",
+      "footerPrefix": "Don't have an account?",
+      "footerLink": "Register"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start managing your portfolio.",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "requiredError": "All fields are required.",
+      "unexpectedError": "An unexpected error occurred. Please try again.",
+      "submit": "Register",
+      "submitting": "Creating Account...",
+      "footerPrefix": "Already have an account?",
+      "footerLink": "Log In"
+    }
+  },
+  "contactPage": {
+    "badge": "Get in Touch",
+    "titleLine1": "Let's Create",
+    "titleLine2": "Something Amazing",
+    "intro": "Have a project in mind? I'd love to hear about it. Let's discuss how we can work together.",
+    "contactInfoTitle": "Contact Info",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "locationValue": "Remote / Worldwide",
+    "followMe": "Follow me",
+    "availability": "Available for work",
+    "availabilityBody": "Currently accepting new projects for Q2 2026. Response time: ~24 hours.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "John Doe",
+      "emailPlaceholder": "john@example.com",
+      "subjectPlaceholder": "Project inquiry",
+      "messagePlaceholder": "Tell me about your project...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Message Sent!",
+      "fallbackError": "Something went wrong. Please try again."
+    },
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "What is your typical project timeline?",
+        "a": "Most projects take 2-8 weeks depending on complexity. I provide detailed timelines during our initial consultation."
+      },
+      {
+        "q": "Do you work with international clients?",
+        "a": "Absolutely! I work remotely with clients worldwide and accommodate different time zones."
+      },
+      {
+        "q": "What technologies do you specialize in?",
+        "a": "React, Next.js, TypeScript, Node.js, PostgreSQL, Docker, and AI integration."
+      }
+    ]
+  },
+  "aboutPage": {
+    "badge": "About",
+    "heroRole": "Engineer & Creator",
+    "heroIntro": "AI orchestrator passionate about human augmentation. I design resilient systems at the intersection of technology and decentralized finance.",
+    "ctaProjects": "View my projects",
+    "ctaContact": "Get in touch",
+    "photoPlaceholder": "Your photo here",
+    "heroStats": [
+      { "num": "5+", "label": "Years" },
+      { "num": "50+", "label": "Projects" },
+      { "num": "∞", "label": "Passion" }
+    ],
+    "philosophies": [
+      { "quote": "Technology should serve people, not enslave them.", "context": "Ethical approach to AI" },
+      { "quote": "Resilience comes from simplicity, not complexity.", "context": "System architecture" },
+      { "quote": "Strong body, sharp mind, clean code.", "context": "Life philosophy" }
+    ],
+    "skillsTitle": "Technical Expertise",
+    "skillsSubtitle": "Years of experience designing distributed and resilient systems",
+    "skills": [
+      "AI Orchestration",
+      "Docker & Containers",
+      "PostgreSQL",
+      "Ubuntu/Linux",
+      "Full-Stack Dev",
+      "System Design"
+    ],
+    "interestsTitle": "Beyond Code",
+    "interestsSubtitle": "A holistic approach where physical discipline and creativity fuel innovation",
+    "interests": [
+      { "name": "Calisthenics", "description": "Physical discipline & strength" },
+      { "name": "Guitar", "description": "Acoustic creativity" },
+      { "name": "Bitcoin & DeFi", "description": "Decentralized finance" },
+      { "name": "Investments", "description": "Cycles & strategies" }
+    ],
+    "ctaTitle": "Let's work together",
+    "ctaBody": "Do you have an ambitious project? Let's discuss how we can create something exceptional.",
+    "ctaButton": "Start a project"
+  },
+  "projectsPage": {
+    "badge": "Portfolio Showcase",
+    "title": "Selected Works",
+    "subtitle": "A curated collection of projects that demonstrate expertise in modern web technologies",
+    "stats": {
+      "totalProjects": "Total Projects",
+      "technologies": "Technologies",
+      "shown": "Shown"
+    },
+    "allFilter": "All",
+    "featuredProject": "Featured Project",
+    "topProjectPrefix": "Top",
+    "topProjectSuffix": "Project",
+    "moreProjects": "More Projects",
+    "projectsCountSuffix": "projects",
+    "emptyTitle": "No projects found",
+    "emptyBody": "We couldn't find any projects matching \"{filter}\". Try selecting a different technology or view all projects.",
+    "emptyButton": "View All Projects",
+    "bottomCtaLead": "Interested in working together?",
+    "bottomCtaLink": "Let's discuss your project"
+  },
+  "projectDetailPage": {
+    "back": "Back to Projects",
+    "featuredBadge": "Featured Project",
+    "technologiesCount": "Technologies",
+    "readTime": "2 min read",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo",
+    "overview": "Project Overview",
+    "overviewBody1": "This project represents a comprehensive solution built with modern technologies and best practices. Every aspect was carefully considered to ensure scalability, maintainability, and exceptional user experience.",
+    "overviewBody2Prefix": "",
+    "overviewBody2Suffix": "The implementation focuses on clean architecture, type safety, and performance optimization. Special attention was given to the developer experience and long-term maintainability of the codebase.",
+    "featuresTitle": "Key Features",
+    "features": [
+      "Responsive Design",
+      "Type Safety",
+      "Performance Optimized",
+      "Clean Architecture",
+      "Modern UI/UX",
+      "Scalable Infrastructure"
+    ],
+    "technicalTitle": "Technical Implementation",
+    "technicalBody1": "The project leverages a modern stack including Next.js 14 with App Router, TypeScript for type safety, and Tailwind CSS for styling. The database layer uses Prisma ORM with PostgreSQL for reliable data persistence.",
+    "technicalBody2": "Docker containerization ensures consistent deployments across environments, while CI/CD pipelines automate testing and deployment workflows.",
+    "linksTitle": "Project Links",
+    "sourceCode": "Source Code",
+    "questions": "Have questions?",
+    "discussProject": "Discuss this project →",
+    "techStack": "Tech Stack",
+    "details": "Details",
+    "created": "Created",
+    "status": "Status",
+    "completed": "Completed",
+    "type": "Type",
+    "fullStack": "Full-Stack",
+    "moreLead": "Want to see more?",
+    "moreTitle": "Explore other projects",
+    "moreButton": "View All Projects"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "logout": "Logout",
+      "projectsTitle": "My Projects",
+      "addNewProject": "Add New Project",
+      "loadingError": "Failed to fetch projects",
+      "emptyTitle": "No projects found.",
+      "emptyBody": "Click \"Add New Project\" to get started.",
+      "analyzeMissingRepo": "Please enter a repository URL",
+      "analyzeFallbackError": "Failed to analyze repository",
+      "analyzeSuccess": "Repository analyzed successfully",
+      "deleteConfirm": "Are you sure you want to delete this project?",
+      "deleteAction": "Delete",
+      "cancelAction": "Cancel",
+      "deleteFallbackError": "Failed to delete project",
+      "deleteSuccess": "Project deleted successfully",
+      "saveFallbackError": "Failed to save project",
+      "saveCreatedSuccess": "Project created successfully",
+      "saveUpdatedSuccess": "Project updated successfully"
+    },
+    "projectModal": {
+      "editTitle": "Edit Project",
+      "addTitle": "Add New Project",
+      "repoLabel": "GitHub Repository URL",
+      "repoPlaceholder": "https://github.com/user/repo",
+      "analyze": "Analyze",
+      "titlePlaceholder": "Title",
+      "slugPlaceholder": "Slug",
+      "imageUrlPlaceholder": "Image URL",
+      "uploadLabel": "Or Upload an Image",
+      "descriptionPlaceholder": "Description",
+      "technologiesPlaceholder": "Technologies (comma-separated)",
+      "projectUrlPlaceholder": "Project URL",
+      "githubUrlPlaceholder": "GitHub URL",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "createProject": "Create Project",
+      "uploadTooLarge": "Image size cannot exceed 10MB.",
+      "uploadFallbackError": "Image upload failed",
+      "uploadSuccess": "Image uploaded successfully"
+    }
+  }
+}

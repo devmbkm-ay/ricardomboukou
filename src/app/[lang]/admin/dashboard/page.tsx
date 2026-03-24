@@ -1,15 +1,33 @@
 "use client";
 
-import { useState, useEffect, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutDashboard, LogOut, PlusCircle, Trash2, Edit, X, LoaderCircle } from 'lucide-react';
+import { LayoutDashboard, LogOut, PlusCircle, Trash2, Edit, LoaderCircle } from 'lucide-react';
 import type { Project } from '@prisma/client';
 import toast from 'react-hot-toast';
 import ProjectModal from '@/components/admin/ProjectModal';
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
+
+type ProjectFormData = {
+  title: string;
+  slug: string;
+  description: string;
+  technologies: string;
+  imageUrl: string;
+  projectUrl: string;
+  githubUrl: string;
+};
 
 export default function DashboardPage() {
   const router = useRouter();
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+  const dictionary = (lang === 'fr' ? fr : en).admin;
+  const dashboardDictionary = dictionary.dashboard;
+  const modalDictionary = dictionary.projectModal;
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -17,7 +35,7 @@ export default function DashboardPage() {
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [repoUrl, setRepoUrl] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     slug: '',
     description: '',
@@ -35,7 +53,7 @@ export default function DashboardPage() {
     setIsLoading(true);
     try {
       const res = await fetch('/api/projects');
-      if (!res.ok) throw new Error('Failed to fetch projects');
+      if (!res.ok) throw new Error(dashboardDictionary.loadingError);
       const data = await res.json();
       setProjects(data);
     } catch (err: any) {
@@ -47,7 +65,7 @@ export default function DashboardPage() {
 
   const handleAnalyzeRepo = async () => {
     if (!repoUrl) {
-      toast.error('Please enter a repository URL');
+      toast.error(dashboardDictionary.analyzeMissingRepo);
       return;
     }
     setIsAnalyzing(true);
@@ -60,7 +78,7 @@ export default function DashboardPage() {
       });
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Failed to analyze repository');
+        throw new Error(data.error || dashboardDictionary.analyzeFallbackError);
       }
       const data = await res.json();
       setFormData({
@@ -72,7 +90,7 @@ export default function DashboardPage() {
         projectUrl: data.projectUrl,
         githubUrl: data.githubUrl,
       });
-      toast.success('Repository analyzed successfully');
+      toast.success(dashboardDictionary.analyzeSuccess);
     } catch (err: any) {
       toast.error(err.message);
     } finally {
@@ -82,7 +100,7 @@ export default function DashboardPage() {
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
-    router.push('/auth/login');
+    router.push(`/${lang}/auth/login`);
   };
   
   const openModalForNew = () => {
@@ -121,7 +139,7 @@ export default function DashboardPage() {
   const handleDelete = async (id: string) => {
     toast((t) => (
       <span>
-        Are you sure you want to delete this project?
+        {dashboardDictionary.deleteConfirm}
         <button
           onClick={() => {
             toast.dismiss(t.id);
@@ -129,13 +147,13 @@ export default function DashboardPage() {
           }}
           className="ml-2 px-3 py-1 rounded-md bg-red-500 text-white"
         >
-          Delete
+          {dashboardDictionary.deleteAction}
         </button>
         <button
           onClick={() => toast.dismiss(t.id)}
           className="ml-2 px-3 py-1 rounded-md bg-gray-200 text-black"
         >
-          Cancel
+          {dashboardDictionary.cancelAction}
         </button>
       </span>
     ));
@@ -146,10 +164,10 @@ export default function DashboardPage() {
         const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE', credentials: 'include' });
         if (!res.ok) {
             const data = await res.json();
-            throw new Error(data.error || 'Failed to delete project');
+            throw new Error(data.error || dashboardDictionary.deleteFallbackError);
         }
         setProjects(projects.filter(p => p.id !== id));
-        toast.success('Project deleted successfully');
+        toast.success(dashboardDictionary.deleteSuccess);
     } catch (err: any) {
         toast.error(err.message);
     }
@@ -170,12 +188,12 @@ export default function DashboardPage() {
 
         if (!res.ok) {
             const data = await res.json();
-            throw new Error(data.error || 'Failed to save project');
+            throw new Error(data.error || dashboardDictionary.saveFallbackError);
         }
         
         closeModal();
         fetchProjects(); // Refresh the list
-        toast.success(`Project ${isEditing ? 'updated' : 'created'} successfully`);
+        toast.success(isEditing ? dashboardDictionary.saveUpdatedSuccess : dashboardDictionary.saveCreatedSuccess);
     } catch (err: any) {
         toast.error(err.message);
     }
@@ -199,6 +217,7 @@ export default function DashboardPage() {
             isAnalyzing={isAnalyzing}
             formData={formData}
             setFormData={setFormData}
+            dictionary={modalDictionary}
             />}
       </AnimatePresence>
 
@@ -206,20 +225,20 @@ export default function DashboardPage() {
         <header className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-3">
                 <LayoutDashboard className="w-8 h-8 text-purple-400" />
-                <h1 className="text-3xl md:text-4xl font-bold text-white">Admin Dashboard</h1>
+                <h1 className="text-3xl md:text-4xl font-bold text-white">{dashboardDictionary.title}</h1>
             </div>
             <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all">
                 <LogOut className="w-4 h-4" />
-                <span>Logout</span>
+                <span>{dashboardDictionary.logout}</span>
             </button>
         </header>
 
         <div className="bg-zinc-900/30 border border-white/10 rounded-2xl p-6 md:p-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h2 className="text-2xl font-semibold">My Projects</h2>
+                <h2 className="text-2xl font-semibold">{dashboardDictionary.projectsTitle}</h2>
                 <button onClick={openModalForNew} className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-white text-black font-semibold hover:bg-zinc-200 transition-all">
                     <PlusCircle className="w-5 h-5" />
-                    <span>Add New Project</span>
+                    <span>{dashboardDictionary.addNewProject}</span>
                 </button>
             </div>
 
@@ -229,8 +248,8 @@ export default function DashboardPage() {
                 <div className="text-center py-16 text-red-400">{error}</div>
             ) : projects.length === 0 ? (
                 <div className="text-center py-16 border-2 border-dashed border-zinc-700 rounded-lg">
-                    <p className="text-zinc-400">No projects found.</p>
-                    <p className="text-sm text-zinc-500">Click "Add New Project" to get started.</p>
+                    <p className="text-zinc-400">{dashboardDictionary.emptyTitle}</p>
+                    <p className="text-sm text-zinc-500">{dashboardDictionary.emptyBody}</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

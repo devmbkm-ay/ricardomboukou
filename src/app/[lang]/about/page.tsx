@@ -24,6 +24,8 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { 
   Brain, 
   Database, 
@@ -40,38 +42,26 @@ import {
   Sparkles,
   Quote
 } from 'lucide-react';
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
 
 
 // Skill data structure
-const skills = [
-  { name: 'AI Orchestration', icon: Brain, level: 95, color: 'from-purple-500 to-pink-500' },
-  { name: 'Docker & Containers', icon: Container, level: 90, color: 'from-blue-500 to-cyan-500' },
-  { name: 'PostgreSQL', icon: Database, level: 88, color: 'from-emerald-500 to-teal-500' },
-  { name: 'Ubuntu/Linux', icon: Terminal, level: 92, color: 'from-orange-500 to-red-500' },
-  { name: 'Full-Stack Dev', icon: Code2, level: 94, color: 'from-violet-500 to-purple-500' },
-  { name: 'System Design', icon: Cpu, level: 85, color: 'from-rose-500 to-pink-500' },
+const skillCards = [
+  { icon: Brain, level: 95, color: 'from-purple-500 to-pink-500' },
+  { icon: Container, level: 90, color: 'from-blue-500 to-cyan-500' },
+  { icon: Database, level: 88, color: 'from-emerald-500 to-teal-500' },
+  { icon: Terminal, level: 92, color: 'from-orange-500 to-red-500' },
+  { icon: Code2, level: 94, color: 'from-violet-500 to-purple-500' },
+  { icon: Cpu, level: 85, color: 'from-rose-500 to-pink-500' },
 ];
 
-const interests = [
-  { name: 'Calisthenics', icon: Dumbbell, description: 'Discipline physique & force' },
-  { name: 'Guitar', icon: Music, description: 'Créativité acoustique' },
-  { name: 'Bitcoin & DeFi', icon: Bitcoin, description: 'Finance décentralisée' },
-  { name: 'Investments', icon: TrendingUp, description: 'Cycles & stratégies' },
-];
-
-const philosophies = [
-  {
-    quote: "La technologie doit servir l'humain, non l'asservir.",
-    context: "Approche éthique de l'IA"
-  },
-  {
-    quote: "La résilience vient de la simplicité, pas de la complexité.",
-    context: "Architecture système"
-  },
-  {
-    quote: "Corps fort, esprit vif, code propre.",
-    context: "Philosophie de vie"
-  }
+const interestIcons = [
+  Dumbbell,
+  Music,
+  Bitcoin,
+  TrendingUp,
 ];
 
 const containerVariants = {
@@ -95,6 +85,9 @@ export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const isHeroInView = useInView(heroRef, { once: true });
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+  const dictionary = (lang === 'fr' ? fr : en).aboutPage;
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -153,40 +146,44 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
               >
                 <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-sm text-zinc-300 font-medium">À propos</span>
+                <span className="text-sm text-zinc-300 font-medium">{dictionary.badge}</span>
               </motion.div>
 
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
                 <span className="text-white">Ricardo</span>
                 <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x bg-300%">
-                  Engineer & Creator
+                  {dictionary.heroRole}
                 </span>
               </h1>
 
               <p className="text-xl text-zinc-400 leading-relaxed mb-8">
-                Orchestrateur d&rsquo;IA passionné par l&rsquo;augmentation humaine. 
-                Je conçois des systèmes résilients à l&rsquo;intersection de la technologie 
-                et de la finance décentralisée.
+                {dictionary.heroIntro}
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <motion.a
-                  href="/projects"
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all"
                 >
-                  Voir mes projets
-                  <ArrowUpRight className="w-4 h-4" />
-                </motion.a>
-                <motion.a
-                  href="/contact"
+                  <Link
+                    href={`/${lang}/projects`}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all"
+                  >
+                    {dictionary.ctaProjects}
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </motion.div>
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all"
                 >
-                  Me contacter
-                </motion.a>
+                  <Link
+                    href={`/${lang}/contact`}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all"
+                  >
+                    {dictionary.ctaContact}
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -215,7 +212,7 @@ export default function AboutPage() {
                       <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                         <span className="text-4xl font-bold text-white">R</span>
                       </div>
-                      <p className="text-zinc-500">Votre photo ici</p>
+                      <p className="text-zinc-500">{dictionary.photoPlaceholder}</p>
                     </div>
                   </div>
                   
@@ -227,18 +224,15 @@ export default function AboutPage() {
                     className="absolute bottom-6 left-6 right-6 z-20"
                   >
                     <div className="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-white">5+</div>
-                        <div className="text-xs text-zinc-400">Années</div>
-                      </div>
-                      <div className="text-center border-x border-white/10">
-                        <div className="text-2xl font-bold text-white">50+</div>
-                        <div className="text-xs text-zinc-400">Projets</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-white">∞</div>
-                        <div className="text-xs text-zinc-400">Passion</div>
-                      </div>
+                      {dictionary.heroStats.map((stat, index) => (
+                        <div
+                          key={stat.label}
+                          className={index === 1 ? 'text-center border-x border-white/10' : 'text-center'}
+                        >
+                          <div className="text-2xl font-bold text-white">{stat.num}</div>
+                          <div className="text-xs text-zinc-400">{stat.label}</div>
+                        </div>
+                      ))}
                     </div>
                   </motion.div>
                 </div>
@@ -258,7 +252,7 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-100px" }}
             className="grid md:grid-cols-3 gap-6"
           >
-            {philosophies.map((item, index) => (
+            {dictionary.philosophies.map((item, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -289,11 +283,10 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Expertise Technique
+              {dictionary.skillsTitle}
             </h2>
             <p className="text-zinc-400 max-w-2xl mx-auto">
-              Des années d&rsquo;expérience dans la conception de systèmes 
-              distribués et résilients
+              {dictionary.skillsSubtitle}
             </p>
           </motion.div>
 
@@ -304,9 +297,9 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-50px" }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {skills.map((skill, index) => (
+            {skillCards.map((skill, index) => (
               <motion.div
-                key={skill.name}
+                key={dictionary.skills[index]}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 className="group relative p-6 rounded-2xl bg-zinc-900/30 border border-white/5 hover:border-white/10 transition-all duration-300"
@@ -321,7 +314,7 @@ export default function AboutPage() {
                 </div>
                 
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {skill.name}
+                  {dictionary.skills[index]}
                 </h3>
                 
                 {/* Progress Bar */}
@@ -352,16 +345,17 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Au-delà du Code
+              {dictionary.interestsTitle}
             </h2>
             <p className="text-zinc-400 max-w-2xl mx-auto">
-              Une approche holistique où la discipline physique 
-              et la créativité nourrissent l&apos;innovation
+              {dictionary.interestsSubtitle}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {interests.map((interest, index) => (
+            {dictionary.interests.map((interest, index) => {
+              const Icon = interestIcons[index];
+              return (
               <motion.div
                 key={interest.name}
                 initial={{ opacity: 0, y: 30 }}
@@ -372,7 +366,7 @@ export default function AboutPage() {
                 className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300 text-center"
               >
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <interest.icon className="w-8 h-8 text-purple-400" />
+                  <Icon className="w-8 h-8 text-purple-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {interest.name}
@@ -384,7 +378,8 @@ export default function AboutPage() {
                 {/* Hover Glow */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -402,22 +397,24 @@ export default function AboutPage() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none" />
             
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 relative z-10">
-              Travaillons ensemble
+              {dictionary.ctaTitle}
             </h2>
             <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto relative z-10">
-              Vous avez un projet ambitieux ? Discutons de la façon dont 
-              nous pouvons créer quelque chose d&apos;exceptionnel.
+              {dictionary.ctaBody}
             </p>
             
-            <motion.a
-              href="/contact"
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-all relative z-10"
             >
-              Démarrer un projet
-              <ArrowUpRight className="w-5 h-5" />
-            </motion.a>
+              <Link
+                href={`/${lang}/contact`}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-all relative z-10"
+              >
+                {dictionary.ctaButton}
+                <ArrowUpRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </section>

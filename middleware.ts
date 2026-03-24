@@ -1,57 +1,58 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
+import { i18n } from '@/i18n.config';
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  const hasLocale = i18n.locales.some(
+    (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`)
+  );
 
-  const isPublicPath = path === '/auth/login' || path === '/auth/register';
+  if (!hasLocale && !path.startsWith('/api')) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${i18n.defaultLocale}${path === '/' ? '' : path}`;
+    return NextResponse.redirect(url);
+  }
+
+  if (!hasLocale) {
+    return NextResponse.next();
+  }
+
+  const [, locale, ...segments] = path.split('/');
+  const localizedPath = `/${segments.join('/')}`.replace(/\/+$/, '') || '/';
+
+  const isPublicPath = localizedPath === '/auth/login' || localizedPath === '/auth/register';
+  const isProtectedPage = localizedPath.startsWith('/admin');
 
   const token = request.cookies.get('token')?.value || '';
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const jwtSecret = process.env.JWT_SECRET;
 
   let isVerified = false;
-  try {
-    await jwtVerify(token, secret);
-    isVerified = true;
-  } catch (err) {
-    isVerified = false;
-  }
-
-  // If the user is verified and tries to access a public path (login/register),
-  // redirect them to the dashboard.
-  if (isVerified && isPublicPath) {
-    return NextResponse.redirect(new URL('/admin/dashboard', request.url));
-  }
-
-  // If the user is not verified and tries to access a protected path,
-  // redirect them to the login page.
-  if (!isVerified && !isPublicPath) {
-    // Allow API routes to be accessed for login/register attempts without redirect loop
-    if (path.startsWith('/api/auth')) {
-        return NextResponse.next();
+  if (token && jwtSecret) {
+    try {
+      const secret = new TextEncoder().encode(jwtSecret);
+      await jwtVerify(token, secret);
+      isVerified = true;
+    } catch (err) {
+      isVerified = false;
     }
-    return NextResponse.redirect(new URL('/auth/login', request.url));
+  }
+
+  if (isVerified && isPublicPath) {
+    return NextResponse.redirect(new URL(`/${locale}/admin/dashboard`, request.url));
+  }
+
+  if (!isVerified && isProtectedPage) {
+    return NextResponse.redirect(new URL(`/${locale}/auth/login`, request.url));
   }
 
   return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - / (the root public page)
-     * - /about, /projects, /contact (other public pages)
-     * - /api/projects (public api to fetch projects)
-     */
-    '/admin/:path*',
-    '/auth/:path*',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\..*|api/).*)',
     '/api/admin/:path*'
   ],
 };

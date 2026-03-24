@@ -2,13 +2,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'next/navigation';
 import Button from '@/components/ui/button';
-
-// Defined outside component so it's a stable reference (never changes between renders)
-const words = ['scalable', 'beautiful', 'performant', 'user-friendly', 'robust'];
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
 
 export default function HomeClient() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const params = useParams<{ lang: Locale }>();
+  const lang = params?.lang ?? 'en';
+  const dictionary = (lang === 'fr' ? fr : en).home;
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentWord, setCurrentWord] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
@@ -109,13 +113,13 @@ export default function HomeClient() {
 
   // Typewriter Effect
   useEffect(() => {
-    const word = words[wordIndex];
+    const word = dictionary.typewriterWords[wordIndex];
     const timeout = setTimeout(() => {
       if (!isDeleting && currentWord === word) {
         setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && currentWord === '') {
         setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
+        setWordIndex((prev) => (prev + 1) % dictionary.typewriterWords.length);
       } else {
         setCurrentWord(
           isDeleting
@@ -126,7 +130,7 @@ export default function HomeClient() {
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [currentWord, isDeleting, wordIndex]); // words is stable (module-level constant)
+  }, [currentWord, dictionary.typewriterWords, isDeleting, wordIndex]);
 
   // Mouse tracking
   useEffect(() => {
@@ -156,53 +160,53 @@ export default function HomeClient() {
           {/* Availability Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 animate-fade-in-up">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm text-zinc-300 font-medium">Available for freelance work</span>
+            <span className="text-sm text-zinc-300 font-medium">{dictionary.availability}</span>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             <span className="text-white">Ricardo</span>
             <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x bg-300%">
-              Full-Stack Developer
+              {dictionary.titleRole}
             </span>
           </h1>
 
           {/* Typewriter Description */}
           <div className="mb-8 max-w-2xl mx-auto space-y-3">
             <p className="text-sm md:text-sm text-zinc-400 leading-relaxed">
-              I build{' '}
+              {dictionary.introPrefix}{' '}
               <span className="text-white font-semibold whitespace-nowrap">
                 <span className="inline-block min-w-[2ch]">{currentWord}</span>
                 <span className="inline-block w-0.5 h-5 bg-purple-400 align-middle ml-0.5 animate-[blink_1s_step-end_infinite]" />
               </span>
-              {' '}web applications with modern technologies.
+              {' '}{dictionary.introSuffix}
             </p>
             <p className="text-sm text-zinc-500">
-              Passionate about clean code, great design, and open source.
+              {dictionary.subtitle}
             </p>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
-              href="/projects"
+              href={`/${lang}/projects`}
               className="bg-white text-black hover:bg-zinc-200 font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
             >
-              View My Work
+              {dictionary.ctaPrimary}
             </Button>
 
             <Button
-              href="/contact"
+              href={`/${lang}/contact`}
               variant="outline"
               className="border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
             >
-              Get in Touch
+              {dictionary.ctaSecondary}
             </Button>
           </div>
 
           {/* Tech Stack */}
           <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
-            {['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind'].map((tech) => (
+            {dictionary.techStack.map((tech) => (
               <span
                 key={tech}
                 className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-sm font-medium hover:bg-white/10 hover:border-purple-500/50 hover:text-white hover:-translate-y-1 transition-all cursor-default"
@@ -214,11 +218,7 @@ export default function HomeClient() {
 
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/10 max-w-2xl mx-auto">
-            {[
-              { num: '50+', label: 'Projects' },
-              { num: '5+', label: 'Years Exp.' },
-              { num: '30+', label: 'Clients' },
-            ].map((stat) => (
+            {dictionary.stats.map((stat) => (
               <div key={stat.label} className="text-center group">
                 <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
                   {stat.num}

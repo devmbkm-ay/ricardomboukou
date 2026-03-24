@@ -1,6 +1,13 @@
 import Button from  '@/components/ui/button';
+import type { Locale } from '@/i18n.config';
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+
   return (
     <section className="container mx-auto flex flex-col items-center justify-center min-h-screen text-center -mt-16">
       {/* The -mt-16 is a simple trick to offset the navbar's height and center the content in the viewport */}
@@ -13,7 +20,7 @@ export default function HomePage() {
           Passionate about clean code, great design, and open source.
         </p>
         <Button
-          href="/projects"
+          href={`/${lang}/projects`}
           variant="outline"
           size="default">
           View My Work

@@ -16,6 +16,10 @@ import {
 } from 'lucide-react';
 import type { Project } from '@prisma/client';
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
+import type { Locale } from '@/i18n.config';
+import en from '@/dictionaries/en.json';
+import fr from '@/dictionaries/fr.json';
 
 // Animation components now live inside the Client Component
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
@@ -51,6 +55,10 @@ type ProjectDetailClientProps = {
 };
 
 export default function ProjectDetailClient({ project }: ProjectDetailClientProps) {
+ const params = useParams<{ lang: Locale }>();
+ const lang = params?.lang ?? 'en';
+ const dictionary = (lang === 'fr' ? fr : en).projectDetailPage;
+
  return (
  <div className="min-h-screen bg-zinc-950 relative overflow-hidden">
  {/* Background Ambient Effects */}
@@ -65,13 +73,13 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="container mx-auto px-6 py-6">
  <FadeIn>
  <Link 
- href="/projects"
+ href={`/${lang}/projects`}
  className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group"
  >
  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-purple-500/30 transition-all">
  <ChevronLeft className="w-5 h-5" />
  </div>
- <span className="font-medium">Back to Projects</span>
+ <span className="font-medium">{dictionary.back}</span>
  </Link>
  </FadeIn>
  </div>
@@ -84,7 +92,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="flex items-center gap-3 mb-6">
  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20">
  <Sparkles className="w-4 h-4 text-purple-400" />
- <span className="text-sm font-medium text-purple-300">Featured Project</span>
+ <span className="text-sm font-medium text-purple-300">{dictionary.featuredBadge}</span>
  </div>
  <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-purple-500/50 to-transparent" />
  </div>
@@ -114,12 +122,12 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="w-px h-4 bg-white/10" />
  <div className="flex items-center gap-2">
  <Layers className="w-4 h-4" />
- <span>{project.technologies.length} Technologies</span>
+ <span>{project.technologies.length} {dictionary.technologiesCount}</span>
  </div>
  <div className="w-px h-4 bg-white/10" />
  <div className="flex items-center gap-2">
  <Clock className="w-4 h-4" />
- <span>2 min read</span>
+ <span>{dictionary.readTime}</span>
  </div>
  </div>
  </FadeIn>
@@ -159,7 +167,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
  >
  <Github className="w-4 h-4" />
- <span className="text-sm font-medium">View Code</span>
+ <span className="text-sm font-medium">{dictionary.viewCode}</span>
  </a>
  )}
  </div>
@@ -170,7 +178,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  rel="noopener noreferrer"
  className="flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all hover:scale-105"
  >
- <span>Live Demo</span>
+ <span>{dictionary.liveDemo}</span>
  <ExternalLink className="w-4 h-4" />
  </a>
  )}
@@ -192,20 +200,16 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="space-y-6">
  <div className="flex items-center gap-3 mb-6">
  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
- <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]">Project Overview</h2>
+ <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]">{dictionary.overview}</h2>
  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
  </div>
  
  <div className="prose prose-invert prose-lg max-w-none">
  <p className="text-zinc-300 leading-relaxed text-lg">
- This project represents a comprehensive solution built with modern technologies 
- and best practices. Every aspect was carefully considered to ensure scalability, 
- maintainability, and exceptional user experience.
+ {dictionary.overviewBody1}
  </p>
  <p className="text-zinc-400 leading-relaxed">
- {project.description} The implementation focuses on clean architecture, 
- type safety, and performance optimization. Special attention was given to 
- the developer experience and long-term maintainability of the codebase.
+ {project.description} {dictionary.overviewBody2Suffix}
  </p>
  </div>
  </div>
@@ -214,17 +218,10 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="space-y-6 mt-12">
  <h3 className="text-xl font-semibold text-white flex items-center gap-2">
  <CheckCircle2 className="w-5 h-5 text-purple-400" />
- Key Features
+ {dictionary.featuresTitle}
  </h3>
  <div className="grid sm:grid-cols-2 gap-4">
- {[
- 'Responsive Design',
- 'Type Safety',
- 'Performance Optimized',
- 'Clean Architecture',
- 'Modern UI/UX',
- 'Scalable Infrastructure'
- ].map((feature, index) => (
+ {dictionary.features.map((feature, index) => (
  <div 
  key={feature}
  className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/30 transition-colors"
@@ -240,16 +237,13 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
 
  {/* Technical Deep Dive */}
  <div className="space-y-6 mt-12">
- <h3 className="text-xl font-semibold text-white">Technical Implementation</h3>
+ <h3 className="text-xl font-semibold text-white">{dictionary.technicalTitle}</h3>
  <div className="p-6 rounded-2xl bg-zinc-900/50 border border-white/10">
  <p className="text-zinc-400 leading-relaxed mb-4">
- The project leverages a modern stack including Next.js 14 with App Router, 
- TypeScript for type safety, and Tailwind CSS for styling. The database layer 
- uses Prisma ORM with PostgreSQL for reliable data persistence.
+ {dictionary.technicalBody1}
  </p>
  <p className="text-zinc-400 leading-relaxed">
- Docker containerization ensures consistent deployments across environments, 
- while CI/CD pipelines automate testing and deployment workflows.
+ {dictionary.technicalBody2}
  </p>
  </div>
  </div>
@@ -261,7 +255,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <StaggerContainer>
  {/* Action Card */}
  <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 sticky top-24">
- <h3 className="text-lg font-semibold text-white mb-4">Project Links</h3>
+ <h3 className="text-lg font-semibold text-white mb-4">{dictionary.linksTitle}</h3>
  
  <div className="space-y-3 mb-6">
  {project.projectUrl && (
@@ -273,7 +267,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  >
  <span className="flex items-center gap-2">
  <ExternalLink className="w-4 h-4" />
- Live Demo
+ {dictionary.liveDemo}
  </span>
  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
  </a>
@@ -288,7 +282,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  >
  <span className="flex items-center gap-2">
  <Github className="w-4 h-4" />
- Source Code
+ {dictionary.sourceCode}
  </span>
  <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
  </a>
@@ -296,12 +290,12 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  </div>
 
  <div className="pt-6 border-t border-white/10">
- <p className="text-sm text-zinc-500 mb-2">Have questions?</p>
+ <p className="text-sm text-zinc-500 mb-2">{dictionary.questions}</p>
  <Link 
- href="/contact"
+ href={`/${lang}/contact`}
  className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
  >
- Discuss this project →
+ {dictionary.discussProject}
  </Link>
  </div>
  </div>
@@ -310,7 +304,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="p-6 rounded-2xl bg-zinc-900/30 border border-white/10">
  <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
  <Code className="w-5 h-5 text-purple-400" />
- Tech Stack
+ {dictionary.techStack}
  </h3>
  <div className="flex flex-wrap gap-2">
  {project.technologies.map((tech: string, index: number) => (
@@ -329,11 +323,11 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="p-6 rounded-2xl bg-zinc-900/30 border border-white/10">
  <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
  <Calendar className="w-5 h-5 text-purple-400" />
- Details
+ {dictionary.details}
  </h3>
  <div className="space-y-4 text-sm">
  <div className="flex justify-between">
- <span className="text-zinc-500">Created</span>
+ <span className="text-zinc-500">{dictionary.created}</span>
  <span className="text-zinc-300">
  {new Date(project.createdAt).toLocaleDateString('en-US', {
  year: 'numeric',
@@ -343,15 +337,15 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  </span>
  </div>
  <div className="flex justify-between">
- <span className="text-zinc-500">Status</span>
+ <span className="text-zinc-500">{dictionary.status}</span>
  <span className="inline-flex items-center gap-1.5 text-green-400">
  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
- Completed
+ {dictionary.completed}
  </span>
  </div>
  <div className="flex justify-between">
- <span className="text-zinc-500">Type</span>
- <span className="text-zinc-300">Full-Stack</span>
+ <span className="text-zinc-500">{dictionary.type}</span>
+ <span className="text-zinc-300">{dictionary.fullStack}</span>
  </div>
  </div>
  </div>
@@ -365,15 +359,15 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <section className="container mx-auto px-6 py-24 border-t border-white/10">
  <div className="max-w-4xl mx-auto text-center">
  <FadeIn>
- <p className="text-zinc-500 mb-4">Want to see more?</p>
+ <p className="text-zinc-500 mb-4">{dictionary.moreLead}</p>
  <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
- Explore other projects
+ {dictionary.moreTitle}
  </h2>
  <Link
- href="/projects"
+ href={`/${lang}/projects`}
  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-semibold hover:bg-white/10 hover:border-purple-500/30 transition-all"
  >
- View All Projects
+ {dictionary.moreButton}
  <ArrowUpRight className="w-5 h-5" />
  </Link>
  </FadeIn>
