@@ -62,7 +62,8 @@ export default function ContactPage() {
         });
 
         if (!res.ok) {
-            throw new Error('Something went wrong. Please try again.');
+            const errorData = await res.json().catch(() => null);
+            throw new Error(errorData?.error || 'Something went wrong. Please try again.');
         }
 
         setFormState('success');
