@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { Project } from '@prisma/client';
 import ProjectDetailClient from './project-detail-client';
 
+export const dynamic = 'force-dynamic';
+
 async function getProject(id: string): Promise<Project | null> {
   const project = await prisma.project.findUnique({
     where: { id },
