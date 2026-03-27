@@ -38,20 +38,20 @@ const ProjectCard = ({
       whileHover={featured ? { scale: 1.01 } : { y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={`
-        group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40 backdrop-blur-sm
+        group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-background/40 backdrop-blur-sm
         transition-all duration-500
-        hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]
+        hover:border-primary/30 hover:shadow-lg
         ${featured ? 'min-h-[500px]' : compact ? 'min-h-[180px] flex-row md:flex-row' : 'min-h-[380px]'}
         ${compact ? 'flex-row' : ''}
       `}
     >
       <Link href={`/${lang}/projects/${id}`} className="absolute inset-0 z-10" aria-label={`View details for ${title}`} />
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 via-transparent to-pink-600/0 opacity-0 transition-opacity duration-500 group-hover:from-purple-600/5 group-hover:to-pink-600/5 group-hover:opacity-100 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-accent/0 opacity-0 transition-opacity duration-500 group-hover:from-primary/5 group-hover:to-accent/5 group-hover:opacity-100 pointer-events-none" />
       
       {featured && (
-        <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/30 backdrop-blur-md">
-          <Sparkles className="w-3.5 h-3.5 text-purple-300" />
-          <span className="text-xs font-semibold text-purple-200">Featured</span>
+        <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md">
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+          <span className="text-xs font-semibold text-primary">Featured</span>
         </div>
       )}
 
@@ -102,7 +102,7 @@ const ProjectCard = ({
       `}>
         <div className="flex items-start justify-between gap-4 mb-3">
           <h3 className={`
-            font-bold text-white group-hover:text-purple-200 transition-colors duration-300
+            font-bold text-foreground group-hover:text-primary transition-colors duration-300
             ${featured ? 'text-2xl md:text-3xl' : 'text-xl'}
             ${compact ? 'text-lg' : ''}
           `}>
@@ -110,12 +110,12 @@ const ProjectCard = ({
           </h3>
           
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1 group-hover:translate-y-0">
-            <ArrowUpRight className="w-5 h-5 text-purple-400" />
+            <ArrowUpRight className="w-5 h-5 text-primary" />
           </div>
         </div>
 
         <p className={`
-          text-zinc-400 leading-relaxed group-hover:text-zinc-300 transition-colors duration-300
+          text-muted leading-relaxed group-hover:text-foreground transition-colors duration-300
           ${featured ? 'text-base mb-6 line-clamp-3' : 'text-sm mb-4 line-clamp-2'}
           ${compact ? 'line-clamp-2 mb-3' : ''}
         `}>
@@ -131,10 +131,10 @@ const ProjectCard = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05 }}
                 className={`
-                  inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1
-                  text-xs font-medium text-zinc-300 backdrop-blur-sm
+                  inline-flex items-center rounded-full border border-border bg-accent/5 px-3 py-1
+                  text-xs font-medium text-muted backdrop-blur-sm
                   transition-all duration-300
-                  group-hover:border-purple-500/30 group-hover:bg-purple-500/10 group-hover:text-purple-200
+                  group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:text-primary
                   ${featured ? 'px-4 py-1.5 text-sm' : ''}
                 `}
               >
@@ -142,7 +142,7 @@ const ProjectCard = ({
               </motion.span>
             ))}
             {!featured && technologies.length > (compact ? 3 : 4) && (
-              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-500">
+              <span className="inline-flex items-center rounded-full border border-border bg-accent/5 px-3 py-1 text-xs font-medium text-muted">
                 +{technologies.length - (compact ? 3 : 4)}
               </span>
             )}
@@ -150,14 +150,14 @@ const ProjectCard = ({
         </div>
 
         {featured && (
-          <div className="relative z-20 mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+          <div className="relative z-20 mt-6 pt-6 border-t border-border flex items-center justify-between">
             <div className="flex items-center gap-4">
               {githubUrl && (
                 <Link
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
                 >
                   <Github className="w-4 h-4" />
                   <span>View Code</span>
@@ -169,7 +169,7 @@ const ProjectCard = ({
                 href={projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-sm font-semibold hover:bg-zinc-200 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-all hover:scale-105"
               >
                 Live Demo
                 <ArrowUpRight className="w-4 h-4" />
@@ -179,7 +179,7 @@ const ProjectCard = ({
         )}
       </div>
 
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/10 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-primary/5 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
     </motion.div>
   );
 };
