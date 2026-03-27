@@ -112,18 +112,17 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-zinc-950 overflow-hidden">
+    <div ref={containerRef} className="relative min-h-screen bg-background overflow-hidden text-foreground">
       {/* Animated Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
         <motion.div 
           style={{ y: backgroundY }}
-          className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[150px]"
+          className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]"
         />
-        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px]" />
         
         {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent:70%)] opacity-10" />
       </div>
 
       {/* Hero Section */}
@@ -143,20 +142,20 @@ export default function AboutPage() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={isHeroInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-border backdrop-blur-sm mb-6"
               >
-                <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-sm text-zinc-300 font-medium">{dictionary.badge}</span>
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-sm text-muted font-medium">{dictionary.badge}</span>
               </motion.div>
 
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-                <span className="text-white">Ricardo</span>
-                <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x bg-300%">
+                <span className="text-foreground">Ricardo</span>
+                <span className="block mt-2 text-primary">
                   {dictionary.heroRole}
                 </span>
               </h1>
 
-              <p className="text-xl text-zinc-400 leading-relaxed mb-8">
+              <p className="text-xl text-muted leading-relaxed mb-8">
                 {dictionary.heroIntro}
               </p>
 
@@ -167,7 +166,7 @@ export default function AboutPage() {
                 >
                   <Link
                     href={`/${lang}/projects`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all"
                   >
                     {dictionary.ctaProjects}
                     <ArrowUpRight className="w-4 h-4" />
@@ -179,7 +178,7 @@ export default function AboutPage() {
                 >
                   <Link
                     href={`/${lang}/contact`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-accent/5 backdrop-blur-sm text-foreground font-semibold hover:bg-accent/10 transition-all"
                   >
                     {dictionary.ctaContact}
                   </Link>
@@ -257,16 +256,16 @@ export default function AboutPage() {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300"
+                className="group relative p-6 rounded-2xl bg-accent/5 border border-border backdrop-blur-sm hover:border-primary/30 transition-all duration-300"
               >
-                <Quote className="w-8 h-8 text-purple-400/50 mb-4" />
-                <p className="text-white font-medium mb-3 leading-relaxed">
+                <Quote className="w-8 h-8 text-primary/50 mb-4" />
+                <p className="text-foreground font-medium mb-3 leading-relaxed">
                   &ldquo;{item.quote}&rdquo;
                 </p>
-                <p className="text-xs text-zinc-500 uppercase tracking-wider">
+                <p className="text-xs text-muted uppercase tracking-wider">
                   {item.context}
                 </p>
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 rounded-2xl transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/5 group-hover:to-accent/5 rounded-2xl transition-all duration-500" />
               </motion.div>
             ))}
           </motion.div>
@@ -282,10 +281,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               {dictionary.skillsTitle}
             </h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-muted max-w-2xl mx-auto">
               {dictionary.skillsSubtitle}
             </p>
           </motion.div>
@@ -302,33 +301,33 @@ export default function AboutPage() {
                 key={dictionary.skills[index]}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
-                className="group relative p-6 rounded-2xl bg-zinc-900/30 border border-white/5 hover:border-white/10 transition-all duration-300"
+                className="group relative p-6 rounded-2xl bg-accent/5 border border-border hover:border-primary/20 transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${skill.color} bg-opacity-10`}>
-                    <skill.icon className="w-6 h-6 text-white" />
+                  <div className={`p-3 rounded-xl bg-primary/10`}>
+                    <skill.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <span className="text-2xl font-bold text-white">
+                  <span className="text-2xl font-bold text-foreground">
                     {skill.level}%
                   </span>
                 </div>
                 
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {dictionary.skills[index]}
                 </h3>
                 
                 {/* Progress Bar */}
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-accent/20 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-                    className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
+                    className={`h-full rounded-full bg-primary`}
                   />
                 </div>
                 
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
@@ -344,10 +343,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               {dictionary.interestsTitle}
             </h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-muted max-w-2xl mx-auto">
               {dictionary.interestsSubtitle}
             </p>
           </motion.div>
@@ -363,20 +362,20 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300 text-center"
+                className="group relative p-6 rounded-2xl bg-accent/5 border border-border backdrop-blur-sm hover:border-primary/30 transition-all duration-300 text-center"
               >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="w-8 h-8 text-purple-400" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {interest.name}
                 </h3>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-muted">
                   {interest.description}
                 </p>
                 
                 {/* Hover Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </motion.div>
               );
             })}
@@ -392,14 +391,14 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="container mx-auto max-w-4xl text-center"
         >
-          <div className="relative p-12 rounded-3xl bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 border border-white/10 backdrop-blur-sm overflow-hidden">
+          <div className="relative p-12 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm overflow-hidden">
             {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
             
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 relative z-10">
               {dictionary.ctaTitle}
             </h2>
-            <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto relative z-10">
+            <p className="text-muted text-lg mb-8 max-w-2xl mx-auto relative z-10">
               {dictionary.ctaBody}
             </p>
             
@@ -409,7 +408,7 @@ export default function AboutPage() {
             >
               <Link
                 href={`/${lang}/contact`}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-all relative z-10"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-all relative z-10"
               >
                 {dictionary.ctaButton}
                 <ArrowUpRight className="w-5 h-5" />
