@@ -15,7 +15,7 @@ export default async function HomePage({
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
           Ricardo, Full-Stack Developer
         </h1>
-        <p className="text-lg md:text-xl text-zinc-400 mb-8">
+        <p className="text-lg md:text-xl text-muted mb-8">
           I build scalable and user-friendly web applications with modern technologies.
           Passionate about clean code, great design, and open source.
         </p>
