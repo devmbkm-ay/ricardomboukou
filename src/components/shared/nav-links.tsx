@@ -40,13 +40,13 @@ export default function NavLinks({ lang, dictionary, isAuthenticated }: { lang: 
                 <Link 
                     key={link.href} 
                     href={link.href} 
-                    className={`transition-colors ${pathname === link.href ? 'text-purple-400' : 'hover:text-zinc-300'}`}
+                    className={`transition-colors ${pathname === link.href ? 'text-primary font-medium' : 'text-muted hover:text-foreground'}`}
                 >
                     {link.label}
                 </Link>
             ))}
             {isAuthenticated && <LogoutButton dictionary={dictionary} />}
-            <div className="h-6 w-px bg-zinc-700 mx-3"></div>
+            <div className="h-6 w-px bg-border mx-3"></div>
             <LanguageSwitcher />
         </>
     );
