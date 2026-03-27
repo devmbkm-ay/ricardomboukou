@@ -57,11 +57,11 @@ export default function HomeClient() {
     }
 
     const animate = () => {
-      ctx.fillStyle = 'rgba(3, 7, 18, 0.1)'; // Trail effect
+      ctx.fillStyle = 'rgba(2, 6, 23, 0.1)'; // Trail effect matching #020617
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, i) => {
-        // Mouse interaction
+        // ... (mouse logic)
         const dx = mousePosition.x - particle.x;
         const dy = mousePosition.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -81,7 +81,7 @@ export default function HomeClient() {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(102, 126, 234, ${particle.opacity})`;
+        ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`; // Primary Electric Blue
         ctx.fill();
 
         // Connect nearby particles
@@ -94,7 +94,7 @@ export default function HomeClient() {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(102, 126, 234, ${0.1 * (1 - distance2 / 150)})`;
+            ctx.strokeStyle = `rgba(34, 211, 238, ${0.1 * (1 - distance2 / 150)})`; // Accent Cyan
             ctx.stroke();
           }
         });
@@ -142,7 +142,7 @@ export default function HomeClient() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-zinc-950">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Animated Background Canvas */}
       <canvas
         ref={canvasRef}
@@ -150,38 +150,38 @@ export default function HomeClient() {
       />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
       {/* Main Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
 
           {/* Availability Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-border backdrop-blur-sm mb-8 animate-fade-in-up">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm text-zinc-300 font-medium">{dictionary.availability}</span>
+            <span className="text-sm text-muted font-medium">{dictionary.availability}</span>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
-            <span className="text-white">Ricardo</span>
-            <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x bg-300%">
+            <span className="text-foreground">Ricardo</span>
+            <span className="block mt-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
               {dictionary.titleRole}
             </span>
           </h1>
 
           {/* Typewriter Description */}
           <div className="mb-8 max-w-2xl mx-auto space-y-3">
-            <p className="text-sm md:text-sm text-zinc-400 leading-relaxed">
+            <p className="text-sm md:text-sm text-muted leading-relaxed">
               {dictionary.introPrefix}{' '}
-              <span className="text-white font-semibold whitespace-nowrap">
+              <span className="text-foreground font-semibold whitespace-nowrap">
                 <span className="inline-block min-w-[2ch]">{currentWord}</span>
-                <span className="inline-block w-0.5 h-5 bg-purple-400 align-middle ml-0.5 animate-[blink_1s_step-end_infinite]" />
+                <span className="inline-block w-0.5 h-5 bg-primary align-middle ml-0.5 animate-[blink_1s_step-end_infinite]" />
               </span>
               {' '}{dictionary.introSuffix}
             </p>
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-muted">
               {dictionary.subtitle}
             </p>
           </div>
@@ -190,7 +190,7 @@ export default function HomeClient() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
               href={`/${lang}/projects`}
-              className="bg-white text-black hover:bg-zinc-200 font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+              className="bg-primary text-primary-foreground hover:opacity-90 font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 hover:shadow-lg"
             >
               {dictionary.ctaPrimary}
             </Button>
@@ -198,7 +198,7 @@ export default function HomeClient() {
             <Button
               href={`/${lang}/contact`}
               variant="outline"
-              className="border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
+              className="border-border bg-accent/5 backdrop-blur-sm hover:bg-accent/10 text-foreground font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
             >
               {dictionary.ctaSecondary}
             </Button>
@@ -209,7 +209,7 @@ export default function HomeClient() {
             {dictionary.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-sm font-medium hover:bg-white/10 hover:border-purple-500/50 hover:text-white hover:-translate-y-1 transition-all cursor-default"
+                className="px-4 py-2 rounded-full bg-accent/5 border border-border text-muted text-sm font-medium hover:bg-accent/10 hover:border-primary/50 hover:text-foreground hover:-translate-y-1 transition-all cursor-default"
               >
                 {tech}
               </span>
@@ -217,13 +217,13 @@ export default function HomeClient() {
           </div>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/10 max-w-2xl mx-auto">
+          <div className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-border max-w-2xl mx-auto">
             {dictionary.stats.map((stat) => (
               <div key={stat.label} className="text-center group">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-foreground to-muted bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all">
                   {stat.num}
                 </div>
-                <div className="text-sm text-zinc-500 uppercase tracking-wider mt-1">
+                <div className="text-sm text-muted uppercase tracking-wider mt-1">
                   {stat.label}
                 </div>
               </div>
@@ -234,8 +234,8 @@ export default function HomeClient() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-          <div className="w-1 h-2 bg-white/40 rounded-full animate-pulse" />
+        <div className="w-6 h-10 rounded-full border-2 border-border flex justify-center pt-2">
+          <div className="w-1 h-2 bg-muted/40 rounded-full animate-pulse" />
         </div>
       </div>
 
