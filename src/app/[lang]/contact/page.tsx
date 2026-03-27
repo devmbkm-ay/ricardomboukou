@@ -82,12 +82,11 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 relative overflow-hidden pt-24">
+    <div className="min-h-screen bg-background relative overflow-hidden pt-24 text-foreground">
       {/* Background Effects */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[150px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[150px]" />
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-16">
@@ -99,19 +98,19 @@ export default function ContactPage() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6">
-              <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm text-zinc-300 font-medium">{dictionary.badge}</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-border backdrop-blur-sm mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm text-muted font-medium">{dictionary.badge}</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-white">{dictionary.titleLine1}</span>
-              <span className="block mt-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="text-foreground">{dictionary.titleLine1}</span>
+              <span className="block mt-2 text-primary">
                 {dictionary.titleLine2}
               </span>
             </h1>
 
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-xl text-muted max-w-2xl mx-auto">
               {dictionary.intro}
             </p>
           </motion.div>
@@ -119,33 +118,33 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Info Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-2 space-y-8">
-              <div className="p-8 rounded-3xl bg-zinc-900/30 border border-white/10 backdrop-blur-sm">
-                <h3 className="text-xl font-semibold text-white mb-6">{dictionary.contactInfoTitle}</h3>
+              <div className="p-8 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm">
+                <h3 className="text-xl font-semibold text-foreground mb-6">{dictionary.contactInfoTitle}</h3>
 
                 <div className="space-y-6">
-                  <a href="mailto:hello@ricardo.dev" className="flex items-center gap-4 group">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
-                      <Mail className="w-5 h-5 text-zinc-400 group-hover:text-purple-400" />
+                  <a href="mailto:dev.mbkm@gmail.com" className="flex items-center gap-4 group">
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Mail className="w-5 h-5 text-muted group-hover:text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm text-zinc-500">{dictionary.emailLabel}</p>
-                      <p className="text-white group-hover:text-purple-300 transition-colors">dev.mbkm@gmail.com</p>
+                      <p className="text-sm text-muted">{dictionary.emailLabel}</p>
+                      <p className="text-foreground group-hover:text-primary transition-colors">dev.mbkm@gmail.com</p>
                     </div>
                   </a>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
-                      <MapPin className="w-5 h-5 text-zinc-400" />
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                      <MapPin className="w-5 h-5 text-muted" />
                     </div>
                     <div>
-                      <p className="text-sm text-zinc-500">{dictionary.locationLabel}</p>
-                      <p className="text-white">{dictionary.locationValue}</p>
+                      <p className="text-sm text-muted">{dictionary.locationLabel}</p>
+                      <p className="text-foreground">{dictionary.locationValue}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-white/10">
-                  <p className="text-sm text-zinc-500 mb-4">{dictionary.followMe}</p>
+                <div className="mt-8 pt-8 border-t border-border">
+                  <p className="text-sm text-muted mb-4">{dictionary.followMe}</p>
                   <div className="flex gap-3">
                     {socialLinks.map((social) => (
                       <a
@@ -153,7 +152,7 @@ export default function ContactPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 transition-all hover:scale-110 hover:border-purple-500/30 ${social.color}`}
+                        className={`w-12 h-12 rounded-xl bg-accent/5 border border-border flex items-center justify-center text-muted transition-all hover:scale-110 hover:border-primary/30 ${social.color}`}
                       >
                         <social.icon className="w-5 h-5" />
                       </a>
@@ -163,12 +162,12 @@ export default function ContactPage() {
               </div>
 
               {/* Availability Card */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20">
+              <div className="p-6 rounded-2xl bg-accent/5 border border-primary/20">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-sm font-medium text-green-400">{dictionary.availability}</span>
+                  <span className="text-sm font-medium text-green-600 dark:text-green-400">{dictionary.availability}</span>
                 </div>
-                <p className="text-zinc-400 text-sm">
+                <p className="text-muted text-sm">
                   {dictionary.availabilityBody}
                 </p>
               </div>
@@ -179,49 +178,49 @@ export default function ContactPage() {
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="p-8 md:p-10 rounded-3xl bg-zinc-900/30 border border-white/10 backdrop-blur-sm"
+                className="p-8 md:p-10 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm"
               >
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">{dictionary.form.name}</label>
+                    <label className="text-sm font-medium text-muted">{dictionary.form.name}</label>
                     <input
                       type="text"
                       name="name"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
                       placeholder={dictionary.form.namePlaceholder}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">{dictionary.form.email}</label>
+                    <label className="text-sm font-medium text-muted">{dictionary.form.email}</label>
                     <input
                       type="email"
                       name="email"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
                       placeholder={dictionary.form.emailPlaceholder}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  <label className="text-sm font-medium text-zinc-300">{dictionary.form.subject}</label>
+                  <label className="text-sm font-medium text-muted">{dictionary.form.subject}</label>
                   <input
                     type="text"
                     name="subject"
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
                     placeholder={dictionary.form.subjectPlaceholder}
                   />
                 </div>
 
                 <div className="space-y-2 mb-8">
-                  <label className="text-sm font-medium text-zinc-300">{dictionary.form.message}</label>
+                  <label className="text-sm font-medium text-muted">{dictionary.form.message}</label>
                   <textarea
                     name="message"
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none"
                     placeholder={dictionary.form.messagePlaceholder}
                   />
                 </div>
@@ -233,7 +232,7 @@ export default function ContactPage() {
                   whileTap={formState === 'idle' ? { scale: 0.98 } : {}}
                   className={`w-full py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 transition-all ${formState === 'success'
                       ? 'bg-green-500 text-white'
-                      : 'bg-white text-black hover:bg-zinc-200'
+                      : 'bg-primary text-primary-foreground hover:opacity-90'
                     }`}
                 >
                   {formState === 'idle' && (
@@ -264,7 +263,7 @@ export default function ContactPage() {
             variants={itemVariants}
             className="mt-24 max-w-3xl mx-auto"
           >
-            <h2 className="text-2xl font-bold text-white text-center mb-12">{dictionary.faqTitle}</h2>
+            <h2 className="text-2xl font-bold text-foreground text-center mb-12">{dictionary.faqTitle}</h2>
             <div className="space-y-4">
               {dictionary.faqs.map((faq, index) => (
                 <motion.div
@@ -273,10 +272,10 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors"
+                  className="p-6 rounded-2xl bg-accent/5 border border-border hover:border-primary/20 transition-colors"
                 >
-                  <h3 className="font-semibold text-white mb-2">{faq.q}</h3>
-                  <p className="text-zinc-400 text-sm">{faq.a}</p>
+                  <h3 className="font-semibold text-foreground mb-2">{faq.q}</h3>
+                  <p className="text-muted text-sm">{faq.a}</p>
                 </motion.div>
               ))}
             </div>
