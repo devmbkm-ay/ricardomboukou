@@ -2,10 +2,10 @@
 
 :root {
   --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #1e293b;
-  --primary-foreground: #f8fafc;
-  --accent: #334155;
+  --foreground: #020617;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --accent: #0ea5e9;
   --muted: #64748b;
   --border: #e2e8f0;
 }
@@ -24,11 +24,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f172a;
+    --background: #020617;
     --foreground: #f8fafc;
-    --primary: #f8fafc;
-    --primary-foreground: #0f172a;
-    --accent: #1e293b;
+    --primary: #3b82f6; /* Bleu Électrique */
+    --primary-foreground: #ffffff;
+    --accent: #22d3ee; /* Cyan Électrique */
     --muted: #94a3b8;
     --border: #1e293b;
   }
