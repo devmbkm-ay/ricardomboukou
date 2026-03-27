@@ -70,8 +70,8 @@ export async function POST(req: NextRequest) {
     }
     
     const prompt = `
-        Analyze the following GitHub repository information and generate a project summary for a portfolio.
-        Your response must be a valid JSON object with the following fields: "title", "slug", "description", "technologies".
+        Analyze the following GitHub repository information and generate a project summary for a portfolio in both English and French.
+        Your response must be a valid JSON object with the following fields: "titleEn", "titleFr", "slug", "descriptionEn", "descriptionFr", "technologies".
 
         Repository Name: ${repoData.name}
         Repository Description: ${repoData.description}
@@ -83,10 +83,12 @@ export async function POST(req: NextRequest) {
         ---
 
         Based on the information above, please generate the following fields in a clean, professional tone:
-        1.  **title**: A concise and engaging title for the project.
-        2.  **slug**: A URL-friendly slug based on the title.
-        3.  **description**: A 2-3 sentence summary of the project's purpose and key features.
-        4.  **technologies**: A comma-separated list of the most important technologies used.
+        1.  **titleEn**: A concise English title.
+        2.  **titleFr**: A concise French title.
+        3.  **slug**: A URL-friendly slug.
+        4.  **descriptionEn**: A 2-3 sentence English summary.
+        5.  **descriptionFr**: A 2-3 sentence French summary.
+        6.  **technologies**: A comma-separated list of the most important technologies used.
     `;
 
     let text;

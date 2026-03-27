@@ -12,9 +12,11 @@ import en from '@/dictionaries/en.json';
 import fr from '@/dictionaries/fr.json';
 
 type ProjectFormData = {
-  title: string;
+  titleEn: string;
+  titleFr: string;
   slug: string;
-  description: string;
+  descriptionEn: string;
+  descriptionFr: string;
   technologies: string;
   imageUrl: string;
   projectUrl: string;
@@ -36,9 +38,11 @@ export default function DashboardPage() {
   const [repoUrl, setRepoUrl] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [formData, setFormData] = useState<ProjectFormData>({
-    title: '',
+    titleEn: '',
+    titleFr: '',
     slug: '',
-    description: '',
+    descriptionEn: '',
+    descriptionFr: '',
     technologies: '',
     imageUrl: '',
     projectUrl: '',
@@ -106,9 +110,11 @@ export default function DashboardPage() {
   const openModalForNew = () => {
     setEditingProject(null);
     setFormData({
-        title: '',
+        titleEn: '',
+        titleFr: '',
         slug: '',
-        description: '',
+        descriptionEn: '',
+        descriptionFr: '',
         technologies: '',
         imageUrl: '',
         projectUrl: '',
@@ -120,9 +126,11 @@ export default function DashboardPage() {
   const openModalForEdit = (project: Project) => {
     setEditingProject(project);
     setFormData({
-        title: project.title,
+        titleEn: project.titleEn,
+        titleFr: project.titleFr,
         slug: project.slug,
-        description: project.description,
+        descriptionEn: project.descriptionEn,
+        descriptionFr: project.descriptionFr,
         technologies: project.technologies.join(', '),
         imageUrl: project.imageUrl || '',
         projectUrl: project.projectUrl || '',
@@ -254,15 +262,15 @@ export default function DashboardPage() {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map(project => (
-                        <motion.div key={project.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-zinc-800/50 border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+                        <motion.div key={project.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-accent/5 border border-border rounded-xl p-4 flex flex-col justify-between">
                             <div>
-                                <h3 className="font-bold text-lg text-white">{project.title}</h3>
-                                <p className="text-sm text-zinc-400 mb-2">{project.slug}</p>
-                                <p className="text-xs text-zinc-500 line-clamp-2">{project.description}</p>
+                                <h3 className="font-bold text-lg text-foreground">{lang === 'fr' ? project.titleFr : project.titleEn}</h3>
+                                <p className="text-sm text-muted mb-2">{project.slug}</p>
+                                <p className="text-xs text-muted line-clamp-2">{lang === 'fr' ? project.descriptionFr : project.descriptionEn}</p>
                             </div>
                             <div className="flex justify-end gap-2 mt-4">
-                                <button onClick={() => openModalForEdit(project)} className="p-2 text-zinc-400 hover:text-white"><Edit className="w-4 h-4" /></button>
-                                <button onClick={() => handleDelete(project.id)} className="p-2 text-zinc-400 hover:text-red-400"><Trash2 className="w-4 h-4" /></button>
+                                <button onClick={() => openModalForEdit(project)} className="p-2 text-muted hover:text-foreground"><Edit className="w-4 h-4" /></button>
+                                <button onClick={() => handleDelete(project.id)} className="p-2 text-muted hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
                             </div>
                         </motion.div>
                     ))}

@@ -10,6 +10,16 @@
   --border: #e2e8f0;
 }
 
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --primary: #3b82f6; /* Bleu Électrique */
+  --primary-foreground: #ffffff;
+  --accent: #22d3ee; /* Cyan Électrique */
+  --muted: #94a3b8;
+  --border: #1e293b;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -20,18 +30,6 @@
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #020617;
-    --foreground: #f8fafc;
-    --primary: #3b82f6; /* Bleu Électrique */
-    --primary-foreground: #ffffff;
-    --accent: #22d3ee; /* Cyan Électrique */
-    --muted: #94a3b8;
-    --border: #1e293b;
-  }
 }
 
 body {

@@ -1,9 +1,11 @@
-// Your project data
+// Your project data with bilingual support
 export const projects = [
     {
         slug: 'consultancy',
-        title: 'Consultancy',
-        description: 'The very website you are looking at, built with Next.js, TypeScript, and Tailwind CSS. Deployed on Vercel.',
+        titleEn: 'Consultancy',
+        titleFr: 'Conseil',
+        descriptionEn: 'The very website you are looking at, built with Next.js, TypeScript, and Tailwind CSS. Deployed on Vercel.',
+        descriptionFr: 'Le site même que vous regardez, construit avec Next.js, TypeScript et Tailwind CSS. Déployé sur Vercel.',
         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
         imageUrl: '/images/enidpath.webp',
         projectUrl: 'https://enidpath.vercel.app',
@@ -11,8 +13,10 @@ export const projects = [
     },
     {
         slug: 'quiz-app',
-        title: 'Quiz App',
-        description: 'A full-stack application for managing tasks, with user authentication and a real-time database.',
+        titleEn: 'Quiz App',
+        titleFr: 'Application Quiz',
+        descriptionEn: 'A full-stack application for managing tasks, with user authentication and a real-time database.',
+        descriptionFr: 'Une application full-stack pour gérer des tâches, avec authentification utilisateur et une base de données en temps réel.',
         technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma'],
         imageUrl: '/images/quizz.webp',
         projectUrl: 'https://quizflip-virid.vercel.app/',
@@ -20,8 +24,10 @@ export const projects = [
     },
     {
         slug: 'noce-florale-shop',
-        title: 'Noce florale',
-        description: 'A headless e-commerce frontend with a clean, modern design, connected to a third-party API for products and checkout.',
+        titleEn: 'Noce florale',
+        titleFr: 'Noce florale',
+        descriptionEn: 'A headless e-commerce frontend with a clean, modern design, connected to a third-party API for products and checkout.',
+        descriptionFr: 'Un frontend e-commerce headless avec un design épuré et moderne, connecté à une API tierce pour les produits et le paiement.',
         technologies: ['Next.js', 'Stripe', 'GraphQL'],
         imageUrl: '/images/noceflorale.webp',
         projectUrl: 'https://noceflorale-frontend.vercel.app',
@@ -29,8 +35,10 @@ export const projects = [
     },
     {
         slug: 'noce-florale-rsvp',
-        title: 'Noce florale',
-        description: 'A RSVP project for weddings with dashboard for managing guest stat.',
+        titleEn: 'Noce florale RSVP',
+        titleFr: 'Noce florale RSVP',
+        descriptionEn: 'A RSVP project for weddings with dashboard for managing guest stat.',
+        descriptionFr: 'Un projet de RSVP pour les mariages avec un tableau de bord pour gérer les statistiques des invités.',
         technologies: ['Next.js', 'GraphQL', 'MongoDB'],
         imageUrl: '/images/noceflorale.webp',
         projectUrl: 'https://noceflorale-frontend.vercel.app',

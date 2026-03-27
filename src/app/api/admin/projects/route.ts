@@ -22,8 +22,10 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const {
       slug,
-      title,
-      description,
+      titleEn,
+      titleFr,
+      descriptionEn,
+      descriptionFr,
       technologies,
       imageUrl,
       projectUrl,
@@ -31,15 +33,17 @@ export async function POST(req: NextRequest) {
     } = body;
 
     // Basic validation
-    if (!slug || !title || !description || !technologies) {
+    if (!slug || !titleEn || !titleFr || !descriptionEn || !descriptionFr || !technologies) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const newProject = await prisma.project.create({
       data: {
         slug,
-        title,
-        description,
+        titleEn,
+        titleFr,
+        descriptionEn,
+        descriptionFr,
         technologies,
         imageUrl,
         projectUrl,

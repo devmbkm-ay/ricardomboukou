@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n.config';
 
 import MobileNav from './mobile-nav';
 import NavLinks from './nav-links';
+import ThemeToggle from './theme-toggle';
 
 type NavbarDictionary = {
     home: string;
@@ -82,6 +83,8 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
                             dictionary={dictionary}
                             isAuthenticated={isAuthenticated}
                         />
+                        <div className="h-6 w-px bg-border mx-2"></div>
+                        <ThemeToggle />
                     </div>
                 </div>
             </nav>

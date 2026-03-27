@@ -23,14 +23,14 @@ export default function LanguageSwitcher() {
     <div className="flex items-center gap-2">
       <button 
         onClick={() => router.push(redirectedPathName('en'))} 
-        className={`text-sm font-medium ${pathName?.startsWith('/en') ? 'text-purple-400' : 'text-zinc-400 hover:text-white'}`}
+        className={`text-sm font-medium transition-colors ${pathName?.startsWith('/en') ? 'text-primary' : 'text-muted hover:text-foreground'}`}
       >
         EN
       </button>
-      <div className="h-4 w-px bg-zinc-700"></div>
+      <div className="h-4 w-px bg-border"></div>
       <button 
         onClick={() => router.push(redirectedPathName('fr'))} 
-        className={`text-sm font-medium ${pathName?.startsWith('/fr') ? 'text-purple-400' : 'text-zinc-400 hover:text-white'}`}
+        className={`text-sm font-medium transition-colors ${pathName?.startsWith('/fr') ? 'text-primary' : 'text-muted hover:text-foreground'}`}
       >
         FR
       </button>

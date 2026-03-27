@@ -59,6 +59,9 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  const lang = params?.lang ?? 'en';
  const dictionary = (lang === 'fr' ? fr : en).projectDetailPage;
 
+ const title = lang === 'fr' ? project.titleFr : project.titleEn;
+ const description = lang === 'fr' ? project.descriptionFr : project.descriptionEn;
+
  return (
  <div className="min-h-screen bg-background relative overflow-hidden text-foreground">
  {/* Background Ambient Effects */}
@@ -99,13 +102,13 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
 
  <FadeIn delay={0.2}>
  <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-foreground">
- {project.title}
+ {title}
  </h1>
  </FadeIn>
 
  <FadeIn delay={0.3}>
  <p className="text-xl md:text-2xl text-muted max-w-3xl leading-relaxed mb-8">
- {project.description}
+ {description}
  </p>
  </FadeIn>
 
@@ -114,7 +117,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="flex flex-wrap items-center gap-6 text-sm text-muted">
  <div className="flex items-center gap-2">
  <Calendar className="w-4 h-4" />
- <span>{new Date(project.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</span>
+ <span>{new Date(project.createdAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long' })}</span>
  </div>
  <div className="w-px h-4 bg-border" />
  <div className="flex items-center gap-2">
@@ -206,7 +209,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  {dictionary.overviewBody1}
  </p>
  <p className="text-muted leading-relaxed">
- {project.description} {dictionary.overviewBody2Suffix}
+ {description}
  </p>
  </div>
  </div>
@@ -326,7 +329,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
  <div className="flex justify-between">
  <span className="text-muted">{dictionary.created}</span>
  <span className="text-foreground">
- {new Date(project.createdAt).toLocaleDateString('en-US', {
+ {new Date(project.createdAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
  year: 'numeric',
  month: 'long',
  day: 'numeric'

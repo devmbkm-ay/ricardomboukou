@@ -9,8 +9,10 @@ import type { Locale } from '@/i18n.config';
 
 type ProjectCardProps = {
   id: string;
-  title: string;
-  description: string;
+  titleEn: string;
+  titleFr: string;
+  descriptionEn: string;
+  descriptionFr: string;
   imageUrl?: string | null;
   projectUrl?: string | null;
   githubUrl?: string | null;
@@ -21,8 +23,10 @@ type ProjectCardProps = {
 
 const ProjectCard = ({
   id,
-  title,
-  description,
+  titleEn,
+  titleFr,
+  descriptionEn,
+  descriptionFr,
   imageUrl,
   projectUrl,
   githubUrl,
@@ -32,6 +36,9 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   const params = useParams<{ lang: Locale }>();
   const lang = params?.lang ?? 'en';
+  
+  const title = lang === 'fr' ? titleFr : titleEn;
+  const description = lang === 'fr' ? descriptionFr : descriptionEn;
 
   return (
     <motion.div
