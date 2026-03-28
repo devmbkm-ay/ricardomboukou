@@ -10,10 +10,10 @@ import fr from '@/dictionaries/fr.json';
 
 export default function HomeClient() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mousePositionRef = useRef({ x: 0, y: 0 });
   const params = useParams<{ lang: Locale }>();
   const lang = params?.lang ?? 'en';
   const dictionary = (lang === 'fr' ? fr : en).home;
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentWord, setCurrentWord] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -62,8 +62,8 @@ export default function HomeClient() {
 
       particles.forEach((particle, i) => {
         // ... (mouse logic)
-        const dx = mousePosition.x - particle.x;
-        const dy = mousePosition.y - particle.y;
+        const dx = mousePositionRef.current.x - particle.x;
+        const dy = mousePositionRef.current.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 100) {
@@ -109,7 +109,7 @@ export default function HomeClient() {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [mousePosition]);
+  }, []);
 
   // Typewriter Effect
   useEffect(() => {
@@ -135,7 +135,7 @@ export default function HomeClient() {
   // Mouse tracking
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      mousePositionRef.current = { x: e.clientX, y: e.clientY };
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);

@@ -42,7 +42,7 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
     }, []);
 
     return (
-        <header className="sticky top-0 z-40 w-full border-b border-border bg-background/50 backdrop-blur-lg">
+        <header className="sticky top-0 z-40 w-full border-b border-border bg-[#f8fafc]/60 dark:bg-[#020617]/60 backdrop-blur-lg">
             <nav className="container mx-auto px-4 py-3">
                 <div className="flex items-center justify-between">
                     <Link

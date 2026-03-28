@@ -86,9 +86,11 @@ export default function DashboardPage() {
       }
       const data = await res.json();
       setFormData({
-        title: data.title,
+        titleEn: data.title,
+        titleFr: data.title,
         slug: data.slug,
-        description: data.description,
+        descriptionEn: data.description,
+        descriptionFr: data.description,
         technologies: data.technologies,
         imageUrl: data.imageUrl,
         projectUrl: data.projectUrl,
@@ -106,36 +108,36 @@ export default function DashboardPage() {
     await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
     router.push(`/${lang}/auth/login`);
   };
-  
+
   const openModalForNew = () => {
     setEditingProject(null);
     setFormData({
-        titleEn: '',
-        titleFr: '',
-        slug: '',
-        descriptionEn: '',
-        descriptionFr: '',
-        technologies: '',
-        imageUrl: '',
-        projectUrl: '',
-        githubUrl: '',
-      });
+      titleEn: '',
+      titleFr: '',
+      slug: '',
+      descriptionEn: '',
+      descriptionFr: '',
+      technologies: '',
+      imageUrl: '',
+      projectUrl: '',
+      githubUrl: '',
+    });
     setIsModalOpen(true);
   }
 
   const openModalForEdit = (project: Project) => {
     setEditingProject(project);
     setFormData({
-        titleEn: project.titleEn,
-        titleFr: project.titleFr,
-        slug: project.slug,
-        descriptionEn: project.descriptionEn,
-        descriptionFr: project.descriptionFr,
-        technologies: project.technologies.join(', '),
-        imageUrl: project.imageUrl || '',
-        projectUrl: project.projectUrl || '',
-        githubUrl: project.githubUrl || '',
-      });
+      titleEn: project.titleEn,
+      titleFr: project.titleFr,
+      slug: project.slug,
+      descriptionEn: project.descriptionEn,
+      descriptionFr: project.descriptionFr,
+      technologies: project.technologies.join(', '),
+      imageUrl: project.imageUrl || '',
+      projectUrl: project.projectUrl || '',
+      githubUrl: project.githubUrl || '',
+    });
     setIsModalOpen(true);
   }
 
@@ -169,41 +171,41 @@ export default function DashboardPage() {
 
   const deleteProject = async (id: string) => {
     try {
-        const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE', credentials: 'include' });
-        if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data.error || dashboardDictionary.deleteFallbackError);
-        }
-        setProjects(projects.filter(p => p.id !== id));
-        toast.success(dashboardDictionary.deleteSuccess);
+      const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE', credentials: 'include' });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || dashboardDictionary.deleteFallbackError);
+      }
+      setProjects(projects.filter(p => p.id !== id));
+      toast.success(dashboardDictionary.deleteSuccess);
     } catch (err: any) {
-        toast.error(err.message);
+      toast.error(err.message);
     }
   }
 
   const handleSaveProject = async (projectData: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>, id?: string) => {
     try {
-        const isEditing = !!id;
-        const url = isEditing ? `/api/admin/projects/${id}` : '/api/admin/projects';
-        const method = isEditing ? 'PUT' : 'POST';
+      const isEditing = !!id;
+      const url = isEditing ? `/api/admin/projects/${id}` : '/api/admin/projects';
+      const method = isEditing ? 'PUT' : 'POST';
 
-        const res = await fetch(url, {
-            method: method,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(projectData),
-            credentials: 'include',
-        });
+      const res = await fetch(url, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(projectData),
+        credentials: 'include',
+      });
 
-        if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data.error || dashboardDictionary.saveFallbackError);
-        }
-        
-        closeModal();
-        fetchProjects(); // Refresh the list
-        toast.success(isEditing ? dashboardDictionary.saveUpdatedSuccess : dashboardDictionary.saveCreatedSuccess);
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || dashboardDictionary.saveFallbackError);
+      }
+
+      closeModal();
+      fetchProjects(); // Refresh the list
+      toast.success(isEditing ? dashboardDictionary.saveUpdatedSuccess : dashboardDictionary.saveCreatedSuccess);
     } catch (err: any) {
-        toast.error(err.message);
+      toast.error(err.message);
     }
   }
 
@@ -215,67 +217,67 @@ export default function DashboardPage() {
       </div>
 
       <AnimatePresence>
-        {isModalOpen && <ProjectModal 
-            project={editingProject} 
-            onClose={closeModal} 
-            onSave={handleSaveProject} 
-            repoUrl={repoUrl}
-            setRepoUrl={setRepoUrl}
-            handleAnalyzeRepo={handleAnalyzeRepo}
-            isAnalyzing={isAnalyzing}
-            formData={formData}
-            setFormData={setFormData}
-            dictionary={modalDictionary}
-            />}
+        {isModalOpen && <ProjectModal
+          project={editingProject}
+          onClose={closeModal}
+          onSave={handleSaveProject}
+          repoUrl={repoUrl}
+          setRepoUrl={setRepoUrl}
+          handleAnalyzeRepo={handleAnalyzeRepo}
+          isAnalyzing={isAnalyzing}
+          formData={formData}
+          setFormData={setFormData}
+          dictionary={modalDictionary}
+        />}
       </AnimatePresence>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative z-10 max-w-7xl mx-auto">
         <header className="flex justify-between items-center mb-12">
-            <div className="flex items-center gap-3">
-                <LayoutDashboard className="w-8 h-8 text-purple-400" />
-                <h1 className="text-3xl md:text-4xl font-bold text-white">{dashboardDictionary.title}</h1>
-            </div>
-            <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all">
-                <LogOut className="w-4 h-4" />
-                <span>{dashboardDictionary.logout}</span>
-            </button>
+          <div className="flex items-center gap-3">
+            <LayoutDashboard className="w-8 h-8 text-purple-400" />
+            <h1 className="text-3xl md:text-4xl font-bold text-white">{dashboardDictionary.title}</h1>
+          </div>
+          <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all">
+            <LogOut className="w-4 h-4" />
+            <span>{dashboardDictionary.logout}</span>
+          </button>
         </header>
 
         <div className="bg-zinc-900/30 border border-white/10 rounded-2xl p-6 md:p-8">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h2 className="text-2xl font-semibold">{dashboardDictionary.projectsTitle}</h2>
-                <button onClick={openModalForNew} className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-white text-black font-semibold hover:bg-zinc-200 transition-all">
-                    <PlusCircle className="w-5 h-5" />
-                    <span>{dashboardDictionary.addNewProject}</span>
-                </button>
-            </div>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <h2 className="text-2xl font-semibold">{dashboardDictionary.projectsTitle}</h2>
+            <button onClick={openModalForNew} className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-white text-black font-semibold hover:bg-zinc-200 transition-all">
+              <PlusCircle className="w-5 h-5" />
+              <span>{dashboardDictionary.addNewProject}</span>
+            </button>
+          </div>
 
-            {isLoading ? (
-                <div className="text-center py-16"><LoaderCircle className="animate-spin w-8 h-8 mx-auto text-zinc-500" /></div>
-            ) : error ? (
-                <div className="text-center py-16 text-red-400">{error}</div>
-            ) : projects.length === 0 ? (
-                <div className="text-center py-16 border-2 border-dashed border-zinc-700 rounded-lg">
-                    <p className="text-zinc-400">{dashboardDictionary.emptyTitle}</p>
-                    <p className="text-sm text-zinc-500">{dashboardDictionary.emptyBody}</p>
-                </div>
-            ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projects.map(project => (
-                        <motion.div key={project.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-accent/5 border border-border rounded-xl p-4 flex flex-col justify-between">
-                            <div>
-                                <h3 className="font-bold text-lg text-foreground">{lang === 'fr' ? project.titleFr : project.titleEn}</h3>
-                                <p className="text-sm text-muted mb-2">{project.slug}</p>
-                                <p className="text-xs text-muted line-clamp-2">{lang === 'fr' ? project.descriptionFr : project.descriptionEn}</p>
-                            </div>
-                            <div className="flex justify-end gap-2 mt-4">
-                                <button onClick={() => openModalForEdit(project)} className="p-2 text-muted hover:text-foreground"><Edit className="w-4 h-4" /></button>
-                                <button onClick={() => handleDelete(project.id)} className="p-2 text-muted hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            )}
+          {isLoading ? (
+            <div className="text-center py-16"><LoaderCircle className="animate-spin w-8 h-8 mx-auto text-zinc-500" /></div>
+          ) : error ? (
+            <div className="text-center py-16 text-red-400">{error}</div>
+          ) : projects.length === 0 ? (
+            <div className="text-center py-16 border-2 border-dashed border-zinc-700 rounded-lg">
+              <p className="text-zinc-400">{dashboardDictionary.emptyTitle}</p>
+              <p className="text-sm text-zinc-500">{dashboardDictionary.emptyBody}</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map(project => (
+                <motion.div key={project.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-accent/5 border border-border rounded-xl p-4 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-bold text-lg text-foreground">{lang === 'fr' ? project.titleFr : project.titleEn}</h3>
+                    <p className="text-sm text-muted mb-2">{project.slug}</p>
+                    <p className="text-xs text-muted line-clamp-2">{lang === 'fr' ? project.descriptionFr : project.descriptionEn}</p>
+                  </div>
+                  <div className="flex justify-end gap-2 mt-4">
+                    <button onClick={() => openModalForEdit(project)} className="p-2 text-muted hover:text-foreground"><Edit className="w-4 h-4" /></button>
+                    <button onClick={() => handleDelete(project.id)} className="p-2 text-muted hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
