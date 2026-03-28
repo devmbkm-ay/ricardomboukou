@@ -9,21 +9,21 @@
     "logout": "Déconnexion"
   },
   "home": {
-    "availability": "Disponible pour des missions freelance",
+    "availability": "Disponible pour des missions stratégiques",
     "titleName": "Ricardo",
-    "titleRole": "Développeur Full-Stack",
-    "introPrefix": "Je crée des applications web",
-    "introSuffix": "avec des technologies modernes.",
-    "subtitle": "Passionné par le code propre, le beau design et l'open source.",
-    "ctaPrimary": "Voir mes projets",
-    "ctaSecondary": "Me contacter",
-    "techStack": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind"],
+    "titleRole": "Architecte Logiciel & Expert IA",
+    "introPrefix": "Je conçois des écosystèmes numériques",
+    "introSuffix": "propulsés par des architectures de pointe.",
+    "subtitle": "Spécialisé dans l'ingénierie de systèmes résilients, l'orchestration d'IA et l'augmentation humaine par la technologie.",
+    "ctaPrimary": "Explorer mes réalisations",
+    "ctaSecondary": "Entrer en contact",
+    "techStack": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind", "Docker", "IA"],
     "stats": [
       { "num": "50+", "label": "Projets" },
       { "num": "5+", "label": "Ans d'exp." },
       { "num": "30+", "label": "Clients" }
     ],
-    "typewriterWords": ["scalables", "élégantes", "performantes", "fluides", "robustes"]
+    "typewriterWords": ["scalables", "innovants", "performants", "robustes", "intelligents"]
   },
   "auth": {
     "login": {

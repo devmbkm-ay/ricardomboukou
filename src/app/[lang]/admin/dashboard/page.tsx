@@ -86,11 +86,11 @@ export default function DashboardPage() {
       }
       const data = await res.json();
       setFormData({
-        titleEn: data.title,
-        titleFr: data.title,
+        titleEn: data.titleEn || data.title || '',
+        titleFr: data.titleFr || data.title || '',
         slug: data.slug,
-        descriptionEn: data.description,
-        descriptionFr: data.description,
+        descriptionEn: data.descriptionEn || data.description || '',
+        descriptionFr: data.descriptionFr || data.description || '',
         technologies: data.technologies,
         imageUrl: data.imageUrl,
         projectUrl: data.projectUrl,

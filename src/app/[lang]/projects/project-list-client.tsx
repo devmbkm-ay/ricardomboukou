@@ -270,7 +270,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                         <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2' : 'grid-cols-1'}`}>
                             {otherProjects.map((project, index) => (
                                 <motion.div
-                                    key={project.id || project.title}
+                                    key={project.id || (lang === 'fr' ? project.titleFr : project.titleEn)}
                                     variants={itemVariants}
                                     custom={index}
                                     whileHover={{ y: -5 }}

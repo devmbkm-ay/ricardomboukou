@@ -208,9 +208,6 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                             <p className="text-foreground/80 leading-relaxed text-lg">
                                                 {dictionary.overviewBody1}
                                             </p>
-                                            <p className="text-muted leading-relaxed">
-                                                {description}
-                                            </p>
                                         </div>
                                     </div>
 
