@@ -1,40 +1,19 @@
-// import React from 'react';
 
-// export default function AboutPage() {
-//   return (
-//     <main className="container mx-auto px-4 py-8">
-//       <h1 className="text-4xl font-bold mb-4">À propos de moi</h1>
-//       <div className="space-y-6 text-lg">
-//         <p>
-//           Je suis Ricardo, un ingénieur senior passionné par l'orchestration d'IA et l'augmentation humaine. Mon approche combine une rigueur technique avec un intérêt pour la finance décentralisée, notamment le Bitcoin, et le développement personnel.
-//         </p>
-//         <p>
-//           Avec une expertise dans les environnements Ubuntu, la conteneurisation avec Docker et les bases de données comme PostgreSQL, je conçois et maintiens des systèmes résilients et performants. Mon objectif est de créer des solutions qui sont non seulement efficaces, mais aussi élégantes et durables.
-//         </p>
-//         <p>
-//           En dehors de la technologie, je pratique la callisthénie, je joue de la guitare acoustique et je m'intéresse de près aux cycles d'investissement. Je crois en une approche holistique de la vie, où la discipline physique et la créativité nourrissent l'innovation technique.
-//         </p>
-//       </div>
-//     </main>
-//   );
-// }
-
-// app/about/page.tsx or pages/about.tsx
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { 
-  Brain, 
-  Database, 
-  Container, 
-  Bitcoin, 
-  Dumbbell, 
-  Music, 
-  TrendingUp, 
-  Code2, 
+import {
+  Brain,
+  Database,
+  Container,
+  Bitcoin,
+  Dumbbell,
+  Music,
+  TrendingUp,
+  Code2,
   Terminal,
   Cpu,
   Globe,
@@ -45,6 +24,7 @@ import {
 import type { Locale } from '@/i18n.config';
 import en from '@/dictionaries/en.json';
 import fr from '@/dictionaries/fr.json';
+import Image from 'next/image';
 
 
 // Skill data structure
@@ -70,16 +50,16 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.2 }
   }
-}as const;
+} as const;
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
-  visible: { 
-    y: 0, 
+  visible: {
+    y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 100, damping: 15 }
   }
-}as const;
+} as const;
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -88,7 +68,7 @@ export default function AboutPage() {
   const params = useParams<{ lang: Locale }>();
   const lang = params?.lang ?? 'en';
   const dictionary = (lang === 'fr' ? fr : en).aboutPage;
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -99,7 +79,7 @@ export default function AboutPage() {
 
   // Mouse parallax effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -115,19 +95,19 @@ export default function AboutPage() {
     <div ref={containerRef} className="relative min-h-screen bg-background overflow-hidden text-foreground">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
-        <motion.div 
+        <motion.div
           style={{ y: backgroundY }}
           className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]"
         />
         <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px]" />
-        
+
         {/* Grid Pattern Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent:70%)] opacity-10" />
       </div>
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative z-10 pt-32 pb-20 px-6">
-        <motion.div 
+        <motion.div
           style={{ opacity }}
           className="container mx-auto max-w-6xl"
         >
@@ -138,7 +118,7 @@ export default function AboutPage() {
               animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={isHeroInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ delay: 0.2 }}
@@ -200,11 +180,16 @@ export default function AboutPage() {
               <div className="relative aspect-square max-w-md mx-auto">
                 {/* Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-3xl blur-2xl" />
-                
+
                 {/* Image Container */}
                 <div className="relative h-full rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-sm">
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10" />
-                  
+                  <Image
+                    src="/images/profile.png"
+                    alt="Profile Photo"
+                    fill
+                    className="object-cover object-center z-0"
+                  />
                   {/* Placeholder for your image */}
                   <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
                     <div className="text-center">
@@ -214,9 +199,9 @@ export default function AboutPage() {
                       <p className="text-zinc-500">{dictionary.photoPlaceholder}</p>
                     </div>
                   </div>
-                  
+
                   {/* Floating Stats */}
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 }}
@@ -311,11 +296,11 @@ export default function AboutPage() {
                     {skill.level}%
                   </span>
                 </div>
-                
+
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {dictionary.skills[index]}
                 </h3>
-                
+
                 {/* Progress Bar */}
                 <div className="h-2 bg-accent/20 rounded-full overflow-hidden">
                   <motion.div
@@ -326,7 +311,7 @@ export default function AboutPage() {
                     className={`h-full rounded-full bg-primary`}
                   />
                 </div>
-                
+
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
               </motion.div>
             ))}
@@ -355,28 +340,28 @@ export default function AboutPage() {
             {dictionary.interests.map((interest, index) => {
               const Icon = interestIcons[index];
               return (
-              <motion.div
-                key={interest.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group relative p-6 rounded-2xl bg-accent/5 border border-border backdrop-blur-sm hover:border-primary/30 transition-all duration-300 text-center"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {interest.name}
-                </h3>
-                <p className="text-sm text-muted">
-                  {interest.description}
-                </p>
-                
-                {/* Hover Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </motion.div>
+                <motion.div
+                  key={interest.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="group relative p-6 rounded-2xl bg-accent/5 border border-border backdrop-blur-sm hover:border-primary/30 transition-all duration-300 text-center"
+                >
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {interest.name}
+                  </h3>
+                  <p className="text-sm text-muted">
+                    {interest.description}
+                  </p>
+
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                </motion.div>
               );
             })}
           </div>
@@ -394,14 +379,14 @@ export default function AboutPage() {
           <div className="relative p-12 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm overflow-hidden">
             {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-            
+
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 relative z-10">
               {dictionary.ctaTitle}
             </h2>
             <p className="text-muted text-lg mb-8 max-w-2xl mx-auto relative z-10">
               {dictionary.ctaBody}
             </p>
-            
+
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
