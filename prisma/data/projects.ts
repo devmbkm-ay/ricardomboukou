@@ -5,7 +5,7 @@ export const projects = [
         titleEn: 'Consultancy',
         titleFr: 'Conseil',
         descriptionEn: 'The very website you are looking at, built with Next.js, TypeScript, and Tailwind CSS. Deployed on Vercel.',
-        descriptionFr: 'Le site même que vous regardez, construit avec Next.js, TypeScript et Tailwind CSS. Déployé sur Vercel.',
+        descriptionFr: 'Le site que vous visualisez actuellement repose sur une stack moderne combinant Next.js, TypeScript et Tailwind CSS, avec un déploiement optimisé via Vercel pour assurer rapidité, fiabilité et évolutivité.',
         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
         imageUrl: '/images/enidpath.webp',
         projectUrl: 'https://enidpath.vercel.app',
