@@ -232,7 +232,17 @@
       "createProject": "Créer le projet",
       "uploadTooLarge": "La taille de l'image ne peut pas dépasser 10 Mo.",
       "uploadFallbackError": "Échec de l'import de l'image",
-      "uploadSuccess": "Image importée avec succès"
+      "uploadSuccess": "Image importée avec succès",
+      "caseStudyLabel": "Étude de cas (optionnel)",
+      "caseStudyPlaceholder": "{ \"problemEn\": \"...\", \"problemFr\": \"...\", \"personas\": [...], \"kpis\": [...], \"challengeEn\": \"...\", \"challengeFr\": \"...\", \"insightEn\": \"...\", \"insightFr\": \"...\" }",
+      "caseStudyInvalidJson": "JSON invalide dans le champ étude de cas."
     }
+  },
+  "caseStudy": {
+    "problemTitle": "Le Défi",
+    "personasTitle": "Deux Utilisateurs, Un Produit",
+    "kpisTitle": "En Chiffres",
+    "challengeTitle": "Le Défi Technique",
+    "insightTitle": "Insight Clé"
   }
 }

@@ -232,7 +232,17 @@
       "createProject": "Create Project",
       "uploadTooLarge": "Image size cannot exceed 10MB.",
       "uploadFallbackError": "Image upload failed",
-      "uploadSuccess": "Image uploaded successfully"
+      "uploadSuccess": "Image uploaded successfully",
+      "caseStudyLabel": "Case Study (optional)",
+      "caseStudyPlaceholder": "{ \"problemEn\": \"...\", \"problemFr\": \"...\", \"personas\": [...], \"kpis\": [...], \"challengeEn\": \"...\", \"challengeFr\": \"...\", \"insightEn\": \"...\", \"insightFr\": \"...\" }",
+      "caseStudyInvalidJson": "Invalid JSON in case study field."
     }
+  },
+  "caseStudy": {
+    "problemTitle": "The Challenge",
+    "personasTitle": "Two Users, One Product",
+    "kpisTitle": "By the Numbers",
+    "challengeTitle": "The Data Challenge",
+    "insightTitle": "Key Insight"
   }
 }

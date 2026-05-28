@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { X, LoaderCircle } from 'lucide-react';
+import { X, LoaderCircle, ChevronDown } from 'lucide-react';
 import type { Project } from '@prisma/client';
 import toast from 'react-hot-toast';
 
@@ -16,6 +16,7 @@ type ProjectFormData = {
   imageUrl: string;
   projectUrl: string;
   githubUrl: string;
+  caseStudy: string;
 };
 
 type ProjectModalDictionary = {
@@ -38,6 +39,9 @@ type ProjectModalDictionary = {
   uploadTooLarge: string;
   uploadFallbackError: string;
   uploadSuccess: string;
+  caseStudyLabel: string;
+  caseStudyPlaceholder: string;
+  caseStudyInvalidJson: string;
 };
 
 const ProjectModal = ({
@@ -64,7 +68,8 @@ const ProjectModal = ({
     dictionary: ProjectModalDictionary;
   }) => {
     const [isSaving, setIsSaving] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
+    const [showCaseStudy, setShowCaseStudy] = useState(!!formData.caseStudy);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -98,15 +103,27 @@ const ProjectModal = ({
       setIsUploading(false);
     }
   };
-  
+
     const handleSubmit = async (e: FormEvent) => {
       e.preventDefault();
+
+      let parsedCaseStudy = null;
+      if (formData.caseStudy.trim()) {
+        try {
+          parsedCaseStudy = JSON.parse(formData.caseStudy);
+        } catch {
+          toast.error(dictionary.caseStudyInvalidJson);
+          return;
+        }
+      }
+
       setIsSaving(true);
       const projectData = {
           ...formData,
           technologies: formData.technologies.split(',').map((tech: string) => tech.trim()),
+          caseStudy: parsedCaseStudy,
       };
-      await onSave(projectData, project?.id);
+      await onSave(projectData as Omit<Project, 'id' | 'createdAt' | 'updatedAt'>, project?.id);
       setIsSaving(false);
     };
 
@@ -159,13 +176,13 @@ const ProjectModal = ({
                     {/* Title EN & FR */}
                     <input type="text" placeholder={`${dictionary.titlePlaceholder} (EN)`} value={formData.titleEn} onChange={e => setFormData({...formData, titleEn: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
                     <input type="text" placeholder={`${dictionary.titlePlaceholder} (FR)`} value={formData.titleFr} onChange={e => setFormData({...formData, titleFr: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
-                    
+
                     {/* Slug */}
                     <input type="text" placeholder={dictionary.slugPlaceholder} value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
-                    
+
                     {/* Image URL */}
                     <input type="text" placeholder={dictionary.imageUrlPlaceholder} value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
-                    
+
                     {/* Image Upload */}
                     <div className="w-full relative">
                         <label htmlFor="imageUpload" className="block text-xs font-medium text-muted mb-1">{dictionary.uploadLabel}</label>
@@ -182,14 +199,38 @@ const ProjectModal = ({
                     {/* Description EN & FR */}
                     <textarea placeholder={`${dictionary.descriptionPlaceholder} (EN)`} value={formData.descriptionEn} onChange={e => setFormData({...formData, descriptionEn: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" rows={3} required></textarea>
                     <textarea placeholder={`${dictionary.descriptionPlaceholder} (FR)`} value={formData.descriptionFr} onChange={e => setFormData({...formData, descriptionFr: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" rows={3} required></textarea>
-                    
+
                     {/* Technologies */}
                     <input type="text" placeholder={dictionary.technologiesPlaceholder} value={formData.technologies} onChange={e => setFormData({...formData, technologies: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
-                    
+
                     {/* Links */}
                     <input type="text" placeholder={dictionary.projectUrlPlaceholder} value={formData.projectUrl} onChange={e => setFormData({...formData, projectUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
                     <input type="text" placeholder={dictionary.githubUrlPlaceholder} value={formData.githubUrl} onChange={e => setFormData({...formData, githubUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
-                    
+
+                    {/* Case Study (optional) */}
+                    <div className="md:col-span-2 mt-2">
+                        <button
+                            type="button"
+                            onClick={() => setShowCaseStudy(!showCaseStudy)}
+                            className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-accent/5 border border-border text-sm font-medium text-muted hover:text-foreground hover:border-primary/30 transition-all"
+                        >
+                            <span>{dictionary.caseStudyLabel}</span>
+                            <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showCaseStudy ? 'rotate-180' : ''}`} />
+                        </button>
+                        {showCaseStudy && (
+                            <div className="mt-2">
+                                <textarea
+                                    placeholder={dictionary.caseStudyPlaceholder}
+                                    value={formData.caseStudy}
+                                    onChange={e => setFormData({...formData, caseStudy: e.target.value})}
+                                    className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                                    rows={12}
+                                    spellCheck={false}
+                                />
+                            </div>
+                        )}
+                    </div>
+
                     <div className="md:col-span-2 flex justify-end gap-4 mt-4">
                         <button type="button" onClick={onClose} className="px-5 py-2 rounded-lg text-foreground font-semibold hover:bg-accent/5 transition-all">{dictionary.cancel}</button>
                         <button type="submit" disabled={isSaving} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all disabled:opacity-60 shadow-md">

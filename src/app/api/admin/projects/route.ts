@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
       imageUrl,
       projectUrl,
       githubUrl,
+      caseStudy,
     } = body;
 
     // Basic validation
@@ -48,6 +49,7 @@ export async function POST(req: NextRequest) {
         imageUrl,
         projectUrl,
         githubUrl,
+        caseStudy: caseStudy ?? null,
       },
     });
 

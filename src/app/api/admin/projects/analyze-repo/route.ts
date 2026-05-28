@@ -4,12 +4,17 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 const geminiModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
+function githubHeaders(accept: string): HeadersInit {
+    const headers: HeadersInit = { 'Accept': accept };
+    if (process.env.GITHUB_TOKEN) {
+        headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+    }
+    return headers;
+}
+
 async function fetchRepoFile(owner: string, repo: string, path: string): Promise<string | null> {
     const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
-        headers: {
-            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-            'Accept': 'application/vnd.github.v3.raw',
-        },
+        headers: githubHeaders('application/vnd.github.v3.raw'),
     });
     if (!res.ok) return null;
     return res.text();
@@ -19,10 +24,6 @@ export async function POST(req: NextRequest) {
   try {
     if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json({ error: 'GEMINI_API_KEY is not configured' }, { status: 500 });
-    }
-
-    if (!process.env.GITHUB_TOKEN) {
-      return NextResponse.json({ error: 'GITHUB_TOKEN is not configured' }, { status: 500 });
     }
 
     const { repoUrl } = await req.json();
@@ -41,12 +42,9 @@ export async function POST(req: NextRequest) {
     try {
         [repoData, readmeContent, packageJsonContent] = await Promise.all([
             fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-                headers: {
-                    'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                },
+                headers: githubHeaders('application/vnd.github.v3+json'),
             }).then(res => {
-                if (!res.ok) throw new Error(`GitHub API error for repo data: ${res.statusText}`);
+                if (!res.ok) throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
                 return res.json();
             }),
             fetchRepoFile(owner, repo, 'README.md'),
@@ -56,7 +54,7 @@ export async function POST(req: NextRequest) {
         console.error('GitHub API fetch error:', error.message);
         return NextResponse.json({ error: `Failed to fetch from GitHub: ${error.message}` }, { status: 500 });
     }
-    
+
     let technologies: string[] = [];
     if (packageJsonContent) {
         try {
@@ -68,7 +66,7 @@ export async function POST(req: NextRequest) {
     } else if (repoData.language) {
         technologies = [repoData.language];
     }
-    
+
     const prompt = `
         Analyze the following GitHub repository information and generate a project summary for a portfolio in both English and French.
         Your response must be a valid JSON object with the following fields: "titleEn", "titleFr", "slug", "descriptionEn", "descriptionFr", "technologies".
@@ -105,7 +103,7 @@ export async function POST(req: NextRequest) {
         console.error('Gemini API error:', error.message);
         return NextResponse.json({ error: `Failed to generate summary from AI using model "${geminiModel}": ${error.message}` }, { status: 500 });
     }
-    
+
     let parsedSummary;
     try {
         const jsonString = text.replace(/```json/g, '').replace(/```/g, '').trim();
@@ -119,7 +117,7 @@ export async function POST(req: NextRequest) {
         ...parsedSummary,
         githubUrl: repoUrl,
         projectUrl: repoData.homepage || '',
-        imageUrl: '', // Leave empty for user to fill
+        imageUrl: '',
     }, { status: 200 });
 
   } catch (error: any) {

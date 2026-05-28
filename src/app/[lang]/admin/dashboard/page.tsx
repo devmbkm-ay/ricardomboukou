@@ -21,6 +21,7 @@ type ProjectFormData = {
   imageUrl: string;
   projectUrl: string;
   githubUrl: string;
+  caseStudy: string;
 };
 
 export default function DashboardPage() {
@@ -47,6 +48,7 @@ export default function DashboardPage() {
     imageUrl: '',
     projectUrl: '',
     githubUrl: '',
+    caseStudy: '',
   });
 
   useEffect(() => {
@@ -95,6 +97,7 @@ export default function DashboardPage() {
         imageUrl: data.imageUrl,
         projectUrl: data.projectUrl,
         githubUrl: data.githubUrl,
+        caseStudy: '',
       });
       toast.success(dashboardDictionary.analyzeSuccess);
     } catch (err: any) {
@@ -121,6 +124,7 @@ export default function DashboardPage() {
       imageUrl: '',
       projectUrl: '',
       githubUrl: '',
+      caseStudy: '',
     });
     setIsModalOpen(true);
   }
@@ -137,6 +141,7 @@ export default function DashboardPage() {
       imageUrl: project.imageUrl || '',
       projectUrl: project.projectUrl || '',
       githubUrl: project.githubUrl || '',
+      caseStudy: (project as any).caseStudy ? JSON.stringify((project as any).caseStudy, null, 2) : '',
     });
     setIsModalOpen(true);
   }
