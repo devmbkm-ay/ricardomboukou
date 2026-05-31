@@ -116,7 +116,7 @@
   "aboutPage": {
     "badge": "À propos",
     "heroRole": "Développeur web · Communication digitale",
-    "heroIntro": "Développeur web fullstack avec une appétence réelle pour le marketing digital — Je conçois des expériences digitales performantes qui allient expertise technique, expérience utilisateur et objectifs de croissance.",
+    "heroIntro": "Développeur web fullstack avec une appétence réelle pour le marketing digital — Je conçois des solutions digitales performantes qui allient expertise technique, expérience utilisateur et objectifs de croissance.",
     "ctaProjects": "Explorer mes réalisations",
     "ctaContact": "Entrer en contact",
     "photoPlaceholder": "Photo de profil",
@@ -135,11 +135,11 @@
       }
     ],
     "whoAmITitle": "Qui suis-je",
-    "whoAmIPara1": "Développeur web fullstack avec une appétence réelle pour le marketing digital, j’occupe un espace rare : je comprends aussi bien les enjeux d’une architecture technique que ceux d’une campagne de contenu.",
-    "whoAmIPara2": "Mon parcours est atypique. Onze ans de management opérationnel m’ont appris à lire une situation, à travailler sous pression et à m’adapter rapidement — avant que je ne me forme au développement web et à la communication digitale. Cette double expérience n’est pas une contradiction : c’est une valeur ajoutée.",
-    "whoAmIPara3": "Aujourd’hui, j’utilise l’IA quotidiennement — pas comme tendance, mais comme outil concret intégré dans mon workflow : génération de fiches d’apprentissage avec Gemini, assistance au développement, création et optimisation de contenus. Je construis des outils pour mes propres besoins, et cela m’apprend plus vite que n’importe quel cours.",
+    "whoAmIPara1": "Développeur web fullstack avec une forte sensibilité au marketing digital, j'ai un profil hybride qui me permet de comprendre aussi bien les enjeux techniques d'un projet que ses objectifs de visibilité, d'acquisition et de conversion.",
+    "whoAmIPara2": "Mon parcours est atypique. Après onze années dans le management opérationnel, où j'ai développé rigueur, sens des responsabilités et capacité d'adaptation, je me suis orienté vers le développement web puis vers la communication et le marketing digital. Cette diversité d'expériences constitue aujourd'hui l'une de mes principales forces.",
+    "whoAmIPara3": "J'intègre également l'intelligence artificielle dans mon quotidien pour apprendre plus vite, automatiser certaines tâches et gagner en efficacité. Du développement à la création de contenu et la veille ou organisation, j'explore en permanence de nouvelles façons d'utiliser ces outils pour produire davantage de valeur. Je me sers de l'IA comme d'un outil intégré dans mon workflow : génération de fiches d’apprentissage avec Gemini, assistance au développement, création et optimisation de contenus. Je construis des outils pour mes propres besoins, et cela m’apprend plus vite que n’importe quel cours.",
     "whatIBringTitle": "Ce que j’apporte",
-    "whatIBringBody": "En alternance webmarketing, je suis le profil qui n’a pas besoin qu’on lui explique comment fonctionne une intégration, comment lire une console d’erreur ou comment optimiser une balise title. Je contribue dès le premier jour — et je fais le lien entre les équipes techniques et marketing quand c’est nécessaire.",
+    "whatIBringBody": "Mon parcours me permet d'évoluer à l'intersection de la technique et du marketing. Je comprends les contraintes d'un site web aussi bien que les objectifs de visibilité, de contenu ou de performance. Cette vision transversale facilite les échanges entre équipes techniques et marketing, accélère la mise en œuvre des projets et me permet d'être rapidement opérationnel dans un environnement digital en constante évolution.",
     "philosophies": [
       {
         "quote": "Le bon modèle pour la bonne tâche. Claude pour le raisonnement nuancé, Gemini pour la recherche rapide, ChatGPT pour l’exploration de code.",
