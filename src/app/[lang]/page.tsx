@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import HomeLoader from './home-loader';
 import type { Locale } from '@/i18n.config';
 
@@ -32,7 +33,8 @@ function PersonJsonLd({ lang }: { lang: Locale }) {
   };
 
   return (
-    <script
+    <Script
+      id="person-jsonld"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />

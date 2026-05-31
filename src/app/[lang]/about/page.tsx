@@ -44,17 +44,13 @@ const itemVariants = {
 } as const;
 
 export default function AboutPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const isHeroInView = useInView(heroRef, { once: true });
   const params = useParams<{ lang: Locale }>();
   const lang = params?.lang ?? 'en';
   const dictionary = (lang === 'fr' ? fr : en).aboutPage;
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  const { scrollYProgress } = useScroll();
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
@@ -73,7 +69,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-background overflow-hidden text-foreground">
+    <div className="relative min-h-screen bg-background overflow-hidden text-foreground">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
         <motion.div
@@ -155,6 +151,8 @@ export default function AboutPage() {
                     src="/images/profile.png"
                     alt="Profile Photo"
                     fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 448px"
                     className="object-cover object-center z-0"
                   />
                   <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
