@@ -9,21 +9,40 @@
     "logout": "Déconnexion"
   },
   "home": {
-    "availability": "Disponible pour des missions stratégiques",
-    "titleName": "Ricardo",
-    "titleRole": "Architecte Logiciel & Expert IA",
-    "introPrefix": "Je conçois des écosystèmes numériques",
-    "introSuffix": "propulsés par des architectures de pointe.",
-    "subtitle": "Spécialisé dans l'ingénierie de systèmes résilients, l'orchestration d'IA et l'augmentation humaine par la technologie.",
+    "availability": "Disponible pour alternance · Webmarketing",
+    "titleName": "Ricardo M'Boukou",
+    "titleRole": "Développeur web · Communication digitale",
+    "introPrefix": "Je conçois des expériences",
+    "introSuffix": "— du code propre au contenu qui convertit, avec l'IA comme outil.",
+    "subtitle": "",
     "ctaPrimary": "Explorer mes réalisations",
     "ctaSecondary": "Entrer en contact",
-    "techStack": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind", "Docker", "IA"],
-    "stats": [
-      { "num": "50+", "label": "Projets" },
-      { "num": "5+", "label": "Ans d'exp." },
-      { "num": "30+", "label": "Clients" }
+    "techStack": [
+      "Next.js · React",
+      "SEO technique",
+      "IA appliquée",
+      "Création de contenus"
     ],
-    "typewriterWords": ["scalables", "innovants", "performants", "robustes", "intelligents"]
+    "stats": [
+      {
+        "num": "6",
+        "label": "Projets"
+      },
+      {
+        "num": "11",
+        "label": "Ans de management"
+      },
+      {
+        "num": "2023",
+        "label": "IA au quotidien"
+      }
+    ],
+    "typewriterWords": [
+      "orientées résultats",
+      "axées SEO",
+      "propulsées par l'IA",
+      "qui convertissent"
+    ]
   },
   "auth": {
     "login": {
@@ -96,41 +115,104 @@
   },
   "aboutPage": {
     "badge": "À propos",
-    "heroRole": "Ingénieur Senior & Architecte IA",
-    "heroIntro": "Expert en orchestration d’IA et passionné par l’augmentation humaine. Je conçois des systèmes résilients et performants à l’intersection de l’ingénierie logicielle et de la finance décentralisée (Bitcoin).",
+    "heroRole": "Développeur web · Communication digitale",
+    "heroIntro": "Développeur web fullstack avec une appétence réelle pour le marketing digital — je comprends aussi bien les enjeux d’une architecture technique que ceux d’une campagne de contenu.",
     "ctaProjects": "Explorer mes réalisations",
     "ctaContact": "Entrer en contact",
     "photoPlaceholder": "Photo de profil",
     "heroStats": [
-      { "num": "5+", "label": "Années" },
-      { "num": "50+", "label": "Projets" },
-      { "num": "∞", "label": "Passion" }
+      {
+        "num": "6",
+        "label": "Projets"
+      },
+      {
+        "num": "11",
+        "label": "Ans mgmt"
+      },
+      {
+        "num": "2023",
+        "label": "IA quotidien"
+      }
     ],
+    "whoAmITitle": "Qui suis-je",
+    "whoAmIPara1": "Développeur web fullstack avec une appétence réelle pour le marketing digital, j’occupe un espace rare : je comprends aussi bien les enjeux d’une architecture technique que ceux d’une campagne de contenu.",
+    "whoAmIPara2": "Mon parcours est atypique. Onze ans de management opérationnel m’ont appris à lire une situation, à travailler sous pression et à m’adapter rapidement — avant que je ne me forme au développement web et à la communication digitale. Cette double expérience n’est pas une contradiction : c’est une valeur ajoutée.",
+    "whoAmIPara3": "Aujourd’hui, j’utilise l’IA quotidiennement — pas comme tendance, mais comme outil concret intégré dans mon workflow : génération de fiches d’apprentissage avec Gemini, assistance au développement, création et optimisation de contenus. Je construis des outils pour mes propres besoins, et cela m’apprend plus vite que n’importe quel cours.",
+    "whatIBringTitle": "Ce que j’apporte",
+    "whatIBringBody": "En alternance webmarketing, je suis le profil qui n’a pas besoin qu’on lui explique comment fonctionne une intégration, comment lire une console d’erreur ou comment optimiser une balise title. Je contribue dès le premier jour — et je fais le lien entre les équipes techniques et marketing quand c’est nécessaire.",
     "philosophies": [
-      { "quote": "La technologie doit servir l'humain, non l'asservir.", "context": "Approche éthique de l'IA" },
-      { "quote": "La résilience vient de la simplicité, pas de la complexité.", "context": "Architecture système" },
-      { "quote": "Corps fort, esprit vif, code propre.", "context": "Philosophie de vie" }
+      {
+        "quote": "Le bon modèle pour la bonne tâche. Claude pour le raisonnement nuancé, Gemini pour la recherche rapide, ChatGPT pour l’exploration de code.",
+        "context": "01 — Approche IA"
+      },
+      {
+        "quote": "L’IA accélère, l’humain valide. Je ne publie pas un contenu généré sans relecture critique. L’IA est un copilote, pas un pilote automatique.",
+        "context": "02 — Méthode de travail"
+      },
+      {
+        "quote": "Construire pour comprendre. QuizFlip et OpenClaw ne sont pas des projets vitrine — ce sont des outils que j’utilise réellement.",
+        "context": "03 — Philosophie"
+      }
     ],
-    "skillsTitle": "Expertise technique",
-    "skillsSubtitle": "Des années d'expérience dans la conception de systèmes distribués et résilients",
+    "skillsTitle": "Stack & outils",
+    "skillsSubtitle": "Les technologies que j’utilise au quotidien dans mes projets",
     "skills": [
-      "Orchestration IA",
-      "Docker & conteneurs",
-      "PostgreSQL",
-      "Ubuntu/Linux",
-      "Développement full-stack",
-      "Architecture système"
+      "Next.js · React",
+      "TypeScript",
+      "SEO technique",
+      "Tailwind CSS",
+      "Node.js · PostgreSQL",
+      "Docker",
+      "Gemini API",
+      "Claude API",
+      "FastAPI · Python"
+    ],
+    "aiWorkflowTitle": "Mon workflow IA",
+    "aiWorkflowIntro": "L’IA fait partie de mon workflow depuis 2023 — pas comme outil de remplacement, mais comme accélérateur. Je choisis le bon modèle selon la tâche, et je sais quand ne pas l’utiliser.",
+    "aiUsages": [
+      {
+        "title": "Développement",
+        "body": "Génération de composants, debug, revue de code et documentation. L’IA réduit le temps de recherche sur des syntaxes connues et accélère l’exploration de patterns nouveaux.",
+        "tools": "Claude · Gemini · ChatGPT · GitHub Copilot"
+      },
+      {
+        "title": "Apprentissage",
+        "body": "Génération de fiches thématiques via QuizFlip + Gemini. Résumés de documentation technique. Veille sur les outils émergents — OpenClaw en étant un exemple récent.",
+        "tools": "Gemini API · Claude · NotebookLM"
+      },
+      {
+        "title": "Création de contenu",
+        "body": "Rédaction de copies web, reformulation SEO, génération de variantes A/B pour des titres ou des CTAs. L’humain valide la pertinence, l’IA accélère la production.",
+        "tools": "Claude · ChatGPT · Canva IA"
+      },
+      {
+        "title": "Automatisation",
+        "body": "Assistant personnel via OpenClaw + Telegram, avec fallback multi-modèles. Tâches répétitives, rappels, pipelines de traitement — exécutés depuis le téléphone.",
+        "tools": "OpenClaw · Telegram · OpenAI · Gemini · Anthropic"
+      }
     ],
     "interestsTitle": "Au-delà du code",
-    "interestsSubtitle": "Une approche holistique où la discipline physique et la créativité nourrissent l'innovation",
+    "interestsSubtitle": "Une approche holistique où la discipline physique et la créativité nourrissent l’innovation",
     "interests": [
-      { "name": "Callisthénie", "description": "Discipline physique & force" },
-      { "name": "Guitare", "description": "Créativité acoustique" },
-      { "name": "Bitcoin & DeFi", "description": "Finance décentralisée" },
-      { "name": "Investissements", "description": "Cycles & stratégies" }
+      {
+        "name": "Callisthénie",
+        "description": "Discipline physique & force"
+      },
+      {
+        "name": "Guitare",
+        "description": "Créativité acoustique"
+      },
+      {
+        "name": "Bitcoin & DeFi",
+        "description": "Finance décentralisée"
+      },
+      {
+        "name": "Investissements",
+        "description": "Cycles & stratégies"
+      }
     ],
     "ctaTitle": "Travaillons ensemble",
-    "ctaBody": "Vous avez un projet ambitieux ? Discutons de la façon dont nous pouvons créer quelque chose d'exceptionnel.",
+    "ctaBody": "Développeur avec une sensibilité marketing — je conçois des expériences digitales qui servent des objectifs business concrets : visibilité SEO, génération de leads, engagement utilisateur.",
     "ctaButton": "Démarrer un projet"
   },
   "projectsPage": {

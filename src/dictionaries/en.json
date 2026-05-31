@@ -9,21 +9,21 @@
     "logout": "Logout"
   },
   "home": {
-    "availability": "Available for freelance work",
-    "titleName": "Ricardo",
-    "titleRole": "Full-Stack Developer",
+    "availability": "Available for internship · Web Marketing",
+    "titleName": "Ricardo M'Boukou",
+    "titleRole": "Web developer · Digital communication",
     "introPrefix": "I build",
-    "introSuffix": "web applications with modern technologies.",
-    "subtitle": "Passionate about clean code, great design, and open source.",
+    "introSuffix": "web experiences — clean code, content that converts, AI as everyday tool.",
+    "subtitle": "",
     "ctaPrimary": "View My Work",
     "ctaSecondary": "Get in Touch",
-    "techStack": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind"],
+    "techStack": ["Next.js · React", "Technical SEO", "Applied AI", "Content Creation"],
     "stats": [
-      { "num": "50+", "label": "Projects" },
-      { "num": "5+", "label": "Years Exp." },
-      { "num": "30+", "label": "Clients" }
+      { "num": "6", "label": "Projects" },
+      { "num": "11", "label": "Yrs management" },
+      { "num": "2023", "label": "Daily AI" }
     ],
-    "typewriterWords": ["scalable", "beautiful", "performant", "user-friendly", "robust"]
+    "typewriterWords": ["result-driven", "SEO-optimised", "AI-powered", "conversion-focused"]
   },
   "auth": {
     "login": {
@@ -96,30 +96,72 @@
   },
   "aboutPage": {
     "badge": "About",
-    "heroRole": "Engineer & Creator",
-    "heroIntro": "AI orchestrator passionate about human augmentation. I design resilient systems at the intersection of technology and decentralized finance.",
+    "heroRole": "Web Developer · Digital Communication",
+    "heroIntro": "Fullstack web developer with a genuine interest in digital marketing — I sit in a rare intersection: I understand both the technical architecture side and the content and campaign side.",
     "ctaProjects": "View my projects",
     "ctaContact": "Get in touch",
     "photoPlaceholder": "Your photo here",
     "heroStats": [
-      { "num": "5+", "label": "Years" },
-      { "num": "50+", "label": "Projects" },
-      { "num": "∞", "label": "Passion" }
+      { "num": "6", "label": "Projects" },
+      { "num": "11", "label": "Yrs mgmt" },
+      { "num": "2023", "label": "Daily AI" }
     ],
+    "whoAmITitle": "Who I am",
+    "whoAmIPara1": "I'm a fullstack web developer with a genuine interest in digital marketing — I sit in a rare intersection: I understand both the technical architecture side and the content and campaign side.",
+    "whoAmIPara2": "My background is unconventional. Eleven years in operational management taught me to read situations quickly, work under pressure and adapt on the fly — before I retrained in web development and digital communication. That dual experience isn't a contradiction: it's an asset.",
+    "whoAmIPara3": "I use AI daily — not as a trend, but as a practical tool integrated into my workflow: generating study cards with Gemini, development assistance, content creation and optimisation. I build tools for my own needs, and it teaches me faster than any course.",
+    "whatIBringTitle": "What I bring",
+    "whatIBringBody": "In a digital marketing role, I'm the profile who doesn't need an explanation of how an integration works, how to read a console error, or how to optimise a title tag. I contribute from day one — and I bridge the gap between technical and marketing teams when needed.",
     "philosophies": [
-      { "quote": "Technology should serve people, not enslave them.", "context": "Ethical approach to AI" },
-      { "quote": "Resilience comes from simplicity, not complexity.", "context": "System architecture" },
-      { "quote": "Strong body, sharp mind, clean code.", "context": "Life philosophy" }
+      {
+        "quote": "Right model, right task. Claude for nuanced reasoning, Gemini for fast research, ChatGPT for code exploration.",
+        "context": "01 — AI Approach"
+      },
+      {
+        "quote": "AI accelerates, humans validate. I don't publish generated content without critical review. AI is a co-pilot, not autopilot.",
+        "context": "02 — Work Method"
+      },
+      {
+        "quote": "Build to understand. QuizFlip and OpenClaw aren't showcase projects — they're tools I actually use.",
+        "context": "03 — Philosophy"
+      }
     ],
-    "skillsTitle": "Technical Expertise",
-    "skillsSubtitle": "Years of experience designing distributed and resilient systems",
+    "skillsTitle": "Stack & Tools",
+    "skillsSubtitle": "Technologies I use daily across my projects",
     "skills": [
-      "AI Orchestration",
-      "Docker & Containers",
-      "PostgreSQL",
-      "Ubuntu/Linux",
-      "Full-Stack Dev",
-      "System Design"
+      "Next.js · React",
+      "TypeScript",
+      "Technical SEO",
+      "Tailwind CSS",
+      "Node.js · PostgreSQL",
+      "Docker",
+      "Gemini API",
+      "Claude API",
+      "FastAPI · Python"
+    ],
+    "aiWorkflowTitle": "My AI workflow",
+    "aiWorkflowIntro": "AI has been part of my workflow since 2023 — not as a replacement tool, but as an accelerator. I choose the right model for the task, and I know when not to use it.",
+    "aiUsages": [
+      {
+        "title": "Development",
+        "body": "Component generation, debugging, code review and documentation. AI reduces lookup time on known syntax and speeds up exploration of unfamiliar patterns.",
+        "tools": "Claude · Gemini · ChatGPT"
+      },
+      {
+        "title": "Learning",
+        "body": "Topic-based flashcard generation via QuizFlip + Gemini. Technical documentation summaries. Keeping up with emerging tools — OpenClaw being a recent example.",
+        "tools": "Gemini API · Claude · NotebookLM"
+      },
+      {
+        "title": "Content Creation",
+        "body": "Web copywriting, SEO reformulation, A/B variant generation for headlines and CTAs. The human validates relevance, AI accelerates production.",
+        "tools": "Claude · ChatGPT · Canva AI"
+      },
+      {
+        "title": "Automation",
+        "body": "Personal assistant via OpenClaw + Telegram, with multi-model fallback. Repetitive tasks, reminders, processing pipelines — all triggered from my phone.",
+        "tools": "OpenClaw · Telegram · OpenAI · Gemini · Anthropic"
+      }
     ],
     "interestsTitle": "Beyond Code",
     "interestsSubtitle": "A holistic approach where physical discipline and creativity fuel innovation",
@@ -130,7 +172,7 @@
       { "name": "Investments", "description": "Cycles & strategies" }
     ],
     "ctaTitle": "Let's work together",
-    "ctaBody": "Do you have an ambitious project? Let's discuss how we can create something exceptional.",
+    "ctaBody": "Web developer with a marketing mindset — I build digital experiences that serve concrete business goals: SEO visibility, lead generation, user engagement.",
     "ctaButton": "Start a project"
   },
   "projectsPage": {

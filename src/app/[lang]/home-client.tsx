@@ -181,9 +181,11 @@ export default function HomeClient() {
               </span>
               {' '}{dictionary.introSuffix}
             </p>
-            <p className="text-sm text-muted">
-              {dictionary.subtitle}
-            </p>
+            {dictionary.subtitle && (
+              <p className="text-sm text-muted">
+                {dictionary.subtitle}
+              </p>
+            )}
           </div>
 
           {/* CTA Buttons */}

@@ -6,17 +6,14 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import {
-  Brain,
-  Database,
-  Container,
   Bitcoin,
   Dumbbell,
   Music,
   TrendingUp,
   Code2,
-  Terminal,
-  Cpu,
-  Globe,
+  BookOpen,
+  PenLine,
+  Zap,
   ArrowUpRight,
   Sparkles,
   Quote
@@ -26,23 +23,8 @@ import en from '@/dictionaries/en.json';
 import fr from '@/dictionaries/fr.json';
 import Image from 'next/image';
 
-
-// Skill data structure
-const skillCards = [
-  { icon: Brain, level: 95, color: 'from-purple-500 to-pink-500' },
-  { icon: Container, level: 90, color: 'from-blue-500 to-cyan-500' },
-  { icon: Database, level: 88, color: 'from-emerald-500 to-teal-500' },
-  { icon: Terminal, level: 92, color: 'from-orange-500 to-red-500' },
-  { icon: Code2, level: 94, color: 'from-violet-500 to-purple-500' },
-  { icon: Cpu, level: 85, color: 'from-rose-500 to-pink-500' },
-];
-
-const interestIcons = [
-  Dumbbell,
-  Music,
-  Bitcoin,
-  TrendingUp,
-];
+const interestIcons = [Dumbbell, Music, Bitcoin, TrendingUp];
+const aiWorkflowIcons = [Code2, BookOpen, PenLine, Zap];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -77,7 +59,6 @@ export default function AboutPage() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
 
-  // Mouse parallax effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -100,8 +81,6 @@ export default function AboutPage() {
           className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]"
         />
         <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px]" />
-
-        {/* Grid Pattern Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent:70%)] opacity-10" />
       </div>
 
@@ -140,10 +119,7 @@ export default function AboutPage() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href={`/${lang}/projects`}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all"
@@ -152,10 +128,7 @@ export default function AboutPage() {
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href={`/${lang}/contact`}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-accent/5 backdrop-blur-sm text-foreground font-semibold hover:bg-accent/10 transition-all"
@@ -172,16 +145,10 @@ export default function AboutPage() {
               animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative"
-              style={{
-                x: mousePosition.x,
-                y: mousePosition.y
-              }}
+              style={{ x: mousePosition.x, y: mousePosition.y }}
             >
               <div className="relative aspect-square max-w-md mx-auto">
-                {/* Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-3xl blur-2xl" />
-
-                {/* Image Container */}
                 <div className="relative h-full rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-sm">
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10" />
                   <Image
@@ -190,7 +157,6 @@ export default function AboutPage() {
                     fill
                     className="object-cover object-center z-0"
                   />
-                  {/* Placeholder for your image */}
                   <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
                     <div className="text-center">
                       <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -200,7 +166,6 @@ export default function AboutPage() {
                     </div>
                   </div>
 
-                  {/* Floating Stats */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -226,7 +191,142 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* Philosophy Quotes */}
+      {/* Who Am I + What I Bring */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Bloc A — Who Am I */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-5"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                {dictionary.whoAmITitle}
+              </h2>
+              <p className="text-muted leading-relaxed">{dictionary.whoAmIPara1}</p>
+              <p className="text-muted leading-relaxed">{dictionary.whoAmIPara2}</p>
+              <p className="text-muted leading-relaxed">{dictionary.whoAmIPara3}</p>
+            </motion.div>
+
+            {/* Bloc B — What I Bring */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="relative p-8 rounded-2xl bg-accent/5 border border-border backdrop-blur-sm"
+            >
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-accent rounded-l-2xl" />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+                {dictionary.whatIBringTitle}
+              </h2>
+              <p className="text-muted leading-relaxed text-lg">
+                {dictionary.whatIBringBody}
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Workflow */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {dictionary.aiWorkflowTitle}
+            </h2>
+            <p className="text-muted max-w-2xl mx-auto">
+              {dictionary.aiWorkflowIntro}
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid md:grid-cols-2 gap-6"
+          >
+            {dictionary.aiUsages.map((usage, index) => {
+              const AIIcon = aiWorkflowIcons[index];
+              return (
+                <motion.div
+                  key={usage.title}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  className="group p-6 rounded-2xl bg-accent/5 border border-border hover:border-primary/20 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-xl bg-primary/10">
+                      <AIIcon className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">{usage.title}</h3>
+                  </div>
+                  <p className="text-muted text-sm leading-relaxed mb-4">{usage.body}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {usage.tools.split(' · ').map((tool) => (
+                      <span
+                        key={tool}
+                        className="px-2 py-1 text-xs rounded-full bg-primary/5 border border-primary/20 text-primary font-medium"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills — Tags */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {dictionary.skillsTitle}
+            </h2>
+            <p className="text-muted max-w-2xl mx-auto">
+              {dictionary.skillsSubtitle}
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-3 justify-center"
+          >
+            {dictionary.skills.map((skill) => (
+              <motion.span
+                key={skill}
+                variants={itemVariants}
+                whileHover={{ y: -3, scale: 1.05 }}
+                className="px-5 py-2.5 rounded-full bg-accent/5 border border-border text-foreground text-sm font-medium hover:bg-accent/10 hover:border-primary/50 hover:text-primary transition-all cursor-default"
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* AI Principles */}
       <section className="relative z-10 py-20 px-6">
         <div className="container mx-auto max-w-4xl">
           <motion.div
@@ -244,75 +344,13 @@ export default function AboutPage() {
                 className="group relative p-6 rounded-2xl bg-accent/5 border border-border backdrop-blur-sm hover:border-primary/30 transition-all duration-300"
               >
                 <Quote className="w-8 h-8 text-primary/50 mb-4" />
-                <p className="text-foreground font-medium mb-3 leading-relaxed">
+                <p className="text-foreground font-medium mb-4 leading-relaxed text-sm">
                   &ldquo;{item.quote}&rdquo;
                 </p>
-                <p className="text-xs text-muted uppercase tracking-wider">
+                <p className="text-xs text-primary uppercase tracking-wider font-semibold">
                   {item.context}
                 </p>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/5 group-hover:to-accent/5 rounded-2xl transition-all duration-500" />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="relative z-10 py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {dictionary.skillsTitle}
-            </h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              {dictionary.skillsSubtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {skillCards.map((skill, index) => (
-              <motion.div
-                key={dictionary.skills[index]}
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                className="group relative p-6 rounded-2xl bg-accent/5 border border-border hover:border-primary/20 transition-all duration-300"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-primary/10`}>
-                    <skill.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <span className="text-2xl font-bold text-foreground">
-                    {skill.level}%
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {dictionary.skills[index]}
-                </h3>
-
-                {/* Progress Bar */}
-                <div className="h-2 bg-accent/20 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-                    className={`h-full rounded-full bg-primary`}
-                  />
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
@@ -358,8 +396,6 @@ export default function AboutPage() {
                   <p className="text-sm text-muted">
                     {interest.description}
                   </p>
-
-                  {/* Hover Glow */}
                   <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </motion.div>
               );
@@ -377,7 +413,6 @@ export default function AboutPage() {
           className="container mx-auto max-w-4xl text-center"
         >
           <div className="relative p-12 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm overflow-hidden">
-            {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
 
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 relative z-10">
@@ -387,10 +422,7 @@ export default function AboutPage() {
               {dictionary.ctaBody}
             </p>
 
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href={`/${lang}/contact`}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-all relative z-10"
@@ -403,7 +435,6 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* Custom Styles for Gradient Animation */}
       <style jsx>{`
         @keyframes gradient-x {
           0%, 100% { background-position: 0% 50%; }
