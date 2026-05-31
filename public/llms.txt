@@ -1,0 +1,77 @@
+# Ricardo M'Boukou — Web Developer · Digital Communication
+
+> Fullstack web developer with a genuine interest in digital marketing.
+> Available for a digital marketing internship (alternance webmarketing).
+> Bilingual FR / EN. Based in France.
+
+## Positioning
+
+Ricardo M'Boukou is a fullstack web developer who sits at the intersection
+of technical development and digital marketing. He understands both the
+technical architecture side and the content and campaign side.
+
+His background is unconventional: eleven years in operational management
+before retraining in web development and digital communication. He uses AI
+daily as a practical tool — not as a trend.
+
+## Stack & Skills
+
+- Next.js · React · TypeScript · Tailwind CSS
+- Node.js · PostgreSQL · Docker
+- Technical SEO (Schema.org, dynamic meta, hreflang, sitemap)
+- AI tools: Claude API, Gemini API, OpenAI, NotebookLM
+- Content creation, SEO copywriting, A/B variant generation
+- FastAPI · Python
+
+## AI Workflow (daily)
+
+- Development: component generation, debugging, code review (Claude, Gemini, ChatGPT)
+- Learning: topic-based flashcard generation via QuizFlip + Gemini API
+- Content creation: SEO reformulation, A/B headline variants (Claude, ChatGPT, Canva AI)
+- Automation: personal assistant via OpenClaw + Telegram with multi-model fallback
+
+## Projects
+
+### Kiff Cleaning Solutions
+Next.js showcase site for an extreme cleaning company in Île-de-France.
+Local SEO with city-level GEO targeting, UX built for two distinct
+audiences (families in crisis + professional partners). Schema.org,
+dynamic meta tags, 18 dedicated city pages.
+Stack: Next.js · TypeScript · Tailwind · Vercel
+
+### WorldRemit Tax Tracker
+Fullstack application consolidating 3 years of international transfers
+that WorldRemit could not summarise. From a Python script to a complete
+FastAPI + MongoDB + Next.js app with deduplication and PDF export for
+tax authorities.
+Stack: Python · FastAPI · MongoDB · Next.js · TypeScript · Docker
+
+### QuizFlip
+Personal AI-powered flashcard learning tool built on the Gemini API.
+Fills a gap in NotebookLM: topic-based classification of generated cards.
+Two creation modes — manual or one-click AI generation — with admin dashboard.
+Stack: React · Node.js · PostgreSQL · Prisma · Gemini API
+
+### Noce Florale RSVP
+Fullstack RSVP application managing 300+ guests across 2 events.
+Behind the simple guest-facing UI sits a real event CRM: group
+segmentation, real-time analytics, dashboards for budget and catering.
+Stack: Next.js · GraphQL · MongoDB · TypeScript
+
+### OpenClaw Personal Assistant
+Personal AI assistant running through Telegram with multi-model
+orchestration: OpenAI as primary model, Gemini and Anthropic Claude as
+automatic fallbacks. Hands-on exploration of resilient AI pipelines.
+Architecture: Telegram · OpenAI GPT · Gemini · Anthropic Claude
+
+### Enidpath (Consultancy Site)
+Digital consultancy site designed and delivered end-to-end — from Next.js
+architecture to Vercel production deployment.
+Stack: Next.js · TypeScript · Tailwind · Vercel
+
+## Contact
+
+- Site: https://portfolio.ricardomboukou.online
+- Email: contact@portfolio.ricardomboukou.online
+- GitHub: https://github.com/ricardomboukou
+- LinkedIn: https://www.linkedin.com/in/ricardomboukou
