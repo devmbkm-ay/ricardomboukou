@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 import Navbar from '@/components/shared/navbar';
 import { i18n, type Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/get-dictionary';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from 'react-hot-toast';
 
 export function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -10,9 +12,7 @@ export function generateStaticParams() {
 
 type LangLayoutProps = {
   children: ReactNode;
-  params: Promise<{
-    lang: string;
-  }>;
+  params: Promise<{ lang: string }>;
 };
 
 export default async function LangLayout({ children, params }: LangLayoutProps) {
@@ -25,9 +25,19 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
   const dictionary = await getDictionary(lang as Locale);
 
   return (
-    <>
-      <Navbar lang={lang as Locale} dictionary={dictionary.navbar} />
-      {children}
-    </>
+    <html lang={lang} suppressHydrationWarning>
+      <body className="font-sans">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Toaster />
+          <Navbar lang={lang as Locale} dictionary={dictionary.navbar} />
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
