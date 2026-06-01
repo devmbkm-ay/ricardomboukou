@@ -3,7 +3,7 @@
   <defs>
     <style>
       @media (prefers-color-scheme: dark) {
-        .bg { fill: #0f172a; }
+        .bg { fill: #1a1f3a; }
         .mark { fill: #f8fafc; }
         .accent { fill: #0052ff; }
       }
@@ -14,27 +14,54 @@
       }
     </style>
     
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+    <!-- Combined glow and ring effect for the "3" -->
+    <filter id="accentGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <!-- Inner glow -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="innerGlow"/>
+      <feComponentTransfer in="innerGlow" result="brighterInner">
+        <feFuncA type="linear" slope="0.6"/>
+      </feComponentTransfer>
+      <!-- Outer glow -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="outerGlow"/>
+      <feComponentTransfer in="outerGlow" result="brighterOuter">
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <!-- Merge all layers -->
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="brighterOuter"/>
+        <feMergeNode in="brighterInner"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Inner shadow for background depth -->
+    <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+      <feOffset in="blur" dx="0" dy="2" result="offset"/>
+      <feFlood floodColor="#000000" floodOpacity="0.12" result="color"/>
+      <feComposite in="color" in2="offset" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
   
-  <!-- Background with subtle rounded corners effect -->
-  <rect width="512" height="512" rx="80" className="bg"/>
+  <!-- Background with rounded corners and inner shadow -->
+  <rect width="512" height="512" rx="80" className="bg" filter="url(#innerShadow)"/>
   
-  <!-- Border accent (subtle) -->
-  <rect width="512" height="512" rx="80" fill="none" stroke="#0052ff" stroke-width="16" opacity="0.15"/>
+  <!-- Outer border - more visible -->
+  <rect width="512" height="512" rx="80" fill="none" stroke="#0052ff" stroke-width="20" opacity="0.28"/>
+  
+  <!-- Inner accent line - subtle depth -->
+  <rect x="8" y="8" width="496" height="496" rx="72" fill="none" stroke="#0052ff" stroke-width="2" opacity="0.12"/>
   
   <!-- M -->
-  <text x="80" y="360" font-size="200" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="mark" letter-spacing="-24">M</text>
+  <text x="60" y="260" font-size="220" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="mark" letter-spacing="-24" text-anchor="middle">M</text>
   
-  <!-- 3 with glow -->
-  <text x="240" y="360" font-size="200" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="accent" letter-spacing="-24" filter="url(#glow)">3</text>
+  <!-- 3 with enhanced glow -->
+  <text x="256" y="260" font-size="220" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="accent" letter-spacing="-24" text-anchor="middle" filter="url(#accentGlow)">3</text>
   
   <!-- K -->
-  <text x="400" y="360" font-size="200" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="mark" letter-spacing="-24">K</text>
+  <text x="452" y="260" font-size="220" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="mark" letter-spacing="-24" text-anchor="middle">K</text>
 </svg>
