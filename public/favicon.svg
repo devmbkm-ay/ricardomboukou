@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0f172a; }
+        .mark { fill: #f8fafc; }
+        .accent { fill: #0052ff; }
+      }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #f8fafc; }
+        .mark { fill: #020617; }
+        .accent { fill: #0052ff; }
+      }
+    </style>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background with subtle rounded corners effect -->
+  <rect width="512" height="512" rx="80" className="bg"/>
+  
+  <!-- Border accent (subtle) -->
+  <rect width="512" height="512" rx="80" fill="none" stroke="#0052ff" stroke-width="16" opacity="0.15"/>
+  
+  <!-- M -->
+  <text x="80" y="360" font-size="200" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="mark" letter-spacing="-24">M</text>
+  
+  <!-- 3 with glow -->
+  <text x="240" y="360" font-size="200" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="accent" letter-spacing="-24" filter="url(#glow)">3</text>
+  
+  <!-- K -->
+  <text x="400" y="360" font-size="200" font-weight="700" font-family="system-ui, -apple-system, sans-serif" className="mark" letter-spacing="-24">K</text>
+</svg>

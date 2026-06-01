@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import Navbar from '@/components/shared/navbar';
+import Footer from '@/components/shared/footer';
 import { i18n, type Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/get-dictionary';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -33,6 +34,38 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: meta.description,
     authors: [{ name: "Ricardo M'Boukou", url: SITE_URL }],
     creator: "Ricardo M'Boukou",
+    icons: {
+      icon: [
+        {
+          url: '/favicon.svg',
+          type: 'image/svg+xml',
+        },
+        {
+          url: '/favicon-32x32.png',
+          sizes: '32x32',
+          type: 'image/png',
+        },
+        {
+          url: '/favicon-16x16.png',
+          sizes: '16x16',
+          type: 'image/png',
+        },
+      ],
+      apple: [
+        {
+          url: '/apple-touch-icon.png',
+          sizes: '180x180',
+          type: 'image/png',
+        },
+      ],
+      other: [
+        {
+          rel: 'mask-icon',
+          url: '/favicon.svg',
+          color: '#0052ff',
+        },
+      ],
+    },
     alternates: {
       canonical: `/${lang}`,
       languages: {
@@ -94,6 +127,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
           <Toaster />
           <Navbar lang={lang as Locale} dictionary={dictionary.navbar} />
           {children}
+          <Footer lang={lang as Locale} />
         </ThemeProvider>
       </body>
     </html>

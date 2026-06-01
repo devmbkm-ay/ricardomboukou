@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { Locale } from '@/i18n.config';
 
+import { Logo } from './logo';
 import MobileNav from './mobile-nav';
 import NavLinks from './nav-links';
 import ThemeToggle from './theme-toggle';
@@ -47,26 +47,15 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
                 <div className="flex items-center justify-between">
                     <Link
                         href={`/${lang}`}
-                        className="flex items-center"
+                        className="flex items-center group transition-opacity hover:opacity-80"
                         aria-label="Go to homepage"
                     >
-                        <Image
-                            src="/images/logo-4.png"
-                            alt="MBK full logo"
-                            width={360}
-                            height={120}
-                            priority
-                            className="hidden h-12 w-auto object-contain sm:block sm:h-14"
-                        />
-                        <Image
-                            src="/images/logo-2.png"
-                            alt="MBK logo mark"
-                            width={120}
-                            height={120}
-                            priority
-                            className="block h-10 w-auto object-contain sm:hidden"
-                        />
-                        <span className="sr-only">MBK</span>
+                        <div className="hidden sm:block">
+                            <Logo variant="full" animated={false} />
+                        </div>
+                        <div className="block sm:hidden">
+                            <Logo variant="mark" animated={false} />
+                        </div>
                     </Link>
 
                     {/* Mobile nav trigger will be part of MobileNav */}

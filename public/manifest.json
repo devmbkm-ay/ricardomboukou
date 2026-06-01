@@ -1,0 +1,75 @@
+{
+    "name": "Ricardo M'Boukou - Développeur Web & Communication Digitale",
+    "short_name": "M3K",
+    "description": "Portfolio de Ricardo M'Boukou - Développeur web fullstack avec sensibilité marketing",
+    "start_url": "/fr",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#020617",
+    "theme_color": "#0052ff",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/images/portfolio.png",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "categories": [
+        "productivity",
+        "business"
+    ],
+    "shortcuts": [
+        {
+            "name": "Projets",
+            "short_name": "Projets",
+            "description": "Consulter mon portfolio",
+            "url": "/fr/projects",
+            "icons": [
+                {
+                    "src": "/favicon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Contact",
+            "short_name": "Contact",
+            "description": "Me contacter",
+            "url": "/fr/contact",
+            "icons": [
+                {
+                    "src": "/favicon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}
