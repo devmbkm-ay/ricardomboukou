@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         {
           rel: 'mask-icon',
           url: '/favicon.svg',
-          color: '#0052ff',
+          color: '#2563eb',
         },
       ],
     },

@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ lang, dictionary = {} }) => {
                         aria-label="Go to homepage"
                     >
                         <div className="logo-animate">
-                            <Logo variant="mark" className="h-12 mx-auto" />
+                            <Logo variant="line" className="h-12 mx-auto" />
                         </div>
                     </Link>
 

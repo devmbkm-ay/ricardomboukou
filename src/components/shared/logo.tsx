@@ -1,188 +1,86 @@
-'use client';
-
 import React from 'react';
 
+type LogoVariant = 'full' | 'mark' | 'line';
+
 interface LogoProps {
-    variant?: 'full' | 'mark';
+    /**
+     * - `full` : badge RM + nom + sous-titre (header desktop)
+     * - `mark` : badge RM seul (header mobile, icônes)
+     * - `line` : monogramme RM’ en trait, apostrophe bleue (footer)
+     */
+    variant?: LogoVariant;
+    /** Sous-titre affiché sous le nom (variant `full`) */
+    tagline?: string;
     className?: string;
-    animated?: boolean;
-    theme?: 'light' | 'dark' | 'auto';
 }
 
-export const Logo: React.FC<LogoProps> = ({
-    variant = 'full',
-    className = '',
-    animated = false,
-    theme = 'auto',
-}) => {
-    if (variant === 'mark') {
-        return <LogoMark className={className} animated={animated} theme={theme} />;
-    }
+/*
+ * Les couleurs passent par les tokens du thème (text-foreground, text-primary…)
+ * définis dans globals.css : elles suivent donc la classe `.dark` posée par
+ * next-themes, et non le thème de l'OS.
+ * Les lettres sont des tracés (pas du <text>) : rendu identique partout,
+ * quelle que soit la police installée.
+ */
 
-    return <LogoFull className={className} animated={animated} theme={theme} />;
+const R_PATH = 'M0,60 V0 H18 a15,15 0 0 1 0,30 H0 M18,30 L36,60';
+const M_PATH = 'M0,60 V0 L22,34 L44,0 V60';
+const APOSTROPHE_PATH = 'M3,-2 L0,12';
+
+const strokeProps = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
 };
 
-const LogoMark: React.FC<Omit<LogoProps, 'variant'>> = ({
-    className = '',
-    animated = false,
-    theme = 'auto',
-}) => {
-    return (
-        <svg
-            viewBox="0 0 120 120"
-            className={`h-10 w-auto sm:h-14 ${className}`}
-            xmlns="http://www.w3.org/2000/svg"
-            aria-label="M3K"
-            role="img"
-        >
-            <style>{`
-        .logo-dark { fill: #020617; }
-        .logo-light { fill: #f8fafc; }
-        .logo-blue { fill: #0052ff; }
-        .logo-accent { fill: #0052ff; }
-        
-        ${animated
-                    ? `
-          @keyframes float-3 {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
-          }
-          .logo-animate-3 {
-            animation: float-3 3s ease-in-out infinite;
-            transform-origin: center;
-          }
-        `
-                    : ''
-                }
+const LogoMark = ({ className = '' }: { className?: string }) => (
+    <svg
+        viewBox="0 0 100 100"
+        className={`h-10 w-10 shrink-0 ${className}`}
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="RM"
+    >
+        <rect width="100" height="100" rx="22" className="fill-primary" />
+        <g transform="translate(18,29) scale(0.66)" {...strokeProps} strokeWidth={11} className="text-white">
+            <path d={R_PATH} />
+            <path d={M_PATH} transform="translate(54,0)" />
+        </g>
+    </svg>
+);
 
-        @media (prefers-color-scheme: dark) {
-          .logo-dark { fill: #f8fafc; }
-          .logo-light { fill: #020617; }
-        }
-      `}</style>
+const LogoLine = ({ className = '' }: { className?: string }) => (
+    <svg
+        viewBox="0 0 140 80"
+        className={`h-10 w-auto ${className}`}
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="RM’"
+    >
+        <g transform="translate(8,10)" {...strokeProps} strokeWidth={9}>
+            <path d={R_PATH} className="text-foreground" />
+            <path d={M_PATH} transform="translate(50,0)" className="text-foreground" />
+            <path d={APOSTROPHE_PATH} transform="translate(106,0)" strokeWidth={10} className="text-primary" />
+        </g>
+    </svg>
+);
 
-            {/* M */}
-            <text
-                x="12"
-                y="85"
-                fontSize="72"
-                fontWeight="700"
-                fontFamily="system-ui, -apple-system, sans-serif"
-                className="logo-dark"
-                letterSpacing="-6"
-            >
-                M
-            </text>
+const LogoFull = ({ tagline, className = '' }: { tagline?: string; className?: string }) => (
+    <span className={`flex items-center gap-3 ${className}`}>
+        <LogoMark className="h-11 w-11" />
+        <span className="flex flex-col leading-tight">
+            <span className="text-lg font-bold tracking-tight text-foreground">
+                Ricardo M<span className="text-primary">’</span>Boukou
+            </span>
+            {tagline && <span className="text-sm font-medium text-muted">{tagline}</span>}
+        </span>
+    </span>
+);
 
-            {/* 3 */}
-            <text
-                x="52"
-                y="85"
-                fontSize="72"
-                fontWeight="700"
-                fontFamily="system-ui, -apple-system, sans-serif"
-                className={`logo-blue ${animated ? 'logo-animate-3' : ''}`}
-                letterSpacing="-6"
-            >
-                3
-            </text>
-
-            {/* K */}
-            <text
-                x="92"
-                y="85"
-                fontSize="72"
-                fontWeight="700"
-                fontFamily="system-ui, -apple-system, sans-serif"
-                className="logo-dark"
-                letterSpacing="-6"
-            >
-                K
-            </text>
-        </svg>
-    );
-};
-
-const LogoFull: React.FC<Omit<LogoProps, 'variant'>> = ({
-    className = '',
-    animated = false,
-    theme = 'auto',
-}) => {
-    return (
-        <svg
-            viewBox="0 0 120 120"
-            className={`h-14 w-auto sm:h-16 ${className}`}
-            xmlns="http://www.w3.org/2000/svg"
-            aria-label="M3K"
-            role="img"
-        >
-            <style>{`
-        .logo-dark { fill: #020617; }
-        .logo-light { fill: #f8fafc; }
-        .logo-blue { fill: #0052ff; }
-        .logo-text { fill: #666; }
-
-        ${animated
-                    ? `
-          @keyframes float-3 {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-          }
-          .logo-animate-3 {
-            animation: float-3 3s ease-in-out infinite;
-            transform-origin: center;
-          }
-        `
-                    : ''
-                }
-
-        @media (prefers-color-scheme: dark) {
-          .logo-dark { fill: #f8fafc; }
-          .logo-light { fill: #020617; }
-          .logo-text { fill: #999; }
-        }
-      `}</style>
-
-            {/* M */}
-            <text
-                x="12"
-                y="85"
-                fontSize="72"
-                fontWeight="700"
-                fontFamily="system-ui, -apple-system, sans-serif"
-                className="logo-dark"
-                letterSpacing="-6"
-            >
-                M
-            </text>
-
-            {/* 3 */}
-            <text
-                x="52"
-                y="85"
-                fontSize="72"
-                fontWeight="700"
-                fontFamily="system-ui, -apple-system, sans-serif"
-                className={`logo-blue ${animated ? 'logo-animate-3' : ''}`}
-                letterSpacing="-6"
-            >
-                3
-            </text>
-
-            {/* K */}
-            <text
-                x="92"
-                y="85"
-                fontSize="72"
-                fontWeight="700"
-                fontFamily="system-ui, -apple-system, sans-serif"
-                className="logo-dark"
-                letterSpacing="-6"
-            >
-                K
-            </text>
-        </svg>
-    );
+export const Logo: React.FC<LogoProps> = ({ variant = 'full', tagline, className = '' }) => {
+    if (variant === 'mark') return <LogoMark className={className} />;
+    if (variant === 'line') return <LogoLine className={className} />;
+    return <LogoFull tagline={tagline} className={className} />;
 };
 
 export default Logo;
