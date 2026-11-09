@@ -18,9 +18,32 @@
     "subtitle": "",
     "ctaPrimary": "Explorer mes réalisations",
     "ctaSecondary": "Entrer en contact",
-    "techStack": ["Next.js · React", "Prisma · PostgreSQL", "Docker", "Git"],
-    "stats": [{ "num": "6", "label": "Projets" }, { "num": "11", "label": "Ans d'expérience terrain" }, { "num": "1", "label": "Outil métier en production" }],
-    "typewriterWords": ["métiers sur mesure", "qui fiabilisent la traçabilité", "qui automatisent les contrôles", "pensés pour le terrain"]
+    "techStack": [
+      "Next.js · React",
+      "Prisma · PostgreSQL",
+      "Docker",
+      "Git"
+    ],
+    "stats": [
+      {
+        "num": "6",
+        "label": "Projets"
+      },
+      {
+        "num": "11",
+        "label": "Ans d'expérience terrain"
+      },
+      {
+        "num": "1",
+        "label": "Outil métier en production"
+      }
+    ],
+    "typewriterWords": [
+      "métiers sur mesure",
+      "qui fiabilisent la traçabilité",
+      "qui automatisent les contrôles",
+      "pensés pour le terrain"
+    ]
   },
   "auth": {
     "login": {
@@ -93,8 +116,8 @@
   },
   "aboutPage": {
     "badge": "À propos",
-    "heroRole": "Développeur web · Communication digitale",
-    "heroIntro": "Développeur web fullstack avec une appétence réelle pour le marketing digital — Je conçois des solutions digitales performantes qui allient expertise technique, expérience utilisateur et objectifs de croissance.",
+    "heroRole": "Inspecteur qualité · Développeur web",
+    "heroIntro": "Inspecteur qualité en milieu industriel et développeur web fullstack, je conçois des outils métiers qui simplifient le quotidien des équipes terrain : suivi, traçabilité, contrôle documentaire.",
     "ctaProjects": "Explorer mes réalisations",
     "ctaContact": "Entrer en contact",
     "photoPlaceholder": "Photo de profil",
@@ -105,19 +128,19 @@
       },
       {
         "num": "11",
-        "label": "Ans mgmt"
+        "label": "Ans terrain"
       },
       {
-        "num": "2023",
-        "label": "IA quotidien"
+        "num": "1",
+        "label": "Outil métier en prod"
       }
     ],
     "whoAmITitle": "Qui suis-je",
-    "whoAmIPara1": "Développeur web fullstack avec une forte sensibilité au marketing digital, j'ai un profil hybride qui me permet de comprendre aussi bien les enjeux techniques d'un projet que ses objectifs de visibilité, d'acquisition et de conversion.",
-    "whoAmIPara2": "Mon parcours est atypique. Après onze années dans le management opérationnel, où j'ai développé rigueur, sens des responsabilités et capacité d'adaptation, je me suis orienté vers le développement web puis vers la communication et le marketing digital. Cette diversité d'expériences constitue aujourd'hui l'une de mes principales forces.",
-    "whoAmIPara3": "J'intègre également l'intelligence artificielle dans mon quotidien pour apprendre plus vite, automatiser certaines tâches et gagner en efficacité. Du développement à la création de contenu et la veille ou organisation, j'explore en permanence de nouvelles façons d'utiliser ces outils pour produire davantage de valeur. Je me sers de l'IA comme d'un outil intégré dans mon workflow : génération de fiches d’apprentissage avec Gemini, assistance au développement, création et optimisation de contenus. Je construis des outils pour mes propres besoins, et cela m’apprend plus vite que n’importe quel cours.",
+    "whoAmIPara1": "Au quotidien, je vérifie la traçabilité et la conformité des pièces et des documents qui les accompagnent. En parallèle, je développe des applications web, dont une plateforme de gestion associative aujourd'hui en production.",
+    "whoAmIPara2": "Mon parcours est atypique. Pendant onze ans, j'ai travaillé dans l'hôtellerie et la restauration, notamment comme responsable adjoint, en coordination étroite avec la cuisine et la salle. J'y ai appris la rigueur, le sens du service et la gestion des imprévus. Après ma reconversion dans le développement web, j'ai passé six mois en start-up sur la maintenance d'une application de location de véhicules pour particuliers (Node.js, MongoDB, Docker) : chaque matin, après le daily meeting, je prenais en charge des évolutions et des corrections de bugs sur l'application existante. J'ai ensuite rejoint l'industrie comme inspecteur qualité.",
+    "whoAmIPara3": "L'IA fait partie de ma façon de travailler : apprendre plus vite, déboguer, documenter, automatiser les tâches répétitives. Je construis d'abord des outils pour mes propres besoins, et c'est ce qui me fait progresser le plus vite.",
     "whatIBringTitle": "Ce que j’apporte",
-    "whatIBringBody": "Mon parcours me permet d'évoluer à l'intersection de la technique et du marketing. Je comprends les contraintes d'un site web aussi bien que les objectifs de visibilité, de contenu ou de performance. Cette vision transversale facilite les échanges entre équipes techniques et marketing, accélère la mise en œuvre des projets et me permet d'être rapidement opérationnel dans un environnement digital en constante évolution.",
+    "whatIBringBody": "Je parle deux langues : celle du terrain et celle du code. Je sais ce qu'un inspecteur attend d'un outil (fiabilité, rapidité, pas de double saisie), et je sais le construire. Ce double regard facilite les échanges entre les équipes opérationnelles et l'équipe IT.",
     "philosophies": [
       {
         "quote": "Le bon modèle pour la bonne tâche. Claude pour le raisonnement nuancé, Gemini pour la recherche rapide, ChatGPT pour l’exploration de code.",
@@ -137,12 +160,12 @@
     "skills": [
       "Next.js · React",
       "TypeScript",
-      "SEO technique",
       "Tailwind CSS",
-      "Node.js · PostgreSQL",
+      "Node.js",
+      "Prisma · PostgreSQL",
+      "MongoDB",
       "Docker",
-      "Gemini API",
-      "Claude API",
+      "Git",
       "FastAPI · Python"
     ],
     "aiWorkflowTitle": "Mon workflow IA",
@@ -159,9 +182,9 @@
         "tools": "Gemini API · Claude · NotebookLM"
       },
       {
-        "title": "Création de contenu",
-        "body": "Rédaction de copies web, reformulation SEO, génération de variantes A/B pour des titres ou des CTAs. L’humain valide la pertinence, l’IA accélère la production.",
-        "tools": "Claude · ChatGPT · Canva IA"
+        "title": "Rédaction & documentation",
+        "body": "Documentation technique, README, relecture et reformulation des textes de mes sites. L'humain valide la pertinence, l'IA accélère la production.",
+        "tools": "Claude · ChatGPT"
       },
       {
         "title": "Automatisation",
@@ -190,8 +213,8 @@
       }
     ],
     "ctaTitle": "Travaillons ensemble",
-    "ctaBody": "Développeur avec une sensibilité marketing — je conçois des expériences digitales qui servent des objectifs business concrets : visibilité SEO, génération de leads, engagement utilisateur.",
-    "ctaButton": "Démarrer un projet"
+    "ctaBody": "Vous cherchez quelqu'un pour concevoir ou faire évoluer vos outils internes ? Parlons-en.",
+    "ctaButton": "Entrer en contact"
   },
   "projectsPage": {
     "badge": "Vitrine de portfolio",
