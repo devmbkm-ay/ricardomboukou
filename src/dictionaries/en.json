@@ -74,16 +74,16 @@
   },
   "contactPage": {
     "badge": "Get in Touch",
-    "titleLine1": "Let's Create",
-    "titleLine2": "Something Amazing",
-    "intro": "Have a project in mind? I'd love to hear about it. Let's discuss how we can work together.",
+    "titleLine1": "Let's talk about",
+    "titleLine2": "your business tools",
+    "intro": "Hiring a developer, or need a simpler, more reliable internal tool for your teams? Drop me a line: I answer every message personally.",
     "contactInfoTitle": "Contact Info",
     "emailLabel": "Email",
     "locationLabel": "Location",
-    "locationValue": "Remote / Worldwide",
+    "locationValue": "France",
     "followMe": "Follow me",
-    "availability": "Available for work",
-    "availabilityBody": "Currently accepting new projects for Q2 2026. Response time: ~24 hours.",
+    "availability": "Open to opportunities",
+    "availabilityBody": "I'm looking for business tools developer roles in industry. I reply within 48 hours.",
     "form": {
       "name": "Name",
       "email": "Email",
@@ -91,8 +91,8 @@
       "message": "Message",
       "namePlaceholder": "John Doe",
       "emailPlaceholder": "john@example.com",
-      "subjectPlaceholder": "Project inquiry",
-      "messagePlaceholder": "Tell me about your project...",
+      "subjectPlaceholder": "Job opportunity, internal tool project…",
+      "messagePlaceholder": "Tell me about the role or the need…",
       "submit": "Send Message",
       "submitting": "Sending...",
       "success": "Message Sent!",
@@ -101,16 +101,16 @@
     "faqTitle": "Frequently Asked Questions",
     "faqs": [
       {
-        "q": "What is your typical project timeline?",
-        "a": "Most projects take 2-8 weeks depending on complexity. I provide detailed timelines during our initial consultation."
+        "q": "What kind of role are you looking for?",
+        "a": "A business tools developer role in an industrial environment: internal apps for tracking, traceability or automated quality checks, working closely with operational teams."
       },
       {
-        "q": "Do you work with international clients?",
-        "a": "Absolutely! I work remotely with clients worldwide and accommodate different time zones."
+        "q": "What does your field experience bring to a project?",
+        "a": "I know the constraints of the people who will use the tool: shop-floor data entry, compliance documents, traceability requirements. I ask the right questions before writing the first line of code."
       },
       {
         "q": "What technologies do you specialize in?",
-        "a": "React, Next.js, TypeScript, Node.js, PostgreSQL, Docker, and AI integration."
+        "a": "Next.js, React, TypeScript, Node.js, Prisma, PostgreSQL, MongoDB, Docker and Git, with AI as an everyday accelerator."
       }
     ]
   },
@@ -137,7 +137,7 @@
     ],
     "whoAmITitle": "Who I am",
     "whoAmIPara1": "Day to day, I check the traceability and compliance of parts and the documents that come with them. Alongside that, I build web applications, including a non-profit management platform that is now in production.",
-    "whoAmIPara2": "My background is unconventional. For eleven years I worked in hotels and restaurants, notably as assistant manager, in close coordination with the kitchen and dining room teams. It taught me rigour, a sense of service and how to handle the unexpected. After retraining in web development, I spent six months at a start-up maintaining a car rental application for individuals (Node.js, MongoDB, Docker): every morning after the daily meeting, I picked up enhancements and bug fixes on the existing application. I then joined the industrial sector as a quality inspector.",
+    "whoAmIPara2": "My background is unconventional, and that is a strength. For eleven years in hotels and restaurants, notably as assistant manager, I worked in close coordination with kitchen and dining room teams: rigour, a sense of service, quick reactions to the unexpected. After retraining in web development, I joined a start-up to handle application maintenance on a car rental platform (Node.js, MongoDB, Docker), in an agile setup. Now a quality inspector in industry, I bring that dual perspective, field and technical, to building practical tools.",
     "whoAmIPara3": "AI is part of how I work: learning faster, debugging, documenting, automating repetitive tasks. I build tools for my own needs first, and that is what makes me progress fastest.",
     "whatIBringTitle": "What I bring",
     "whatIBringBody": "I speak two languages: the shop floor's and the code's. I know what an inspector expects from a tool (reliability, speed, no double entry), and I know how to build it. That dual perspective makes it easier for operational teams and the IT team to work together.",
@@ -193,19 +193,11 @@
       }
     ],
     "interestsTitle": "Beyond Code",
-    "interestsSubtitle": "A holistic approach where physical discipline and creativity fuel innovation",
+    "interestsSubtitle": "What feeds my curiosity beyond code",
     "interests": [
-      {
-        "name": "Calisthenics",
-        "description": "Physical discipline & strength"
-      },
       {
         "name": "Guitar",
         "description": "Acoustic creativity"
-      },
-      {
-        "name": "Bitcoin & DeFi",
-        "description": "Decentralized finance"
       },
       {
         "name": "Investments",
@@ -217,25 +209,25 @@
     "ctaButton": "Get in touch"
   },
   "projectsPage": {
-    "badge": "Portfolio Showcase",
-    "title": "Selected Works",
-    "subtitle": "A curated collection of projects that demonstrate expertise in modern web technologies",
+    "badge": "Work",
+    "title": "Projects & tools",
+    "subtitle": "Web applications built for real users, from the initial need to production.",
     "stats": {
       "totalProjects": "Total Projects",
       "technologies": "Technologies",
       "shown": "Shown"
     },
     "allFilter": "All",
-    "featuredProject": "Featured Project",
-    "topProjectPrefix": "Top",
-    "topProjectSuffix": "Project",
+    "featuredProject": "Featured project",
+    "topProjectPrefix": "Featured ·",
+    "topProjectSuffix": "",
     "moreProjects": "More Projects",
     "projectsCountSuffix": "projects",
     "emptyTitle": "No projects found",
     "emptyBody": "We couldn't find any projects matching \"{filter}\". Try selecting a different technology or view all projects.",
     "emptyButton": "View All Projects",
-    "bottomCtaLead": "Interested in working together?",
-    "bottomCtaLink": "Let's discuss your project"
+    "bottomCtaLead": "Need an internal tool designed or improved?",
+    "bottomCtaLink": "Let's talk"
   },
   "projectDetailPage": {
     "back": "Back to Projects",

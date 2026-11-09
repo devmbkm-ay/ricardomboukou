@@ -74,16 +74,16 @@
   },
   "contactPage": {
     "badge": "Entrons en contact",
-    "titleLine1": "Créons",
-    "titleLine2": "quelque chose d'incroyable",
-    "intro": "Vous avez un projet en tête ? J'aimerais beaucoup en entendre parler. Discutons de la façon dont nous pouvons travailler ensemble.",
+    "titleLine1": "Parlons de",
+    "titleLine2": "vos outils métiers",
+    "intro": "Vous recrutez un développeur, ou vos équipes ont besoin d'un outil interne plus simple et plus fiable ? Écrivez-moi : je réponds personnellement à chaque message.",
     "contactInfoTitle": "Coordonnées",
     "emailLabel": "Email",
     "locationLabel": "Localisation",
-    "locationValue": "À distance / Monde entier",
+    "locationValue": "France",
     "followMe": "Suivez-moi",
-    "availability": "Disponible pour travailler",
-    "availabilityBody": "J'accepte actuellement de nouveaux projets pour le T2 2026. Temps de réponse : environ 24 heures.",
+    "availability": "Ouvert aux opportunités",
+    "availabilityBody": "Je suis à l'écoute de postes de développeur d'outils métiers dans l'industrie. Réponse sous 48 heures.",
     "form": {
       "name": "Nom",
       "email": "Email",
@@ -91,8 +91,8 @@
       "message": "Message",
       "namePlaceholder": "Jean Dupont",
       "emailPlaceholder": "jean@exemple.com",
-      "subjectPlaceholder": "Demande de projet",
-      "messagePlaceholder": "Parlez-moi de votre projet...",
+      "subjectPlaceholder": "Offre de poste, projet d'outil interne…",
+      "messagePlaceholder": "Présentez-moi le poste ou le besoin…",
       "submit": "Envoyer le message",
       "submitting": "Envoi...",
       "success": "Message envoyé !",
@@ -101,16 +101,16 @@
     "faqTitle": "Questions fréquentes",
     "faqs": [
       {
-        "q": "Quel est votre délai habituel pour un projet ?",
-        "a": "La plupart des projets prennent entre 2 et 8 semaines selon leur complexité. Je fournis un calendrier détaillé lors de notre premier échange."
+        "q": "Quel type de poste recherchez-vous ?",
+        "a": "Un poste de développeur d'outils métiers en environnement industriel : applications internes de suivi, de traçabilité ou d'automatisation des contrôles, au plus près des équipes opérationnelles."
       },
       {
-        "q": "Travaillez-vous avec des clients à l'international ?",
-        "a": "Absolument. Je travaille à distance avec des clients du monde entier et je m'adapte aux différents fuseaux horaires."
+        "q": "Qu'apporte votre expérience terrain à un projet ?",
+        "a": "Je connais les contraintes de ceux qui utiliseront l'outil : saisies en atelier, documents de conformité, exigences de traçabilité. Je pose les bonnes questions avant d'écrire la première ligne de code."
       },
       {
         "q": "Quelles technologies maîtrisez-vous le plus ?",
-        "a": "React, Next.js, TypeScript, Node.js, PostgreSQL, Docker et l'intégration d'IA."
+        "a": "Next.js, React, TypeScript, Node.js, Prisma, PostgreSQL, MongoDB, Docker et Git, avec l'IA comme accélérateur au quotidien."
       }
     ]
   },
@@ -137,7 +137,7 @@
     ],
     "whoAmITitle": "Qui suis-je",
     "whoAmIPara1": "Au quotidien, je vérifie la traçabilité et la conformité des pièces et des documents qui les accompagnent. En parallèle, je développe des applications web, dont une plateforme de gestion associative aujourd'hui en production.",
-    "whoAmIPara2": "Mon parcours est atypique. Pendant onze ans, j'ai travaillé dans l'hôtellerie et la restauration, notamment comme responsable adjoint, en coordination étroite avec la cuisine et la salle. J'y ai appris la rigueur, le sens du service et la gestion des imprévus. Après ma reconversion dans le développement web, j'ai passé six mois en start-up sur la maintenance d'une application de location de véhicules pour particuliers (Node.js, MongoDB, Docker) : chaque matin, après le daily meeting, je prenais en charge des évolutions et des corrections de bugs sur l'application existante. J'ai ensuite rejoint l'industrie comme inspecteur qualité.",
+    "whoAmIPara2": "Mon parcours est atypique, et c'est une force. Pendant onze ans dans l'hôtellerie et la restauration, notamment comme responsable adjoint, j'ai travaillé en coordination étroite avec les équipes de cuisine et de salle : rigueur, sens du service, réactivité face aux imprévus. Après ma reconversion dans le développement web, j'ai rejoint une start-up pour assurer la maintenance applicative d'une plateforme de location de véhicules (Node.js, MongoDB, Docker), en organisation agile. Aujourd'hui inspecteur qualité dans l'industrie, je mets ce double regard, terrain et technique, au service d'outils concrets.",
     "whoAmIPara3": "L'IA fait partie de ma façon de travailler : apprendre plus vite, déboguer, documenter, automatiser les tâches répétitives. Je construis d'abord des outils pour mes propres besoins, et c'est ce qui me fait progresser le plus vite.",
     "whatIBringTitle": "Ce que j’apporte",
     "whatIBringBody": "Je parle deux langues : celle du terrain et celle du code. Je sais ce qu'un inspecteur attend d'un outil (fiabilité, rapidité, pas de double saisie), et je sais le construire. Ce double regard facilite les échanges entre les équipes opérationnelles et l'équipe IT.",
@@ -193,19 +193,11 @@
       }
     ],
     "interestsTitle": "Au-delà du code",
-    "interestsSubtitle": "Une approche holistique où la discipline physique et la créativité nourrissent l’innovation",
+    "interestsSubtitle": "Ce qui nourrit ma curiosité en dehors du code",
     "interests": [
-      {
-        "name": "Callisthénie",
-        "description": "Discipline physique & force"
-      },
       {
         "name": "Guitare",
         "description": "Créativité acoustique"
-      },
-      {
-        "name": "Bitcoin & DeFi",
-        "description": "Finance décentralisée"
       },
       {
         "name": "Investissements",
@@ -217,25 +209,25 @@
     "ctaButton": "Entrer en contact"
   },
   "projectsPage": {
-    "badge": "Vitrine de portfolio",
-    "title": "Réalisations sélectionnées",
-    "subtitle": "Une sélection de projets qui illustre mon expertise avec les technologies web modernes",
+    "badge": "Réalisations",
+    "title": "Projets & outils",
+    "subtitle": "Des applications web conçues pour de vrais utilisateurs, du besoin jusqu'à la mise en production.",
     "stats": {
       "totalProjects": "Projets",
       "technologies": "Technologies",
       "shown": "Affichés"
     },
     "allFilter": "Tous",
-    "featuredProject": "Projet vedette",
-    "topProjectPrefix": "Meilleur projet",
+    "featuredProject": "Projet à la une",
+    "topProjectPrefix": "Projet à la une ·",
     "topProjectSuffix": "",
     "moreProjects": "Autres projets",
     "projectsCountSuffix": "projets",
     "emptyTitle": "Aucun projet trouvé",
     "emptyBody": "Aucun projet ne correspond à \"{filter}\". Essayez une autre technologie ou affichez tous les projets.",
     "emptyButton": "Voir tous les projets",
-    "bottomCtaLead": "Envie de collaborer ?",
-    "bottomCtaLink": "Parlons de votre projet"
+    "bottomCtaLead": "Un outil interne à concevoir ou à faire évoluer ?",
+    "bottomCtaLink": "Parlons-en"
   },
   "projectDetailPage": {
     "back": "Retour aux projets",
