@@ -6,8 +6,6 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import {
-  Bitcoin,
-  Dumbbell,
   Music,
   TrendingUp,
   Code2,
@@ -23,7 +21,7 @@ import en from '@/dictionaries/en.json';
 import fr from '@/dictionaries/fr.json';
 import Image from 'next/image';
 
-const interestIcons = [Dumbbell, Music, Bitcoin, TrendingUp];
+const interestIcons = [Music, TrendingUp];
 const aiWorkflowIcons = [Code2, BookOpen, PenLine, Zap];
 
 const containerVariants = {
@@ -372,7 +370,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {dictionary.interests.map((interest, index) => {
               const Icon = interestIcons[index];
               return (

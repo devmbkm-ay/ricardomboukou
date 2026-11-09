@@ -137,7 +137,7 @@
     ],
     "whoAmITitle": "Qui suis-je",
     "whoAmIPara1": "Au quotidien, je vérifie la traçabilité et la conformité des pièces et des documents qui les accompagnent. En parallèle, je développe des applications web, dont une plateforme de gestion associative aujourd'hui en production.",
-    "whoAmIPara2": "Mon parcours est atypique. Pendant onze ans, j'ai travaillé dans l'hôtellerie et la restauration, notamment comme responsable adjoint, en coordination étroite avec la cuisine et la salle. J'y ai appris la rigueur, le sens du service et la gestion des imprévus. Après ma reconversion dans le développement web, j'ai passé six mois en start-up sur la maintenance d'une application de location de véhicules pour particuliers (Node.js, MongoDB, Docker) : chaque matin, après le daily meeting, je prenais en charge des évolutions et des corrections de bugs sur l'application existante. J'ai ensuite rejoint l'industrie comme inspecteur qualité.",
+    "whoAmIPara2": "Mon parcours est atypique, et c'est une force. Pendant onze ans dans l'hôtellerie et la restauration, notamment comme responsable adjoint, j'ai travaillé en coordination étroite avec les équipes de cuisine et de salle : rigueur, sens du service, réactivité face aux imprévus. Après ma reconversion dans le développement web, j'ai rejoint une start-up pour assurer la maintenance applicative d'une plateforme de location de véhicules (Node.js, MongoDB, Docker), en organisation agile. Aujourd'hui inspecteur qualité dans l'industrie, je mets ce double regard, terrain et technique, au service d'outils concrets.",
     "whoAmIPara3": "L'IA fait partie de ma façon de travailler : apprendre plus vite, déboguer, documenter, automatiser les tâches répétitives. Je construis d'abord des outils pour mes propres besoins, et c'est ce qui me fait progresser le plus vite.",
     "whatIBringTitle": "Ce que j’apporte",
     "whatIBringBody": "Je parle deux langues : celle du terrain et celle du code. Je sais ce qu'un inspecteur attend d'un outil (fiabilité, rapidité, pas de double saisie), et je sais le construire. Ce double regard facilite les échanges entre les équipes opérationnelles et l'équipe IT.",
@@ -193,19 +193,11 @@
       }
     ],
     "interestsTitle": "Au-delà du code",
-    "interestsSubtitle": "Une approche holistique où la discipline physique et la créativité nourrissent l’innovation",
+    "interestsSubtitle": "Ce qui nourrit ma curiosité en dehors du code",
     "interests": [
-      {
-        "name": "Callisthénie",
-        "description": "Discipline physique & force"
-      },
       {
         "name": "Guitare",
         "description": "Créativité acoustique"
-      },
-      {
-        "name": "Bitcoin & DeFi",
-        "description": "Finance décentralisée"
       },
       {
         "name": "Investissements",

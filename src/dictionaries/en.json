@@ -137,7 +137,7 @@
     ],
     "whoAmITitle": "Who I am",
     "whoAmIPara1": "Day to day, I check the traceability and compliance of parts and the documents that come with them. Alongside that, I build web applications, including a non-profit management platform that is now in production.",
-    "whoAmIPara2": "My background is unconventional. For eleven years I worked in hotels and restaurants, notably as assistant manager, in close coordination with the kitchen and dining room teams. It taught me rigour, a sense of service and how to handle the unexpected. After retraining in web development, I spent six months at a start-up maintaining a car rental application for individuals (Node.js, MongoDB, Docker): every morning after the daily meeting, I picked up enhancements and bug fixes on the existing application. I then joined the industrial sector as a quality inspector.",
+    "whoAmIPara2": "My background is unconventional, and that is a strength. For eleven years in hotels and restaurants, notably as assistant manager, I worked in close coordination with kitchen and dining room teams: rigour, a sense of service, quick reactions to the unexpected. After retraining in web development, I joined a start-up to handle application maintenance on a car rental platform (Node.js, MongoDB, Docker), in an agile setup. Now a quality inspector in industry, I bring that dual perspective, field and technical, to building practical tools.",
     "whoAmIPara3": "AI is part of how I work: learning faster, debugging, documenting, automating repetitive tasks. I build tools for my own needs first, and that is what makes me progress fastest.",
     "whatIBringTitle": "What I bring",
     "whatIBringBody": "I speak two languages: the shop floor's and the code's. I know what an inspector expects from a tool (reliability, speed, no double entry), and I know how to build it. That dual perspective makes it easier for operational teams and the IT team to work together.",
@@ -193,19 +193,11 @@
       }
     ],
     "interestsTitle": "Beyond Code",
-    "interestsSubtitle": "A holistic approach where physical discipline and creativity fuel innovation",
+    "interestsSubtitle": "What feeds my curiosity beyond code",
     "interests": [
-      {
-        "name": "Calisthenics",
-        "description": "Physical discipline & strength"
-      },
       {
         "name": "Guitar",
         "description": "Acoustic creativity"
-      },
-      {
-        "name": "Bitcoin & DeFi",
-        "description": "Decentralized finance"
       },
       {
         "name": "Investments",
