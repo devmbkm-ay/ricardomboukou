@@ -209,25 +209,25 @@
     "ctaButton": "Get in touch"
   },
   "projectsPage": {
-    "badge": "Portfolio Showcase",
-    "title": "Selected Works",
-    "subtitle": "A curated collection of projects that demonstrate expertise in modern web technologies",
+    "badge": "Work",
+    "title": "Projects & tools",
+    "subtitle": "Web applications built for real users, from the initial need to production.",
     "stats": {
       "totalProjects": "Total Projects",
       "technologies": "Technologies",
       "shown": "Shown"
     },
     "allFilter": "All",
-    "featuredProject": "Featured Project",
-    "topProjectPrefix": "Top",
-    "topProjectSuffix": "Project",
+    "featuredProject": "Featured project",
+    "topProjectPrefix": "Featured ·",
+    "topProjectSuffix": "",
     "moreProjects": "More Projects",
     "projectsCountSuffix": "projects",
     "emptyTitle": "No projects found",
     "emptyBody": "We couldn't find any projects matching \"{filter}\". Try selecting a different technology or view all projects.",
     "emptyButton": "View All Projects",
-    "bottomCtaLead": "Interested in working together?",
-    "bottomCtaLink": "Let's discuss your project"
+    "bottomCtaLead": "Need an internal tool designed or improved?",
+    "bottomCtaLink": "Let's talk"
   },
   "projectDetailPage": {
     "back": "Back to Projects",

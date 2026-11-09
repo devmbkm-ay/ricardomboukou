@@ -209,25 +209,25 @@
     "ctaButton": "Entrer en contact"
   },
   "projectsPage": {
-    "badge": "Vitrine de portfolio",
-    "title": "Réalisations sélectionnées",
-    "subtitle": "Une sélection de projets qui illustre mon expertise avec les technologies web modernes",
+    "badge": "Réalisations",
+    "title": "Projets & outils",
+    "subtitle": "Des applications web conçues pour de vrais utilisateurs, du besoin jusqu'à la mise en production.",
     "stats": {
       "totalProjects": "Projets",
       "technologies": "Technologies",
       "shown": "Affichés"
     },
     "allFilter": "Tous",
-    "featuredProject": "Projet vedette",
-    "topProjectPrefix": "Meilleur projet",
+    "featuredProject": "Projet à la une",
+    "topProjectPrefix": "Projet à la une ·",
     "topProjectSuffix": "",
     "moreProjects": "Autres projets",
     "projectsCountSuffix": "projets",
     "emptyTitle": "Aucun projet trouvé",
     "emptyBody": "Aucun projet ne correspond à \"{filter}\". Essayez une autre technologie ou affichez tous les projets.",
     "emptyButton": "Voir tous les projets",
-    "bottomCtaLead": "Envie de collaborer ?",
-    "bottomCtaLink": "Parlons de votre projet"
+    "bottomCtaLead": "Un outil interne à concevoir ou à faire évoluer ?",
+    "bottomCtaLink": "Parlons-en"
   },
   "projectDetailPage": {
     "back": "Retour aux projets",
