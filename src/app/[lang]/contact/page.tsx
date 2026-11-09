@@ -8,8 +8,6 @@ import {
   Mail,
   MapPin,
   Github,
-  Linkedin,
-  Twitter,
   ArrowUpRight,
   Sparkles,
   CheckCircle2,
@@ -39,9 +37,9 @@ const itemVariants = {
 } as const;
 
 const socialLinks = [
-  { name: 'GitHub', icon: Github, href: 'https://github.com', color: 'hover:text-white' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com', color: 'hover:text-blue-400' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com', color: 'hover:text-sky-400' },
+  { name: 'GitHub', icon: Github, href: 'https://github.com/devmbkm-ay', color: 'hover:text-white' },
+  // À réactiver une fois le profil LinkedIn à jour (et importer Linkedin depuis lucide-react) :
+  // { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/<ton-profil>', color: 'hover:text-blue-400' },
 ];
 
 export default function ContactPage() {
