@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* dark: suit la classe .dark de next-themes (et non le thème de l'OS) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #f8fafc;
   --foreground: #020617;

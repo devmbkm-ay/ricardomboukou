@@ -17,6 +17,7 @@ type NavbarDictionary = {
     dashboard: string;
     login: string;
     logout: string;
+    tagline?: string;
 };
 
 const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictionary }) => {
@@ -51,10 +52,10 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
                         aria-label="Go to homepage"
                     >
                         <div className="hidden sm:block">
-                            <Logo variant="full" animated={false} />
+                            <Logo variant="full" tagline={dictionary.tagline} />
                         </div>
                         <div className="block sm:hidden">
-                            <Logo variant="mark" animated={false} />
+                            <Logo variant="mark" />
                         </div>
                     </Link>
 
