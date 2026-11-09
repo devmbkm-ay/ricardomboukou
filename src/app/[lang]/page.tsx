@@ -25,10 +25,9 @@ function PersonJsonLd({ lang }: { lang: Locale }) {
       'Docker', 'PostgreSQL', 'FastAPI', 'Tailwind CSS',
     ],
     nationality: { '@type': 'Country', name: 'France' },
-    // Update these with your real profile URLs
+    // Ajouter l'URL LinkedIn ici une fois le profil à jour
     sameAs: [
-      'https://github.com/ricardomboukou',
-      'https://www.linkedin.com/in/ricardomboukou',
+      'https://github.com/devmbkm-ay',
     ],
   };
 
