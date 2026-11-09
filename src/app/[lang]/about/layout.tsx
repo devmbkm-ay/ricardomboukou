@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title: isFr ? 'À propos' : 'About',
     description: isFr
-      ? "Développeur web fullstack avec une appétence pour le marketing digital — parcours atypique, 11 ans de management opérationnel, IA au quotidien depuis 2023."
-      : "Fullstack web developer with a genuine interest in digital marketing — unconventional background, 11 years in operational management, daily AI since 2023.",
+      ? "Inspecteur qualité en milieu industriel et développeur web fullstack — parcours atypique, 11 ans de terrain, des outils métiers pensés pour les équipes opérationnelles."
+      : "Quality inspector in an industrial setting and fullstack web developer — unconventional background, 11 years hands-on, business tools built for operational teams.",
     alternates: {
       canonical: `/${lang}/about`,
       languages: {

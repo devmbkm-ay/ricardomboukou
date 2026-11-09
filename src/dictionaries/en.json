@@ -18,9 +18,32 @@
     "subtitle": "",
     "ctaPrimary": "View My Work",
     "ctaSecondary": "Get in Touch",
-    "techStack": ["Next.js · React", "Prisma · PostgreSQL", "Docker", "Git"],
-    "stats": [{ "num": "6", "label": "Projects" }, { "num": "11", "label": "Yrs hands-on experience" }, { "num": "1", "label": "Business tool in production" }],
-    "typewriterWords": ["custom business tools", "reliable traceability tools", "automated quality checks", "tools made for the shop floor"]
+    "techStack": [
+      "Next.js · React",
+      "Prisma · PostgreSQL",
+      "Docker",
+      "Git"
+    ],
+    "stats": [
+      {
+        "num": "6",
+        "label": "Projects"
+      },
+      {
+        "num": "11",
+        "label": "Yrs hands-on experience"
+      },
+      {
+        "num": "1",
+        "label": "Business tool in production"
+      }
+    ],
+    "typewriterWords": [
+      "custom business tools",
+      "reliable traceability tools",
+      "automated quality checks",
+      "tools made for the shop floor"
+    ]
   },
   "auth": {
     "login": {
@@ -93,22 +116,31 @@
   },
   "aboutPage": {
     "badge": "About",
-    "heroRole": "Web Developer · Digital Communication",
-    "heroIntro": "Fullstack web developer with a genuine interest in digital marketing — I sit in a rare intersection: I understand both the technical architecture side and the content and campaign side.",
+    "heroRole": "Quality Inspector · Web Developer",
+    "heroIntro": "Quality inspector in an industrial setting and fullstack web developer, I build business tools that make life easier for shop-floor teams: tracking, traceability, document checks.",
     "ctaProjects": "View my projects",
     "ctaContact": "Get in touch",
     "photoPlaceholder": "Your photo here",
     "heroStats": [
-      { "num": "6", "label": "Projects" },
-      { "num": "11", "label": "Yrs mgmt" },
-      { "num": "2023", "label": "Daily AI" }
+      {
+        "num": "6",
+        "label": "Projects"
+      },
+      {
+        "num": "11",
+        "label": "Yrs hands-on"
+      },
+      {
+        "num": "1",
+        "label": "Tool in production"
+      }
     ],
     "whoAmITitle": "Who I am",
-    "whoAmIPara1": "I'm a fullstack web developer with a genuine interest in digital marketing — I sit in a rare intersection: I understand both the technical architecture side and the content and campaign side.",
-    "whoAmIPara2": "My background is unconventional. Eleven years in operational management taught me to read situations quickly, work under pressure and adapt on the fly — before I retrained in web development and digital communication. That dual experience isn't a contradiction: it's an asset.",
-    "whoAmIPara3": "I use AI daily — not as a trend, but as a practical tool integrated into my workflow: generating study cards with Gemini, development assistance, content creation and optimisation. I build tools for my own needs, and it teaches me faster than any course.",
+    "whoAmIPara1": "Day to day, I check the traceability and compliance of parts and the documents that come with them. Alongside that, I build web applications, including a non-profit management platform that is now in production.",
+    "whoAmIPara2": "My background is unconventional. For eleven years I worked in hotels and restaurants, notably as assistant manager, in close coordination with the kitchen and dining room teams. It taught me rigour, a sense of service and how to handle the unexpected. After retraining in web development, I spent six months at a start-up maintaining a car rental application for individuals (Node.js, MongoDB, Docker): every morning after the daily meeting, I picked up enhancements and bug fixes on the existing application. I then joined the industrial sector as a quality inspector.",
+    "whoAmIPara3": "AI is part of how I work: learning faster, debugging, documenting, automating repetitive tasks. I build tools for my own needs first, and that is what makes me progress fastest.",
     "whatIBringTitle": "What I bring",
-    "whatIBringBody": "In a digital marketing role, I'm the profile who doesn't need an explanation of how an integration works, how to read a console error, or how to optimise a title tag. I contribute from day one — and I bridge the gap between technical and marketing teams when needed.",
+    "whatIBringBody": "I speak two languages: the shop floor's and the code's. I know what an inspector expects from a tool (reliability, speed, no double entry), and I know how to build it. That dual perspective makes it easier for operational teams and the IT team to work together.",
     "philosophies": [
       {
         "quote": "Right model, right task. Claude for nuanced reasoning, Gemini for fast research, ChatGPT for code exploration.",
@@ -128,12 +160,12 @@
     "skills": [
       "Next.js · React",
       "TypeScript",
-      "Technical SEO",
       "Tailwind CSS",
-      "Node.js · PostgreSQL",
+      "Node.js",
+      "Prisma · PostgreSQL",
+      "MongoDB",
       "Docker",
-      "Gemini API",
-      "Claude API",
+      "Git",
       "FastAPI · Python"
     ],
     "aiWorkflowTitle": "My AI workflow",
@@ -150,9 +182,9 @@
         "tools": "Gemini API · Claude · NotebookLM"
       },
       {
-        "title": "Content Creation",
-        "body": "Web copywriting, SEO reformulation, A/B variant generation for headlines and CTAs. The human validates relevance, AI accelerates production.",
-        "tools": "Claude · ChatGPT · Canva AI"
+        "title": "Writing & documentation",
+        "body": "Technical documentation, READMEs, proofreading and rewording the copy on my sites. The human validates relevance, AI speeds up production.",
+        "tools": "Claude · ChatGPT"
       },
       {
         "title": "Automation",
@@ -163,14 +195,26 @@
     "interestsTitle": "Beyond Code",
     "interestsSubtitle": "A holistic approach where physical discipline and creativity fuel innovation",
     "interests": [
-      { "name": "Calisthenics", "description": "Physical discipline & strength" },
-      { "name": "Guitar", "description": "Acoustic creativity" },
-      { "name": "Bitcoin & DeFi", "description": "Decentralized finance" },
-      { "name": "Investments", "description": "Cycles & strategies" }
+      {
+        "name": "Calisthenics",
+        "description": "Physical discipline & strength"
+      },
+      {
+        "name": "Guitar",
+        "description": "Acoustic creativity"
+      },
+      {
+        "name": "Bitcoin & DeFi",
+        "description": "Decentralized finance"
+      },
+      {
+        "name": "Investments",
+        "description": "Cycles & strategies"
+      }
     ],
     "ctaTitle": "Let's work together",
-    "ctaBody": "Web developer with a marketing mindset — I build digital experiences that serve concrete business goals: SEO visibility, lead generation, user engagement.",
-    "ctaButton": "Start a project"
+    "ctaBody": "Looking for someone to design or improve your internal tools? Let's talk.",
+    "ctaButton": "Get in touch"
   },
   "projectsPage": {
     "badge": "Portfolio Showcase",
