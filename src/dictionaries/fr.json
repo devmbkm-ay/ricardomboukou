@@ -10,40 +10,17 @@
     "tagline": "Développeur d’outils métiers"
   },
   "home": {
-    "availability": "Disponible pour alternance · Webmarketing",
+    "availability": "Ouvert aux opportunités · Industrie",
     "titleName": "Ricardo M'Boukou",
-    "titleRole": "Développeur web · Communication digitale",
-    "introPrefix": "Je conçois des expériences",
-    "introSuffix": "— du code propre qui fonctionne.",
+    "titleRole": "Inspecteur qualité · Développeur web",
+    "introPrefix": "Je conçois des outils",
+    "introSuffix": "— parce que je connais le terrain qui les utilise.",
     "subtitle": "",
     "ctaPrimary": "Explorer mes réalisations",
     "ctaSecondary": "Entrer en contact",
-    "techStack": [
-      "Next.js · React",
-      "SEO technique",
-      "IA appliquée",
-      "Création de contenus"
-    ],
-    "stats": [
-      {
-        "num": "6",
-        "label": "Projets"
-      },
-      {
-        "num": "11",
-        "label": "Ans de management"
-      },
-      {
-        "num": "2023",
-        "label": "IA au quotidien"
-      }
-    ],
-    "typewriterWords": [
-      "orientées résultats",
-      "axées SEO",
-      "propulsées par l'IA",
-      "qui convertissent"
-    ]
+    "techStack": ["Next.js · React", "Prisma · PostgreSQL", "Docker", "Git"],
+    "stats": [{ "num": "6", "label": "Projets" }, { "num": "11", "label": "Ans d'expérience terrain" }, { "num": "1", "label": "Outil métier en production" }],
+    "typewriterWords": ["métiers sur mesure", "qui fiabilisent la traçabilité", "qui automatisent les contrôles", "pensés pour le terrain"]
   },
   "auth": {
     "login": {
