@@ -74,16 +74,16 @@
   },
   "contactPage": {
     "badge": "Get in Touch",
-    "titleLine1": "Let's Create",
-    "titleLine2": "Something Amazing",
-    "intro": "Have a project in mind? I'd love to hear about it. Let's discuss how we can work together.",
+    "titleLine1": "Let's talk about",
+    "titleLine2": "your business tools",
+    "intro": "Hiring a developer, or need a simpler, more reliable internal tool for your teams? Drop me a line: I answer every message personally.",
     "contactInfoTitle": "Contact Info",
     "emailLabel": "Email",
     "locationLabel": "Location",
-    "locationValue": "Remote / Worldwide",
+    "locationValue": "France",
     "followMe": "Follow me",
-    "availability": "Available for work",
-    "availabilityBody": "Currently accepting new projects for Q2 2026. Response time: ~24 hours.",
+    "availability": "Open to opportunities",
+    "availabilityBody": "I'm looking for business tools developer roles in industry. I reply within 48 hours.",
     "form": {
       "name": "Name",
       "email": "Email",
@@ -91,8 +91,8 @@
       "message": "Message",
       "namePlaceholder": "John Doe",
       "emailPlaceholder": "john@example.com",
-      "subjectPlaceholder": "Project inquiry",
-      "messagePlaceholder": "Tell me about your project...",
+      "subjectPlaceholder": "Job opportunity, internal tool project…",
+      "messagePlaceholder": "Tell me about the role or the need…",
       "submit": "Send Message",
       "submitting": "Sending...",
       "success": "Message Sent!",
@@ -101,16 +101,16 @@
     "faqTitle": "Frequently Asked Questions",
     "faqs": [
       {
-        "q": "What is your typical project timeline?",
-        "a": "Most projects take 2-8 weeks depending on complexity. I provide detailed timelines during our initial consultation."
+        "q": "What kind of role are you looking for?",
+        "a": "A business tools developer role in an industrial environment: internal apps for tracking, traceability or automated quality checks, working closely with operational teams."
       },
       {
-        "q": "Do you work with international clients?",
-        "a": "Absolutely! I work remotely with clients worldwide and accommodate different time zones."
+        "q": "What does your field experience bring to a project?",
+        "a": "I know the constraints of the people who will use the tool: shop-floor data entry, compliance documents, traceability requirements. I ask the right questions before writing the first line of code."
       },
       {
         "q": "What technologies do you specialize in?",
-        "a": "React, Next.js, TypeScript, Node.js, PostgreSQL, Docker, and AI integration."
+        "a": "Next.js, React, TypeScript, Node.js, Prisma, PostgreSQL, MongoDB, Docker and Git, with AI as an everyday accelerator."
       }
     ]
   },

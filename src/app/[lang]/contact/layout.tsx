@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title: 'Contact',
     description: isFr
-      ? "Prenez contact avec Ricardo M'Boukou — développeur web disponible pour une alternance webmarketing. Réponse sous 24h."
-      : "Get in touch with Ricardo M'Boukou — web developer available for a digital marketing internship. Response within 24h.",
+      ? "Prenez contact avec Ricardo M'Boukou — inspecteur qualité et développeur web, ouvert aux postes de développeur d'outils métiers dans l'industrie."
+      : "Get in touch with Ricardo M'Boukou — quality inspector and web developer, open to business tools developer roles in industry.",
     alternates: {
       canonical: `/${lang}/contact`,
       languages: {
