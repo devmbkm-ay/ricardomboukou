@@ -12,12 +12,12 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio.ricardom
 
 const localeMeta = {
   fr: {
-    title: "Ricardo M'Boukou — Développeur web · Communication digitale",
-    description: "Développeur web avec une sensibilité marketing — expériences digitales orientées SEO, conversion et contenu, avec l'IA comme outil du quotidien.",
+    title: "Ricardo M'Boukou — Inspecteur qualité · Développeur web",
+    description: "Inspecteur qualité et développeur web : je conçois des outils métiers (Next.js, PostgreSQL, Docker) pour fiabiliser la traçabilité et automatiser les contrôles.",
   },
   en: {
-    title: "Ricardo M'Boukou — Web Developer · Digital Communication",
-    description: "Web developer with a marketing mindset — digital experiences focused on SEO, conversion and content, with AI as an everyday tool.",
+    title: "Ricardo M'Boukou — Quality Inspector · Web Developer",
+    description: "Quality inspector and web developer: I build business tools (Next.js, PostgreSQL, Docker) that make traceability reliable and automate quality checks.",
   },
 };
 

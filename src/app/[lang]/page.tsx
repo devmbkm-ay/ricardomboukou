@@ -13,14 +13,14 @@ function PersonJsonLd({ lang }: { lang: Locale }) {
     name: "Ricardo M'Boukou",
     url: SITE_URL,
     jobTitle: isFr
-      ? 'Développeur web · Communication digitale'
-      : 'Web Developer · Digital Communication',
+      ? 'Inspecteur qualité · Développeur web'
+      : 'Quality Inspector · Web Developer',
     description: isFr
-      ? "Développeur web fullstack avec une sensibilité marketing — expériences digitales orientées SEO, conversion et contenu, avec l'IA comme outil du quotidien."
-      : "Web developer with a marketing mindset — digital experiences focused on SEO, conversion and content, with AI as an everyday tool.",
+      ? "Inspecteur qualité et développeur web : je conçois des outils métiers (Next.js, PostgreSQL, Docker) pour fiabiliser la traçabilité et automatiser les contrôles."
+      : "Quality inspector and web developer: I build business tools (Next.js, PostgreSQL, Docker) that make traceability reliable and automate quality checks.",
     knowsAbout: [
       'Next.js', 'React', 'TypeScript', 'Node.js',
-      'SEO technique', 'Marketing digital',
+      'Prisma', 'Git', 'Qualité industrielle', 'Traçabilité',
       'Gemini API', 'Claude API',
       'Docker', 'PostgreSQL', 'FastAPI', 'Tailwind CSS',
     ],

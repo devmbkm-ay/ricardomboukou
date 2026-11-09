@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({ lang, dictionary = {} }) => {
                     <div className="space-y-2">
                         <h3 className="text-lg font-bold tracking-tight">Ricardo M&apos;Boukou</h3>
                         <p className="text-sm text-muted">
-                            Web Developer · Digital Marketing · AI
+                            {lang === 'fr' ? 'Inspecteur qualité · Développeur web' : 'Quality inspector · Web developer'}
                         </p>
                     </div>
 

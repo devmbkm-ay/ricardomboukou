@@ -10,21 +10,17 @@
     "tagline": "Business tools developer"
   },
   "home": {
-    "availability": "Available for internship · Web Marketing",
+    "availability": "Open to opportunities · Industry",
     "titleName": "Ricardo M'Boukou",
-    "titleRole": "Web developer · Digital communication",
+    "titleRole": "Quality inspector · Web developer",
     "introPrefix": "I build",
-    "introSuffix": "web experiences — clean code, content that converts, AI as everyday tool.",
+    "introSuffix": "— because I know the shop floor that uses them.",
     "subtitle": "",
     "ctaPrimary": "View My Work",
     "ctaSecondary": "Get in Touch",
-    "techStack": ["Next.js · React", "Technical SEO", "Applied AI", "Content Creation"],
-    "stats": [
-      { "num": "6", "label": "Projects" },
-      { "num": "11", "label": "Yrs management" },
-      { "num": "2023", "label": "Daily AI" }
-    ],
-    "typewriterWords": ["result-driven", "SEO-optimised", "AI-powered", "conversion-focused"]
+    "techStack": ["Next.js · React", "Prisma · PostgreSQL", "Docker", "Git"],
+    "stats": [{ "num": "6", "label": "Projects" }, { "num": "11", "label": "Yrs hands-on experience" }, { "num": "1", "label": "Business tool in production" }],
+    "typewriterWords": ["custom business tools", "reliable traceability tools", "automated quality checks", "tools made for the shop floor"]
   },
   "auth": {
     "login": {
