@@ -10,6 +10,7 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
+    "db:seed:projects": "tsx prisma/seed-projects.ts",
     "db:studio": "prisma studio",
     "db:delete:projects": "tsx prisma/delete-projects.ts",
     "db:reset": "prisma migrate reset --force",
