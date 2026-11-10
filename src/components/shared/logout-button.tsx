@@ -22,7 +22,7 @@ export default function LogoutButton({ dictionary }: { dictionary: { logout: str
     };
 
     return (
-        <button onClick={handleLogout} className="hover:text-zinc-300 transition-colors">
+        <button onClick={handleLogout} className="text-muted hover:text-foreground transition-colors">
             {dictionary.logout}
         </button>
     );

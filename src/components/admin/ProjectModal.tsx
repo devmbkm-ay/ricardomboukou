@@ -97,8 +97,8 @@ const ProjectModal = ({
 
       setFormData({ ...formData, imageUrl: data.imageUrl });
       toast.success(dictionary.uploadSuccess);
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : dictionary.uploadFallbackError);
     } finally {
       setIsUploading(false);
     }
@@ -139,7 +139,7 @@ const ProjectModal = ({
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-background border border-border rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                className="bg-surface border border-border rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center mb-6">
@@ -159,7 +159,7 @@ const ProjectModal = ({
                             value={repoUrl}
                             onChange={(e) => setRepoUrl(e.target.value)}
                             placeholder={dictionary.repoPlaceholder}
-                            className="flex-grow px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                            className="flex-grow px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                         <button
                             type="button"
@@ -174,14 +174,14 @@ const ProjectModal = ({
                 </div>
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Title EN & FR */}
-                    <input type="text" placeholder={`${dictionary.titlePlaceholder} (EN)`} value={formData.titleEn} onChange={e => setFormData({...formData, titleEn: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
-                    <input type="text" placeholder={`${dictionary.titlePlaceholder} (FR)`} value={formData.titleFr} onChange={e => setFormData({...formData, titleFr: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
+                    <input type="text" placeholder={`${dictionary.titlePlaceholder} (EN)`} value={formData.titleEn} onChange={e => setFormData({...formData, titleEn: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
+                    <input type="text" placeholder={`${dictionary.titlePlaceholder} (FR)`} value={formData.titleFr} onChange={e => setFormData({...formData, titleFr: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
 
                     {/* Slug */}
-                    <input type="text" placeholder={dictionary.slugPlaceholder} value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
+                    <input type="text" placeholder={dictionary.slugPlaceholder} value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
 
                     {/* Image URL */}
-                    <input type="text" placeholder={dictionary.imageUrlPlaceholder} value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+                    <input type="text" placeholder={dictionary.imageUrlPlaceholder} value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
 
                     {/* Image Upload */}
                     <div className="w-full relative">
@@ -197,22 +197,22 @@ const ProjectModal = ({
                     </div>
 
                     {/* Description EN & FR */}
-                    <textarea placeholder={`${dictionary.descriptionPlaceholder} (EN)`} value={formData.descriptionEn} onChange={e => setFormData({...formData, descriptionEn: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" rows={3} required></textarea>
-                    <textarea placeholder={`${dictionary.descriptionPlaceholder} (FR)`} value={formData.descriptionFr} onChange={e => setFormData({...formData, descriptionFr: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" rows={3} required></textarea>
+                    <textarea placeholder={`${dictionary.descriptionPlaceholder} (EN)`} value={formData.descriptionEn} onChange={e => setFormData({...formData, descriptionEn: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" rows={3} required></textarea>
+                    <textarea placeholder={`${dictionary.descriptionPlaceholder} (FR)`} value={formData.descriptionFr} onChange={e => setFormData({...formData, descriptionFr: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" rows={3} required></textarea>
 
                     {/* Technologies */}
-                    <input type="text" placeholder={dictionary.technologiesPlaceholder} value={formData.technologies} onChange={e => setFormData({...formData, technologies: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
+                    <input type="text" placeholder={dictionary.technologiesPlaceholder} value={formData.technologies} onChange={e => setFormData({...formData, technologies: e.target.value})} className="md:col-span-2 w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" required />
 
                     {/* Links */}
-                    <input type="text" placeholder={dictionary.projectUrlPlaceholder} value={formData.projectUrl} onChange={e => setFormData({...formData, projectUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
-                    <input type="text" placeholder={dictionary.githubUrlPlaceholder} value={formData.githubUrl} onChange={e => setFormData({...formData, githubUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+                    <input type="text" placeholder={dictionary.projectUrlPlaceholder} value={formData.projectUrl} onChange={e => setFormData({...formData, projectUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+                    <input type="text" placeholder={dictionary.githubUrlPlaceholder} value={formData.githubUrl} onChange={e => setFormData({...formData, githubUrl: e.target.value})} className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
 
                     {/* Case Study (optional) */}
                     <div className="md:col-span-2 mt-2">
                         <button
                             type="button"
                             onClick={() => setShowCaseStudy(!showCaseStudy)}
-                            className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-accent/5 border border-border text-sm font-medium text-muted hover:text-foreground hover:border-primary/30 transition-all"
+                            className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-background border border-border text-sm font-medium text-muted hover:text-foreground hover:border-primary/30 transition-all"
                         >
                             <span>{dictionary.caseStudyLabel}</span>
                             <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showCaseStudy ? 'rotate-180' : ''}`} />
@@ -223,7 +223,7 @@ const ProjectModal = ({
                                     placeholder={dictionary.caseStudyPlaceholder}
                                     value={formData.caseStudy}
                                     onChange={e => setFormData({...formData, caseStudy: e.target.value})}
-                                    className="w-full px-4 py-3 rounded-lg bg-accent/5 border border-border text-foreground font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                                    className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary"
                                     rows={12}
                                     spellCheck={false}
                                 />
@@ -232,7 +232,7 @@ const ProjectModal = ({
                     </div>
 
                     <div className="md:col-span-2 flex justify-end gap-4 mt-4">
-                        <button type="button" onClick={onClose} className="px-5 py-2 rounded-lg text-foreground font-semibold hover:bg-accent/5 transition-all">{dictionary.cancel}</button>
+                        <button type="button" onClick={onClose} className="px-5 py-2 rounded-lg text-foreground font-semibold hover:bg-surface-muted transition-all">{dictionary.cancel}</button>
                         <button type="submit" disabled={isSaving} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all disabled:opacity-60 shadow-md">
                             {isSaving && <LoaderCircle className="animate-spin w-4 h-4" />}
                             {project?.id ? dictionary.saveChanges : dictionary.createProject}

@@ -21,6 +21,7 @@ export default function HomeClient() {
   // Three.js Particle Background
   useEffect(() => {
     if (!canvasRef.current) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -57,8 +58,13 @@ export default function HomeClient() {
     }
 
     const animate = () => {
-      ctx.fillStyle = 'rgba(2, 6, 23, 0.1)'; // Trail effect matching #020617
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        ctx.fillStyle = 'rgba(2, 6, 23, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
 
       particles.forEach((particle, i) => {
         // ... (mouse logic)
@@ -81,7 +87,7 @@ export default function HomeClient() {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`; // Primary Electric Blue
+        ctx.fillStyle = `rgba(37, 99, 235, ${isDark ? particle.opacity : particle.opacity * 0.32})`;
         ctx.fill();
 
         // Connect nearby particles
@@ -94,7 +100,9 @@ export default function HomeClient() {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(34, 211, 238, ${0.1 * (1 - distance2 / 150)})`; // Accent Cyan
+            ctx.strokeStyle = isDark
+              ? `rgba(34, 211, 238, ${0.1 * (1 - distance2 / 150)})`
+              : `rgba(37, 99, 235, ${0.06 * (1 - distance2 / 150)})`;
             ctx.stroke();
           }
         });
@@ -146,19 +154,20 @@ export default function HomeClient() {
       {/* Animated Background Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 z-0 opacity-40"
+        className="absolute inset-0 z-0 opacity-30 dark:opacity-40 motion-reduce:hidden"
       />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.08),transparent_58%)] dark:hidden" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl animate-pulse motion-reduce:animate-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 dark:bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000 motion-reduce:animate-none" />
 
       {/* Main Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
 
           {/* Availability Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-border backdrop-blur-sm mb-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border shadow-sm mb-8 animate-fade-in-up">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span className="text-sm text-muted font-medium">{dictionary.availability}</span>
           </div>
@@ -166,7 +175,7 @@ export default function HomeClient() {
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             <span className="text-foreground">Ricardo</span>
-            <span className="block mt-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
+            <span className="block mt-2 text-primary">
               {dictionary.titleRole}
             </span>
           </h1>
@@ -200,7 +209,7 @@ export default function HomeClient() {
             <Button
               href={`/${lang}/contact`}
               variant="outline"
-              className="border-border bg-accent/5 backdrop-blur-sm hover:bg-accent/10 text-foreground font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
+              className="border-border bg-surface hover:bg-surface-muted text-foreground font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
             >
               {dictionary.ctaSecondary}
             </Button>
@@ -211,7 +220,7 @@ export default function HomeClient() {
             {dictionary.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 rounded-full bg-accent/5 border border-border text-muted text-sm font-medium hover:bg-accent/10 hover:border-primary/50 hover:text-foreground hover:-translate-y-1 transition-all cursor-default"
+                className="px-4 py-2 rounded-full bg-surface border border-border text-muted text-sm font-medium hover:bg-surface-muted hover:border-primary/50 hover:text-foreground hover:-translate-y-1 transition-all cursor-default"
               >
                 {tech}
               </span>
@@ -245,17 +254,6 @@ export default function HomeClient() {
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
-        }
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 3s ease infinite;
-        }
-        .bg-300\\% {
-          background-size: 300% 300%;
         }
         @keyframes fade-in-up {
           from { opacity: 0; transform: translateY(20px); }

@@ -96,7 +96,7 @@ export default function ContactPage() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-border backdrop-blur-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border shadow-sm mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted font-medium">{dictionary.badge}</span>
             </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Info Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-2 space-y-8">
-              <div className="p-8 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm">
+              <div className="p-8 rounded-3xl bg-surface border border-border shadow-sm">
                 <h3 className="text-xl font-semibold text-foreground mb-6">{dictionary.contactInfoTitle}</h3>
 
                 <div className="space-y-6">
@@ -150,7 +150,7 @@ export default function ContactPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`w-12 h-12 rounded-xl bg-accent/5 border border-border flex items-center justify-center text-muted transition-all hover:scale-110 hover:border-primary/30 ${social.color}`}
+                        className={`w-12 h-12 rounded-xl bg-surface-muted border border-border flex items-center justify-center text-muted transition-all hover:scale-110 hover:border-primary/30 ${social.color}`}
                       >
                         <social.icon className="w-5 h-5" />
                       </a>
@@ -160,7 +160,7 @@ export default function ContactPage() {
               </div>
 
               {/* Availability Card */}
-              <div className="p-6 rounded-2xl bg-accent/5 border border-primary/20">
+              <div className="p-6 rounded-2xl bg-surface border border-primary/20 shadow-sm">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                   <span className="text-sm font-medium text-green-600 dark:text-green-400">{dictionary.availability}</span>
@@ -176,7 +176,7 @@ export default function ContactPage() {
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="p-8 md:p-10 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm"
+                className="p-8 md:p-10 rounded-3xl bg-surface border border-border shadow-sm"
               >
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="space-y-2">
@@ -270,7 +270,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-accent/5 border border-border hover:border-primary/20 transition-colors"
+                  className="p-6 rounded-2xl bg-surface border border-border hover:border-primary/20 transition-colors shadow-sm"
                 >
                   <h3 className="font-semibold text-foreground mb-2">{faq.q}</h3>
                   <p className="text-muted text-sm">{faq.a}</p>

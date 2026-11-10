@@ -45,7 +45,7 @@ const ProjectCard = ({
       whileHover={featured ? { scale: 1.01 } : { y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={`
-        group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-background/40 backdrop-blur-sm
+        group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface
         transition-all duration-500
         hover:border-primary/30 hover:shadow-lg
         ${featured ? 'min-h-[500px]' : compact ? 'min-h-[180px] flex-row md:flex-row' : 'min-h-[380px]'}
@@ -76,7 +76,7 @@ const ProjectCard = ({
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             sizes={featured ? "(max-width: 768px) 100vw, 80vw" : "(max-width: 768px) 100vw, 50vw"}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-slate-950/5 to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-30 dark:from-slate-950/70 dark:via-slate-950/20" />
           
           <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-[2px]">
             {githubUrl && (
@@ -138,7 +138,7 @@ const ProjectCard = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05 }}
                 className={`
-                  inline-flex items-center rounded-full border border-border bg-accent/5 px-3 py-1
+                  inline-flex items-center rounded-full border border-border bg-surface-muted px-3 py-1
                   text-xs font-medium text-muted backdrop-blur-sm
                   transition-all duration-300
                   group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:text-primary
@@ -149,7 +149,7 @@ const ProjectCard = ({
               </motion.span>
             ))}
             {!featured && technologies.length > (compact ? 3 : 4) && (
-              <span className="inline-flex items-center rounded-full border border-border bg-accent/5 px-3 py-1 text-xs font-medium text-muted">
+              <span className="inline-flex items-center rounded-full border border-border bg-surface-muted px-3 py-1 text-xs font-medium text-muted">
                 +{technologies.length - (compact ? 3 : 4)}
               </span>
             )}

@@ -166,7 +166,7 @@ export default function DashboardPage() {
         </button>
         <button
           onClick={() => toast.dismiss(t.id)}
-          className="ml-2 px-3 py-1 rounded-md bg-gray-200 text-black"
+          className="ml-2 px-3 py-1 rounded-md bg-surface-muted text-foreground"
         >
           {dashboardDictionary.cancelAction}
         </button>
@@ -215,10 +215,10 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 lg:p-8">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px]" />
       </div>
 
       <AnimatePresence>
@@ -239,37 +239,37 @@ export default function DashboardPage() {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative z-10 max-w-7xl mx-auto">
         <header className="flex justify-between items-center mb-12">
           <div className="flex items-center gap-3">
-            <LayoutDashboard className="w-8 h-8 text-purple-400" />
-            <h1 className="text-3xl md:text-4xl font-bold text-white">{dashboardDictionary.title}</h1>
+            <LayoutDashboard className="w-8 h-8 text-primary" />
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground">{dashboardDictionary.title}</h1>
           </div>
-          <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 transition-all">
+          <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-surface text-foreground font-semibold hover:bg-surface-muted transition-all">
             <LogOut className="w-4 h-4" />
             <span>{dashboardDictionary.logout}</span>
           </button>
         </header>
 
-        <div className="bg-zinc-900/30 border border-white/10 rounded-2xl p-6 md:p-8">
+        <div className="bg-surface border border-border rounded-2xl p-6 md:p-8 shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
             <h2 className="text-2xl font-semibold">{dashboardDictionary.projectsTitle}</h2>
-            <button onClick={openModalForNew} className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-white text-black font-semibold hover:bg-zinc-200 transition-all">
+            <button onClick={openModalForNew} className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all">
               <PlusCircle className="w-5 h-5" />
               <span>{dashboardDictionary.addNewProject}</span>
             </button>
           </div>
 
           {isLoading ? (
-            <div className="text-center py-16"><LoaderCircle className="animate-spin w-8 h-8 mx-auto text-zinc-500" /></div>
+            <div className="text-center py-16"><LoaderCircle className="animate-spin w-8 h-8 mx-auto text-muted" /></div>
           ) : error ? (
-            <div className="text-center py-16 text-red-400">{error}</div>
+            <div className="text-center py-16 text-red-600 dark:text-red-400">{error}</div>
           ) : projects.length === 0 ? (
-            <div className="text-center py-16 border-2 border-dashed border-zinc-700 rounded-lg">
-              <p className="text-zinc-400">{dashboardDictionary.emptyTitle}</p>
-              <p className="text-sm text-zinc-500">{dashboardDictionary.emptyBody}</p>
+            <div className="text-center py-16 border-2 border-dashed border-border rounded-lg">
+              <p className="text-muted">{dashboardDictionary.emptyTitle}</p>
+              <p className="text-sm text-muted">{dashboardDictionary.emptyBody}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map(project => (
-                <motion.div key={project.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-accent/5 border border-border rounded-xl p-4 flex flex-col justify-between">
+                <motion.div key={project.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-surface-muted/60 border border-border rounded-xl p-4 flex flex-col justify-between">
                   <div>
                     <h3 className="font-bold text-lg text-foreground">{lang === 'fr' ? project.titleFr : project.titleEn}</h3>
                     <p className="text-sm text-muted mb-2">{project.slug}</p>

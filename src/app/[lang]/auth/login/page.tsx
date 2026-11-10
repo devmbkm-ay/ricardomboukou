@@ -79,7 +79,7 @@ export default function LoginPage() {
         animate="visible"
         className="relative z-10 w-full max-w-md"
       >
-        <div className="relative p-8 rounded-3xl bg-accent/5 border border-border backdrop-blur-sm shadow-xl">
+        <div className="relative p-8 rounded-3xl bg-surface border border-border shadow-xl shadow-slate-900/10">
           <motion.h1 variants={itemVariants} className="text-4xl font-bold text-center text-foreground mb-2">
             {dictionary.title}
           </motion.h1>

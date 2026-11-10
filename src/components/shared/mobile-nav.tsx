@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import NavLinks from './nav-links';
+import ThemeToggle from './theme-toggle';
 
 type Dictionary = {
     home: string;
@@ -20,10 +20,10 @@ export default function MobileNav({ lang, dictionary, isAuthenticated }: { lang:
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <div className="sm:hidden">
+        <div className="lg:hidden">
             <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground transition-colors hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-nav"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -46,7 +46,7 @@ export default function MobileNav({ lang, dictionary, isAuthenticated }: { lang:
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         id="mobile-nav"
-                        className="absolute top-full left-0 w-full bg-zinc-900 border-t border-zinc-800"
+                        className="absolute top-full left-0 w-full border-t border-border bg-background/95 text-foreground shadow-xl backdrop-blur-xl"
                         onClick={closeMenu}
                     >
                         <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
@@ -55,6 +55,10 @@ export default function MobileNav({ lang, dictionary, isAuthenticated }: { lang:
                                 dictionary={dictionary}
                                 isAuthenticated={isAuthenticated}
                             />
+                            <div className="flex items-center justify-between border-t border-border pt-4 text-sm text-muted">
+                                <span>{lang === 'fr' ? 'Thème' : 'Theme'}</span>
+                                <ThemeToggle lang={lang} />
+                            </div>
                         </div>
                     </motion.div>
                 )}

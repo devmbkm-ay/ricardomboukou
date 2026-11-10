@@ -34,7 +34,7 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
 
                 const data = await res.json();
                 setIsAuthenticated(Boolean(data.isAuthenticated));
-            } catch (error) {
+            } catch {
                 setIsAuthenticated(false);
             }
         };
@@ -43,7 +43,7 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
     }, []);
 
     return (
-        <header className="sticky top-0 z-40 w-full border-b border-border bg-[#f8fafc]/60 dark:bg-[#020617]/60 backdrop-blur-lg">
+        <header className="sticky top-0 z-40 w-full border-b border-border bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/75">
             <nav className="container mx-auto px-4 py-3">
                 <div className="flex items-center justify-between">
                     <Link
@@ -51,10 +51,10 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
                         className="flex items-center group transition-opacity hover:opacity-80"
                         aria-label="Go to homepage"
                     >
-                        <div className="hidden sm:block">
+                        <div className="hidden lg:block">
                             <Logo variant="full" tagline={dictionary.tagline} />
                         </div>
-                        <div className="block sm:hidden">
+                        <div className="block lg:hidden">
                             <Logo variant="mark" />
                         </div>
                     </Link>
@@ -67,14 +67,14 @@ const Navbar = ({ lang, dictionary }: { lang: Locale; dictionary: NavbarDictiona
                     />
 
                     {/* Desktop nav */}
-                    <div className="hidden items-center space-x-6 text-lg sm:flex">
+                    <div className="hidden items-center space-x-4 text-base lg:flex">
                         <NavLinks
                             lang={lang}
                             dictionary={dictionary}
                             isAuthenticated={isAuthenticated}
                         />
                         <div className="h-6 w-px bg-border mx-2"></div>
-                        <ThemeToggle />
+                        <ThemeToggle lang={lang} />
                     </div>
                 </div>
             </nav>

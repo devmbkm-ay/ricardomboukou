@@ -111,7 +111,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                             href={`/${lang}/projects`}
                             className="inline-flex items-center gap-2 text-muted hover:text-foreground transition-colors group"
                         >
-                            <div className="w-10 h-10 rounded-full bg-accent/5 border border-border flex items-center justify-center group-hover:bg-accent/10 group-hover:border-primary/30 transition-all">
+                            <div className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center group-hover:bg-surface-muted group-hover:border-primary/30 transition-all">
                                 <ChevronLeft className="w-5 h-5" />
                             </div>
                             <span className="font-medium">{dictionary.back}</span>
@@ -129,9 +129,9 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                     <span className="text-sm font-medium text-primary">{dictionary.featuredBadge}</span>
                                 </div>
                                 {caseStudy && (
-                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20">
-                                        <BarChart3 className="w-4 h-4 text-accent-foreground/60" />
-                                        <span className="text-sm font-medium text-accent-foreground/60">Case Study</span>
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-muted border border-border">
+                                        <BarChart3 className="w-4 h-4 text-muted" />
+                                        <span className="text-sm font-medium text-muted">Case Study</span>
                                     </div>
                                 )}
                                 <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-primary/20 to-transparent" />
@@ -177,7 +177,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                         <FadeIn delay={0.5}>
                             <div className="relative max-w-6xl mx-auto">
                                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl blur-2xl opacity-50" />
-                                <div className="relative rounded-3xl overflow-hidden border border-border bg-accent/5">
+                                <div className="relative rounded-3xl overflow-hidden border border-border bg-surface-muted">
                                     <div className="aspect-[21/9] relative">
                                         <Image
                                             src={project.imageUrl}
@@ -187,7 +187,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                             priority
                                             sizes="(max-width: 1200px) 100vw, 1200px"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent dark:from-background/60" />
                                     </div>
                                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
                                         <div className="flex gap-3">
@@ -235,7 +235,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                             {/* Right Sidebar */}
                             <aside className="lg:col-span-1 space-y-6">
                                 <StaggerContainer>
-                                    <div className="p-6 rounded-2xl bg-accent/5 border border-border sticky top-24">
+                                    <div className="p-6 rounded-2xl bg-surface border border-border shadow-sm sticky top-24">
                                         <h3 className="text-lg font-semibold text-foreground mb-4">{dictionary.linksTitle}</h3>
                                         <div className="space-y-3 mb-6">
                                             {project.projectUrl && (
@@ -250,7 +250,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                             )}
                                             {project.githubUrl && (
                                                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                                                    className="flex items-center justify-between p-4 rounded-xl bg-background border border-border text-foreground hover:bg-accent/10 hover:border-primary/30 transition-all group">
+                                                    className="flex items-center justify-between p-4 rounded-xl bg-surface-muted border border-border text-foreground hover:bg-primary/5 hover:border-primary/30 transition-all group">
                                                     <span className="flex items-center gap-2">
                                                         <Github className="w-4 h-4" />
                                                         {dictionary.sourceCode}
@@ -267,7 +267,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                         </div>
                                     </div>
 
-                                    <div className="p-6 rounded-2xl bg-accent/5 border border-border">
+                                    <div className="p-6 rounded-2xl bg-surface border border-border shadow-sm">
                                         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                                             <Code className="w-5 h-5 text-primary" />
                                             {dictionary.techStack}
@@ -275,7 +275,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                         <div className="flex flex-wrap gap-2">
                                             {project.technologies.map((tech: string, index: number) => (
                                                 <span key={tech}
-                                                    className="px-3 py-1.5 rounded-lg bg-accent/10 border border-border text-muted text-sm font-medium hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all cursor-default"
+                                                    className="px-3 py-1.5 rounded-lg bg-surface-muted border border-border text-muted text-sm font-medium hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all cursor-default"
                                                     style={{ animationDelay: `${index * 50}ms` }}>
                                                     {tech}
                                                 </span>
@@ -283,7 +283,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                                         </div>
                                     </div>
 
-                                    <div className="p-6 rounded-2xl bg-accent/5 border border-border">
+                                    <div className="p-6 rounded-2xl bg-surface border border-border shadow-sm">
                                         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                                             <Calendar className="w-5 h-5 text-primary" />
                                             {dictionary.details}
@@ -321,7 +321,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                             <p className="text-muted mb-4">{dictionary.moreLead}</p>
                             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">{dictionary.moreTitle}</h2>
                             <Link href={`/${lang}/projects`}
-                                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-accent/5 border border-border text-foreground font-semibold hover:bg-accent/10 hover:border-primary/30 transition-all">
+                                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-surface border border-border text-foreground font-semibold hover:bg-surface-muted hover:border-primary/30 transition-all">
                                 {dictionary.moreButton}
                                 <ArrowUpRight className="w-5 h-5" />
                             </Link>
@@ -372,7 +372,7 @@ function CaseStudyContent({
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="p-5 rounded-2xl border border-border bg-accent/5 hover:border-primary/30 transition-colors"
+                                    className="p-5 rounded-2xl border border-border bg-surface shadow-sm hover:border-primary/30 transition-colors"
                                 >
                                     <div className="flex items-center gap-3 mb-3">
                                         <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -404,7 +404,7 @@ function CaseStudyContent({
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: i * 0.08 }}
-                                    className="p-4 rounded-2xl border border-border bg-accent/5 text-center hover:border-primary/30 hover:bg-primary/5 transition-all"
+                                    className="p-4 rounded-2xl border border-border bg-surface text-center shadow-sm hover:border-primary/30 hover:bg-primary/5 transition-all"
                                 >
                                     <div className="text-3xl font-bold text-primary mb-1">{kpi.value}</div>
                                     <div className="text-xs text-muted font-medium">{label}</div>
@@ -422,7 +422,7 @@ function CaseStudyContent({
                         <Target className="w-5 h-5 text-primary" />
                         {dict.challengeTitle}
                     </h3>
-                    <div className="p-6 rounded-2xl bg-accent/5 border border-border">
+                    <div className="p-6 rounded-2xl bg-surface border border-border shadow-sm">
                         <p className="text-muted leading-relaxed">{challenge}</p>
                     </div>
                 </div>
@@ -464,7 +464,7 @@ function GenericContent({ dictionary }: { dictionary: typeof en.projectDetailPag
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                     {dictionary.features.map((feature, index) => (
-                        <div key={feature} className="flex items-center gap-3 p-4 rounded-xl bg-accent/5 border border-border hover:border-primary/30 transition-colors">
+                        <div key={feature} className="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border hover:border-primary/30 transition-colors">
                             <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
                                 {String(index + 1).padStart(2, '0')}
                             </div>
@@ -476,7 +476,7 @@ function GenericContent({ dictionary }: { dictionary: typeof en.projectDetailPag
 
             <div className="space-y-6 mt-12">
                 <h3 className="text-xl font-semibold text-foreground">{dictionary.technicalTitle}</h3>
-                <div className="p-6 rounded-2xl bg-accent/5 border border-border">
+                <div className="p-6 rounded-2xl bg-surface border border-border shadow-sm">
                     <p className="text-muted leading-relaxed mb-4">{dictionary.technicalBody1}</p>
                     <p className="text-muted leading-relaxed">{dictionary.technicalBody2}</p>
                 </div>

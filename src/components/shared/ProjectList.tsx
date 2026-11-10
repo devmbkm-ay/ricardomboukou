@@ -70,7 +70,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                     <button
                         key={tech}
                         onClick={() => handleFilterClick(tech)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === tech ? 'bg-white text-black' : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-white'}`}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === tech ? 'bg-primary text-primary-foreground' : 'bg-surface border border-border text-muted hover:border-primary/50 hover:text-foreground'}`}
                     >
                         {tech}
                     </button>
@@ -90,7 +90,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                     {/* Featured Project */}
                     {featuredProject && (
                         <motion.div variants={itemVariants} className="mb-12">
-                            <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <h2 className="text-sm font-semibold text-muted uppercase tracking-wider mb-4 flex items-center gap-2">
                                 <Sparkles className="w-4 h-4" />
                                 {activeFilter === 'All' ? 'Featured Project' : `Top Project in ${activeFilter}`}
                             </h2>
@@ -101,7 +101,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                     {/* Other Projects */}
                     {otherProjects.length > 0 && (
                         <div>
-                            <motion.h2 variants={itemVariants} className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">
+                            <motion.h2 variants={itemVariants} className="text-sm font-semibold text-muted uppercase tracking-wider mb-4">
                                 More Projects
                             </motion.h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -117,10 +117,10 @@ export default function ProjectList({ projects }: ProjectListProps) {
                     {/* No Results Message */}
                     {filteredProjects.length === 0 && (
                         <motion.div variants={itemVariants} className="text-center py-16">
-                            <p className="text-xl text-zinc-400">No projects found for &quot;{activeFilter}&quot;.</p>
+                            <p className="text-xl text-muted">No projects found for &quot;{activeFilter}&quot;.</p>
                             <button
                                 onClick={() => handleFilterClick('All')}
-                                className="mt-4 text-purple-400 hover:text-purple-300 transition-colors"
+                                className="mt-4 text-primary hover:opacity-80 transition-colors"
                             >
                                 Show All Projects
                             </button>

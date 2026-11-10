@@ -125,7 +125,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-border backdrop-blur-sm mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border shadow-sm mb-6"
             >
                 <Sparkles className="w-4 h-4 text-primary" />
                 <span className="text-sm text-muted font-medium">{dictionary.badge}</span>
@@ -183,7 +183,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                             relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300
                             ${activeFilter === tech 
                                 ? 'bg-primary text-primary-foreground shadow-md' 
-                                : 'bg-accent/5 border border-border text-muted hover:border-primary/50 hover:text-foreground hover:bg-accent/10'
+                                : 'bg-surface border border-border text-muted hover:border-primary/50 hover:text-foreground hover:bg-surface-muted'
                             }
                         `}
                     >
@@ -200,7 +200,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="absolute inset-0 bg-accent/5 rounded-full -z-10"
+                                className="absolute inset-0 bg-surface-muted rounded-full -z-10"
                             />
                         )}
                     </motion.button>
@@ -208,7 +208,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
             </div>
 
             {/* View Toggle */}
-            <div className="flex items-center gap-2 bg-accent/5 border border-border rounded-full p-1">
+            <div className="flex items-center gap-2 bg-surface border border-border rounded-full p-1 shadow-sm">
                 <button
                     onClick={() => setViewMode('grid')}
                     className={`p-2 rounded-full transition-all ${viewMode === 'grid' ? 'bg-primary/10 text-primary' : 'text-muted hover:text-foreground'}`}
@@ -253,7 +253,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                             transition={{ type: "spring", stiffness: 300 }}
                         >
                             <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <div className="relative bg-background border border-border rounded-3xl overflow-hidden backdrop-blur-sm">
+                            <div className="relative bg-surface border border-border rounded-3xl overflow-hidden shadow-sm">
                                 <ProjectCard {...featuredProject} />
                             </div>
                         </motion.div>
@@ -277,7 +277,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                                     className="group relative"
                                 >
                                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 to-accent/0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:from-primary/5 group-hover:to-accent/5 transition-all duration-500 blur-sm" />
-                                    <div className="relative bg-background border border-border rounded-2xl overflow-hidden hover:border-primary/20 transition-colors">
+                                    <div className="relative bg-surface border border-border rounded-2xl overflow-hidden hover:border-primary/20 transition-colors shadow-sm">
                                         <ProjectCard {...project} compact={viewMode === 'list'} />
                                     </div>
                                 </motion.div>
@@ -291,7 +291,7 @@ export default function ProjectListClient({ projects = [] }: ProjectListProps) {
                     <motion.div variants={itemVariants} className="text-center py-24 relative">
                         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-3xl" />
                         <div className="relative z-10">
-                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-accent/5 border border-border flex items-center justify-center">
+                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-surface border border-border flex items-center justify-center">
                                 <Filter className="w-8 h-8 text-muted" />
                             </div>
                             <h3 className="text-2xl font-bold text-foreground mb-2">{dictionary.emptyTitle}</h3>
