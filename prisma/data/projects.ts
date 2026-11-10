@@ -44,4 +44,98 @@ export const projects = [
         projectUrl: 'https://noceflorale-frontend.vercel.app',
         githubUrl: 'https://github.com/devmbkm-ay/noceflorale',
     },
+    {
+        slug: 'assistant-ia-auto-heberge',
+        titleEn: 'Self-hosted AI assistant',
+        titleFr: 'Assistant IA auto-hébergé',
+        descriptionEn: 'Deployment of a personal AI assistant on my own VPS. Docker Compose orchestration (OpenClaw gateway, local models via Ollama, SearXNG search engine), hosted with Coolify, routing between a lightweight local model and a fallback model, memory maintenance scripts.',
+        descriptionFr: "Déploiement d'un assistant IA personnel sur mon propre VPS. Orchestration Docker Compose (passerelle OpenClaw, modèles locaux via Ollama, moteur de recherche SearXNG), mise en ligne via Coolify, routage entre un modèle local léger et un modèle de repli, scripts de maintenance de la mémoire.",
+        technologies: ['Docker', 'Docker Compose', 'Coolify', 'Ollama', 'SearXNG', 'Node.js', 'Linux'],
+        imageUrl: '/images/openclaw.png',
+        projectUrl: 'https://assistant.ricardomboukou.online',
+        githubUrl: '',
+    },
+    {
+        slug: 'rapports-fiscaux-transferts',
+        titleEn: 'Money transfer tax report generator',
+        titleFr: 'Générateur de rapports fiscaux de transferts',
+        descriptionEn: 'A Python tool that automates tedious document work: it fetches money transfer receipts from an Outlook mailbox (Microsoft Graph, MSAL authentication), extracts data from the PDFs (amounts, fees, currencies, recipients, dates) and generates a yearly PDF report with per-currency totals, ready for tax filing.',
+        descriptionFr: 'Outil Python qui automatise un travail documentaire fastidieux : il récupère les reçus de transferts d’argent dans une boîte Outlook (Microsoft Graph, authentification MSAL), extrait les données des PDF (montants, frais, devises, bénéficiaires, dates) et génère un rapport annuel en PDF, avec totaux par devise, prêt pour la déclaration fiscale.',
+        technologies: ['Python', 'Microsoft Graph', 'MSAL', 'pdfplumber', 'ReportLab'],
+        imageUrl: '/images/fiscalflow.png',
+        projectUrl: '',
+        githubUrl: 'https://github.com/ricardomb94/worldremit-receipt',
+    },
+    {
+        slug: 'budgetapp',
+        titleEn: 'BudgetApp — AI-assisted budget manager',
+        titleFr: 'BudgetApp — gestion de budget avec IA',
+        descriptionEn: 'Personal budget app: transactions, budget goals, net worth tracking. Turborepo monorepo with a Next.js frontend and an Elysia API running on Bun, database managed with Prisma. In progress: spending analysis and receipt scanning (OCR) through the Claude API.',
+        descriptionFr: 'Application de gestion de budget personnel : transactions, objectifs budgétaires, suivi du patrimoine. Monorepo Turborepo avec un frontend Next.js et une API Elysia sur Bun, base de données gérée avec Prisma. En cours : analyse des dépenses et scan de tickets de caisse (OCR) via l’API Claude.',
+        technologies: ['Next.js', 'React', 'TypeScript', 'Bun', 'Elysia', 'Prisma', 'Turborepo', 'Docker', 'Claude API'],
+        imageUrl: '/images/budgetapp.png',
+        projectUrl: 'https://budgetappweb.vercel.app',
+        githubUrl: 'https://github.com/devmbkm-ay/budgetapp',
+    },
+    {
+        slug: 'fondation-meteo-assistance',
+        titleEn: 'Fondation Météo Assistance — non-profit management platform',
+        titleFr: 'Fondation Météo Assistance — plateforme de gestion associative',
+        descriptionEn: 'A management tool in production for a non-profit: members, roles and access rights (super admin, treasurer, secretary, member), dues and payments, events with registrations and attendance, transactional emails and automatic reminders, audit log of every change. Next.js frontend, FastAPI REST API and PostgreSQL, containerised with Docker.',
+        descriptionFr: 'Outil de gestion en production pour une association : adhérents, rôles et droits d’accès (super admin, trésorier, secrétaire, membre), cotisations et paiements, événements avec inscriptions et présences, emails transactionnels et rappels automatiques, journal d’audit de chaque modification. Frontend Next.js, API REST FastAPI et PostgreSQL, conteneurisés avec Docker.',
+        technologies: ['Next.js', 'React', 'TypeScript', 'TanStack Query', 'FastAPI', 'Python', 'PostgreSQL', 'SQLAlchemy', 'Alembic', 'Docker', 'Brevo'],
+        imageUrl: '/images/fm-assistance.png',
+        projectUrl: 'https://fmassistance.org',
+        githubUrl: 'https://github.com/devmbkm-ay/asso-ufc-frontend',
+        caseStudy: {
+            problemFr: "L'association gérait ses adhérents, ses cotisations et ses événements avec des outils dispersés : difficile de savoir qui est à jour, qui s'est inscrit, et qui a modifié quoi.",
+            problemEn: 'The non-profit managed its members, dues and events with scattered tools: hard to know who was up to date, who had registered, and who changed what.',
+            personas: [
+                {
+                    nameFr: 'Le trésorier',
+                    nameEn: 'The treasurer',
+                    needFr: "Enregistrer les paiements et voir d'un coup d'œil les cotisations en retard.",
+                    needEn: 'Record payments and see overdue dues at a glance.',
+                    icon: 'BarChart3',
+                },
+                {
+                    nameFr: 'Les membres',
+                    nameEn: 'Members',
+                    needFr: "S'inscrire aux événements et recevoir les rappels sans relance manuelle.",
+                    needEn: 'Register for events and get reminders without manual follow-up.',
+                    icon: 'Users',
+                },
+            ],
+            kpis: [
+                {
+                    labelFr: 'Rôles avec droits distincts',
+                    labelEn: 'Roles with distinct rights',
+                    value: '4',
+                },
+                {
+                    labelFr: 'Modules métier',
+                    labelEn: 'Business modules',
+                    value: '5',
+                },
+                {
+                    labelFr: 'Dépôts (frontend + API)',
+                    labelEn: 'Repositories (frontend + API)',
+                    value: '2',
+                },
+            ],
+            challengeFr: 'Séparer clairement les droits de chaque rôle (RBAC) et garder une trace fiable de chaque modification, avec une API FastAPI (dépôt asso-ufc) consommée par un frontend Next.js.',
+            challengeEn: "Clearly separating each role's rights (RBAC) and keeping a reliable trail of every change, with a FastAPI backend (asso-ufc repository) consumed by a Next.js frontend.",
+            insightFr: "Un outil métier réussi, c'est d'abord un outil que les utilisateurs non techniques adoptent : des écrans simples, des rôles clairs, des rappels automatiques.",
+            insightEn: 'A successful business tool is first and foremost one that non-technical users adopt: simple screens, clear roles, automatic reminders.',
+        },
+    },
 ];
+
+export const projectsToAdd = projects.filter(({ slug }) =>
+    [
+        'assistant-ia-auto-heberge',
+        'rapports-fiscaux-transferts',
+        'budgetapp',
+        'fondation-meteo-assistance',
+    ].includes(slug)
+);
